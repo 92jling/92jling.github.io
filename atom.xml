@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>精灵客栈</title>
+  <icon>https://jling.tk/icon.png</icon>
+  <subtitle>A Favicon Blog</subtitle>
+  <link href="https://jling.tk/atom.xml" rel="self"/>
+  
+  <link href="https://jling.tk/"/>
+  <updated>2022-03-19T10:01:23.087Z</updated>
+  <id>https://jling.tk/</id>
+  
+  <author>
+    <name>Jling</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo添加音乐和电影页面</title>
+    <link href="https://jling.tk/posts/42604.html"/>
+    <id>https://jling.tk/posts/42604.html</id>
+    <published>2022-03-19T10:00:30.000Z</published>
+    <updated>2022-03-19T10:01:23.087Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;建议&quot;&gt;&lt;a href=&quot;#建议&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="other" scheme="https://jling.tk/categories/other/"/>
+    
+    
+    <category term="HEXO" scheme="https://jling.tk/tags/HEXO/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo优化文章永久链接为数字编号</title>
+    <link href="https://jling.tk/posts/2153285795.html"/>
+    <id>https://jling.tk/posts/2153285795.html</id>
+    <published>2022-03-17T12:48:36.024Z</published>
+    <updated>2022-03-19T07:45:11.502Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;1-待优化问题&quot;&gt;&lt;a href=&quot;#1-待优化问题&quot; class=&quot;headerlink&quot; title=&quot;1. 待优化问题&quot;&gt;&lt;/a&gt;&lt;strong&gt;1.</summary>
+        
+      
+    
+    
+    
+    <category term="other" scheme="https://jling.tk/categories/other/"/>
+    
+    
+    <category term="HEXO" scheme="https://jling.tk/tags/HEXO/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何使用 Travis CI 自动部署 Hexo 博客</title>
+    <link href="https://jling.tk/posts/756393619.html"/>
+    <id>https://jling.tk/posts/756393619.html</id>
+    <published>2022-03-17T11:58:30.000Z</published>
+    <updated>2022-03-19T07:45:11.514Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;我们搭建个人网站的初衷，不就是为了能好好地写博客吗？一切重复且枯燥的工作都应该交给程序去自动完成，尤其是静态博客，&lt;strong&gt;我们只需要专注文字&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;什么是-CI&quot;&gt;&lt;a href=&quot;#什么是-CI&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="other" scheme="https://jling.tk/categories/other/"/>
+    
+    
+    <category term="HEXO" scheme="https://jling.tk/tags/HEXO/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>action自动部署hexo的方法</title>
+    <link href="https://jling.tk/posts/2786860441.html"/>
+    <id>https://jling.tk/posts/2786860441.html</id>
+    <published>2022-03-17T11:55:30.000Z</published>
+    <updated>2022-03-19T07:45:11.495Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;什么是-GitHub-Actions&quot;&gt;&lt;a href=&quot;#什么是-GitHub-Actions&quot; class=&quot;headerlink&quot; title=&quot;什么是 GitHub Actions&quot;&gt;&lt;/a&gt;什么是 GitHub</summary>
+        
+      
+    
+    
+    
+    <category term="other" scheme="https://jling.tk/categories/other/"/>
+    
+    
+    <category term="HEXO" scheme="https://jling.tk/tags/HEXO/"/>
+    
+    <category term="Github" scheme="https://jling.tk/tags/Github/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>从头开始搭建HEXO</title>
+    <link href="https://jling.tk/posts/1245901822.html"/>
+    <id>https://jling.tk/posts/1245901822.html</id>
+    <published>2020-11-02T17:42:30.000Z</published>
+    <updated>2022-03-19T07:45:11.505Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;环境搭建&quot;&gt;&lt;a href=&quot;#环境搭建&quot; class=&quot;headerlink&quot; title=&quot;环境搭建&quot;&gt;&lt;/a&gt;环境搭建&lt;/h2&gt;&lt;h3 id=&quot;1、node-js&quot;&gt;&lt;a href=&quot;#1、node-js&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="other" scheme="https://jling.tk/categories/other/"/>
+    
+    
+    <category term="HEXO" scheme="https://jling.tk/tags/HEXO/"/>
+    
+    <category term="Github" scheme="https://jling.tk/tags/Github/"/>
+    
+  </entry>
+  
+</feed>

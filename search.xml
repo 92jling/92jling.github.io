@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>action自动部署hexo的方法</title>
+    <url>/posts/2786860441.html</url>
+    <content><![CDATA[<h2 id="什么是-GitHub-Actions"><a href="#什么是-GitHub-Actions" class="headerlink" title="什么是 GitHub Actions"></a>什么是 GitHub Actions</h2><hr>
+<p>GitHub Actions 是 GitHub 的持续集成服务。持续集成由很多操作组成，比如抓取代码、运行测试、登录远程服务器，发布到第三方服务等等。GitHub 把这些操作就称为 actions。</p>
+<p>很多操作在不同项目里面是类似的，完全可以共享。GitHub 允许开发者把每个操作写成独立的脚本文件，存放到代码仓库，使得其他开发者可以引用。</p>
+<p>如果你需要某个 action，不必自己写复杂的脚本，直接引用他人写好的 action 即可，整个持续集成过程，就变成了一个 actions 的组合。这就是 GitHub Actions 最特别的地方。</p>
+<blockquote>
+<p>本例就使用由 <a href="https://github.com/theme-keep" title="https://github.com/theme-keep">theme-keep</a> 提供的 <code>action</code> <a href="https://github.com/theme-keep/hexo-deploy-github-pages-action" title="https://github.com/theme-keep/hexo-deploy-github-pages-action">hexo-deploy-github-pages-action</a> 来自动部署 Hexo。</p>
+</blockquote>
+<h2 id="使用-GitHub-Actions-自动部署的好处"><a href="#使用-GitHub-Actions-自动部署的好处" class="headerlink" title="使用 GitHub Actions 自动部署的好处"></a>使用 GitHub Actions 自动部署的好处</h2><hr>
+<ul>
+<li><p>可以直接在线编辑 <code>md</code> 文件，立即生效。假设你已发布一篇文章，过几天你在别的电脑上浏览发现有几个明显的错别字，这是完全不能容忍的。但此时你电脑上又没有 <code>hexo + node.js + git</code> 等完整的开发环境，重新配置开发环境明显不现实。如果使用 CI，你可以直接用浏览器访问 GitHub 上的项目仓库，直接编辑带错别字的 <code>md</code> 文章，改完，在线提交，稍等片刻，你的网站就自动更新了。</p>
+</li>
+<li><p>如果手动部署，需要先执行 <code>hexo g</code> 编译生成静态文件， 然后推送 <code>public</code> 整个文件夹到 GitHub 上，当后期网站文章、图片较多时候，很多时候连接 GitHub 不是那么顺畅，经常要傻等很长的上传时间。使用 GitHub Actions 自动部署，你只需 <code>push</code> _post 文件里单独的 <code>md</code> 文件即可，其他不用管，效率瞬间高了许多，其中的好处，谁用谁知道。</p>
+</li>
+<li><p>使用 GitHub Actions，你还可以一次性将这些静态博客页面部署到多个服务器上，例如：GitHub Pages、Gitee pages、七牛云、阿里云、腾讯云等等。</p>
+</li>
+<li><p>…</p>
+</li>
+</ul>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><hr>
+<p>本文以 Hexo + <a href="https://github.com/XPoet/hexo-theme-keep" title="https://github.com/XPoet/hexo-theme-keep">Keep</a> 主题搭建博客为例，教你如何使用 GitHub Actions 将博客自动部署到 GitHub Pages。</p>
+<h3 id="创建-GitHub-仓库"><a href="#创建-GitHub-仓库" class="headerlink" title="创建 GitHub 仓库"></a>创建 GitHub 仓库</h3><p>创建两个 <a href="https://github.com/new" title="https://github.com/new">GitHub 仓库</a>，一个<strong>公共仓库</strong>和一个<strong>私有仓库</strong>。</p>
+<ul>
+<li><p><strong>私有仓库</strong>用来存储 Hexo 项目源代码。（保证你的重要信息不泄露）</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/97662aefc0a641a0b125ad7b3a5764be~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image"></p>
+</li>
+<li><p><strong>公共仓库</strong>用来存储编译之后的静态页面。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/63fe06bd84ef40a0885ac06e3fbfa1b4~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image"></p>
+</li>
+</ul>
+<p>本例：</p>
+<ul>
+<li>用私有仓库的 <code>master</code> 分支来存储项目源代码。</li>
+<li>用公共仓库的 <code>gh-pages 分支</code> 来存储静态页面。</li>
+</ul>
+<p>当私有仓库的 <code>master</code> 有内容 <code>push</code> 进来时（例如：主题文件，文章 md 文件、图片等）， 会触发 GitHub Actions 自动编译并部署到公共仓库的 <code>gh-pages 分支</code>。</p>
+<h3 id="创建-GitHub-Token"><a href="#创建-GitHub-Token" class="headerlink" title="创建 GitHub Token"></a>创建 GitHub Token</h3><p>创建一个有 <strong>repo</strong> 和 <strong>workflow</strong> 权限的 <a href="https://github.com/settings/tokens/new" title="https://github.com/settings/tokens/new">GitHub Token</a> 。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/abb72bed2a5747f4ab3f96cfab732330~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image"></p>
+<p>新生成的 Token 只会显示一次，如有遗失，重新生成即可。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/484558ed11fa4b5e8042c65f398ae6ae~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image"></p>
+<h3 id="创建-repository-secret"><a href="#创建-repository-secret" class="headerlink" title="创建 repository secret"></a>创建 repository secret</h3><p>将上面生成的 Token 添加到私有仓库的 <code>Secrets</code> 里，并将这个新增的 <code>secret</code> 命名为 <code>HEXO_DEPLOY</code> （名字无所谓，看你喜欢）。</p>
+<p>步骤：私有仓库 -&gt; <code>settings</code> -&gt; <code>Secrets</code> -&gt; <code>New repository secret</code>。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ddbabbfdef3a4397ab2e05985e7a4960~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image"></p>
+<blockquote>
+<p>新创建的 secret <code>HEXO_DEPLOY</code> 在 Actions 配置文件要用到，需跟配置文件保持一致！</p>
+</blockquote>
+<h3 id="添加-Actions-配置文件"><a href="#添加-Actions-配置文件" class="headerlink" title="添加 Actions 配置文件"></a>添加 Actions 配置文件</h3><ol>
+<li>在你的 Hexo 项目根目录下创建 <code>.github</code> 文件夹。</li>
+<li>在 <code>.github</code> 文件夹下创建 <code>workflows</code> 文件夹。</li>
+<li>在 <code>workflows</code> 文件夹下创建 <code>hexo-deploy.yml</code> 文件。</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5a09e93c2b984c2db29ab7b080a9ea17~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image"></p>
+<p><code>hexo-deploy.yml</code> 文件的内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">name: deploying Hexo project to GitHub pages</span><br><span class="line">on:</span><br><span class="line">  push:</span><br><span class="line">    branches:</span><br><span class="line">      - master # master 分支有 push 行为时就触发这个 action</span><br><span class="line"></span><br><span class="line">jobs:</span><br><span class="line">  build-and-deploy:</span><br><span class="line">    runs-on: ubuntu-latest</span><br><span class="line">    steps:</span><br><span class="line">      - name: Checkout</span><br><span class="line">        uses: actions/checkout@master</span><br><span class="line"></span><br><span class="line">      - name: Build and Deploy</span><br><span class="line">        uses: theme-keep/hexo-deploy-github-pages-action@master # 使用专门部署 Hexo 到 GitHub pages 的 action</span><br><span class="line">        env:</span><br><span class="line">          PERSONAL_TOKEN: $&#123;&#123; secrets.HEXO_DEPLOY &#125;&#125; # secret 名</span><br><span class="line">          PUBLISH_REPOSITORY: XPoet/keep-blog # 公共仓库，格式：GitHub 用户名/仓库名</span><br><span class="line">          BRANCH: gh-pages # 分支，填 gh-pages 就行</span><br><span class="line">          PUBLISH_DIR: ./public # 部署 public 目录下的文件</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在上面的配置文件中，使用了 <a href="https://github.com/theme-keep" title="https://github.com/theme-keep">theme-keep</a> 组织封装的 <strong><a href="https://github.com/theme-keep/hexo-deploy-github-pages-action" title="https://github.com/theme-keep/hexo-deploy-github-pages-action">hexo-deploy-github-pages-action</a></strong> ，是一款专门部署 Hexo 博客到 GitHub pages 的 action，欢迎大家 <a href="https://github.com/theme-keep/hexo-deploy-github-pages-action" title="https://github.com/theme-keep/hexo-deploy-github-pages-action">Star</a> 和 <a href="https://github.com/theme-keep/hexo-deploy-github-pages-action" title="https://github.com/theme-keep/hexo-deploy-github-pages-action">Fork</a></p>
+</blockquote>
+<p>至此，准备工作完毕~</p>
+<h2 id="自动部署触发流程"><a href="#自动部署触发流程" class="headerlink" title="自动部署触发流程"></a>自动部署触发流程</h2><ol>
+<li><p>修改你的 Hexo 博客源代码（例如：增加文章、修改文章、更改主题、修改主题配置文件等等）。</p>
+</li>
+<li><p>把你修改过的 Hexo 项目内容（只提交修改过的那部分内容） <code>push</code> 到 GitHub 私有仓库（本例：keep-site-source）的 <code>master</code> 分支。</p>
+</li>
+<li><p>GitHub Actions 检测到 <code>master</code> 分支有内容 <code>push</code> 进来，会自动执行 action 配置文件的命令，将 Hexo 项目编译成静态页面，然后部署到公共仓库的 <code>gh-pages</code> 分支。</p>
+<blockquote>
+<p><code>gh-pages</code> 分支是 GitHub Pages 服务的固定分支，你只需在 <code>hexo-deploy.yml</code> 文件正确填写，会自动创建。</p>
+</blockquote>
+</li>
+<li><p>在私有仓库的 Actions 可以查看到你配置的 action。 <img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/74cb195159c246aa96b6f5cd5601891b~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image"></p>
+</li>
+<li><p>通过 GitHub Actions 自动部署成功的效果图： <img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2ddcf11fad5b4f67ad7c7051a94e9533~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image"></p>
+</li>
+</ol>
+<h2 id="类似工具"><a href="#类似工具" class="headerlink" title="类似工具"></a>类似工具</h2><p>除了 GitHub Actions，我们还可以使用 <strong>Travis CI</strong> 来实现 Hexo 自动部署，效果是一样的，任君选择。</p>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+      <tags>
+        <tag>HEXO</tag>
+        <tag>Github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo优化文章永久链接为数字编号</title>
+    <url>/posts/2153285795.html</url>
+    <content><![CDATA[<h2 id="1-待优化问题"><a href="#1-待优化问题" class="headerlink" title="1. 待优化问题"></a><strong>1. 待优化问题</strong></h2><p>Hexo默认使用的文章永久链接格式是：</p>
+<p><code>year/:month/:day/:title/</code></p>
+<p>这种链接，如果遇上个中文标题，简直要爆炸，如下：</p>
+<p><img src="https://ask.qcloudimg.com/http-save/yehe-1088047/ec1iu8xv1k.jpeg?imageView2/2/w/1620"></p>
+<p>而且这种中文链接，由于编码的问题，在分享文章链接的时候往往变成：</p>
+<p><img src="https://ask.qcloudimg.com/http-save/yehe-1088047/qvfeomxxlb.png?imageView2/2/w/1620"></p>
+<p>就问你难受不难受？</p>
+<p>这种方式不仅导致链接变得非常长，而且一旦修改文章发布日期或者标题，链接立马失效，造成大量死链，所以：</p>
+<p>不换掉它准备留着过年？</p>
+<p><code>abbrlink</code>插件可以帮助我们很好的解决这个问题，Github仓库如下：</p>
+<ul>
+<li><a href="https://github.com/rozbo/hexo-abbrlink">https://github.com/rozbo/hexo-abbrlink</a></li>
+</ul>
+<h2 id="2-安装abbrlink插件"><a href="#2-安装abbrlink插件" class="headerlink" title="2. 安装abbrlink插件"></a><strong>2. 安装abbrlink插件</strong></h2><p>在博客根目录（执行hexo命令的地方）安装插件：</p>
+<p>npm install hexo-abbrlink –save</p>
+<p><img src="https://ask.qcloudimg.com/http-save/yehe-1088047/rnwlof13er.png?imageView2/2/w/1620"></p>
+<h2 id="3-编辑站点配置文件"><a href="#3-编辑站点配置文件" class="headerlink" title="3. 编辑站点配置文件"></a><strong>3. 编辑站点配置文件</strong></h2><p>打开博客根目录下的<code>站点配置文件_config.yml</code>，修改如下配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#permalink: :year/:month/:day/:title/</span><br><span class="line">#permalink_defaults:</span><br><span class="line">permalink: posts/:abbrlink/</span><br><span class="line">abbrlink:</span><br><span class="line">  alg: crc32 #support crc16(default) and crc32</span><br><span class="line">  rep: dec   #support dec(default) and hex</span><br></pre></td></tr></table></figure>
+<p>下面解释说明一下：</p>
+<p>首先指定Hexo文章永久链接的格式，接下来两个是abbrlink插件的设置：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alg -- Algorithm (currently support crc16 and crc32, which crc16 is default)</span><br><span class="line">rep -- Represent (the generated link could be presented in hex or dec value)</span><br></pre></td></tr></table></figure>
+<p>这两个设置的示例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">crc16 &amp; hex</span><br><span class="line">https://post.zz173.com/posts/66c8.html</span><br><span class="line"></span><br><span class="line">crc16 &amp; dec</span><br><span class="line">https://post.zz173.com/posts/65535.html</span><br><span class="line"></span><br><span class="line">crc32 &amp; hex</span><br><span class="line">https://post.zz173.com/posts/8ddf18fb.html</span><br><span class="line"></span><br><span class="line">crc32 &amp; dec</span><br><span class="line">https://post.zz173.com/posts/1690090958.html</span><br></pre></td></tr></table></figure>
+<p><strong>4. 重新生成部署</strong></p>
+<p>使用<code>hexo clean &amp;&amp; hexo g</code>重新生成博客，在博客源文件可以看到<strong>自动生成</strong>的abbrlink编号：</p>
+<p><img src="https://ask.qcloudimg.com/http-save/yehe-1088047/j8q2bx19w8.png?imageView2/2/w/1620"></p>
+<p>接下来使用<code>hexo d</code>部署，使用浏览器查看：</p>
+<p><img src="https://ask.qcloudimg.com/http-save/yehe-1088047/d7d27ysnns.jpeg?imageView2/2/w/1620"></p>
+<p>这样优化后的优点有以下几个：</p>
+<ul>
+<li>纯英文和数字链接非常有利于SEO；</li>
+<li>只要abbrlink编号不变，该文章的url就不变，可以随意修改文件名，文章标题；</li>
+</ul>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+      <tags>
+        <tag>HEXO</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo添加音乐和电影页面</title>
+    <url>/posts/42604.html</url>
+    <content><![CDATA[<h2 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h2><ol>
+<li>不要把个人需要的文件&#x2F;图片放在主题<code>source</code>文件夹里，因为在升级主题的过程中，可能会把文件覆盖删除了。<br>在Hexo根目录的<code>source</code>文件夹里，创建一个文件夹来放置个人文件&#x2F;图片。<br>引用文件直接为<code>/文件夹名称/文件名</code></li>
+</ol>
+<h2 id="音乐"><a href="#音乐" class="headerlink" title="音乐"></a>音乐</h2><p>音乐界面使用了插件 <code>hexo-tag-aplayer</code><br>使用方法请参考插件<a href="https://github.com/MoePlayer/hexo-tag-aplayer/blob/master/docs/README-zh_cn.md">文档</a></p>
+<p>音乐页面只是普通的page页，按普通页面操作生成就行。</p>
+<blockquote>
+<p>以下内容可供<strong>选择</strong>配置</p>
+<p>注意： 仍需要安装插件<a href="https://github.com/MoePlayer/hexo-tag-aplayer">hexo-tag-aplayer</a></p>
+</blockquote>
+<p>插件会在每一个文件都插入 js 和 css，为了避免这一情况，3.0 版本内置了 aplayer 需要的 css 和 js。</p>
+<p>首先在Hexo根目录<code>_config</code>里配置<code>asset_inject</code>为<code>false</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">YAML</span><br><span class="line">aplayer:</span><br><span class="line">  asset_inject: false</span><br></pre></td></tr></table></figure>
+
+<p>然后在你需要使用aplayer的页面Front-matter添加</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MARKDOWN</span><br><span class="line">aplayer: true</span><br></pre></td></tr></table></figure>
+
+<p>这样只会在需要aplayer的页面插入js和css。</p>
+<p>如何添加全局 Aplayer 播放，请参考 <a href="https://butterfly.js.org/posts/507c070f/">这篇文章</a></p>
+<h2 id="电影"><a href="#电影" class="headerlink" title="电影"></a>电影</h2><p>电影界面使用了插件 <code>hexo-butterfly-douban</code><br>使用方法请参考插件的<a href="https://github.com/jerryc127/butterfly-plugins/tree/main/hexo-butterfly-douban">文档</a>。</p>
+<p><strong>注意：</strong></p>
+<ol>
+<li>hexo-butterfly-douban 会主动生成页面，所以不需要自己创建。</li>
+<li>如遇到无法抓取问题，显示 <code>INFO 0 movies have been loaded in xxx ms, because you are offline or your network is bad</code><br>请过段时间再试试，这我也无能为力。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+      <tags>
+        <tag>HEXO</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从头开始搭建HEXO</title>
+    <url>/posts/1245901822.html</url>
+    <content><![CDATA[<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h3 id="1、node-js"><a href="#1、node-js" class="headerlink" title="1、node.js"></a>1、node.js</h3><p>NodeJS官网下载对应系统的安装包安装即可，这里需要说下，在node-v13.4.0后的版本不支持win8.1以下的系统了。</p>
+<ul>
+<li><a href="https://nodejs.org/download">官网下载</a></li>
+<li><a href="https://nodejs.org/dist/">以前的版本下载</a></li>
+</ul>
+<p>推荐淘宝的镜像库里下载</p>
+<ul>
+<li><a href="https://npm.taobao.org/mirrors/node/">node.js mirror</a></li>
+</ul>
+<blockquote>
+<p>npm作为一个NodeJS的模块管理。我们要先配置npm的全局模块的存放路径以及cache的路径，例如我希望将以上两个文件夹放在NodeJS的主目录下，便在NodeJs安装目录下建立“node_global”及“node_cache”两个文件夹。                              　</p>
+</blockquote>
+<p>　　在cmd命令行中使用如下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm config set prefix &quot;D:\nodejs\node_global&quot;</span><br><span class="line">npm config set cache &quot;D:\nodejs\node_cache&quot;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://www.cnblogs.com/doctorJoe/articles/4581672.html">https://www.cnblogs.com/doctorJoe/articles/4581672.html</a></p>
+<p>由于国内的 npm 访问外网下载速度较慢，我们可以将 npm 源更换为淘宝的镜像（当然如果你觉得你的下载速度较快的话，也可以选择不进行更换），在 Git Bash 中输入以下指令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+
+<p><strong>请注意如果进行了上述操作，那么之后的下载等操作需要使用到 npm 的地方你都应该更换为</strong> <code>**cnpm**</code> <strong>指令，这样才能起到加速作用，如果未进行更换，则使用</strong> <code>**npm**</code> <strong>即可。</strong></p>
+<h3 id="2、Git"><a href="#2、Git" class="headerlink" title="2、Git"></a>2、Git</h3><p><a href="https://www.liaoxuefeng.com/wiki/896043488029600">参考廖雪峰大神的 Git 教程</a></p>
+<h3 id="3、验证"><a href="#3、验证" class="headerlink" title="3、验证"></a>3、验证</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git version</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><p>输入如下指令即可安装完成 Hexo 的安装，十分方便。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+
+<p>在安装过程中可能会出现<code>WARN</code>提示，这是因为 Hexo 的某些内容不支持 Windows 系统，我们无需理会 (程序员只关心 Error，不关心 Warning🙃)。</p>
+<p>安装完成后，我们输入 <code>hexo -v</code> 命令，如果显示如下信息，则安装成功。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo-cli: 1.1.0</span><br><span class="line">os: Windows_NT 10.0.17134 win32 x64</span><br><span class="line">http_parser: 2.8.0</span><br><span class="line">node: 10.14.1</span><br><span class="line">v8: 6.8.275.32-node.36</span><br><span class="line">uv: 1.23.2</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>底下还有许多包的版本信息，可以看到 Hexo 的依赖项还是比较多的。</p>
+<h3 id="初始化博客"><a href="#初始化博客" class="headerlink" title="初始化博客"></a>初始化博客</h3><p>在我们想要存放博客文件的盘下进入 Git Bash ，首先我们要新建一个文件夹用来存放我们写的博客和其它相关文件，在命令行中输入<code>mkdir Blog</code> 命令，便可新建一个名称为 Blog 的文件夹（文件夹名可自取）。接下来进入刚创建的文件夹，可使用 <code>cd Blog</code> 命令，或是进入该文件夹后在空白处单击右键，再点击 Git Bash Here （还是多练习以下命令行的简单命令为好）。</p>
+<p>进入 Blog 文件夹后，输入 <code>hexo init</code> 命令，即可完成该文件夹的初始化，在此期间，Hexo 会自动克隆和创建一系列相关文件，在结束后为得到如下反馈：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ hexo init</span><br><span class="line">INFO  Cloning hexo-starter to F:\desktop\Blog</span><br><span class="line">Cloning into &#x27;F:\desktop\Blog&#x27;...</span><br><span class="line">...</span><br><span class="line">Unpacking objects: 100% (71/71), done.</span><br><span class="line">Submodule &#x27;themes/landscape&#x27; (https://github.com/hexojs/hexo-theme-landscape.git) registered for path &#x27;themes/landscape&#x27;</span><br><span class="line">Cloning into &#x27;F:/desktop/Blog/themes/landscape&#x27;...</span><br><span class="line">...</span><br><span class="line">Receiving objects: 100% (890/890), 2.56 MiB | 362.00 KiB/s, done.</span><br><span class="line">Resolving deltas: 100% (465/465), done.</span><br><span class="line">Submodule path &#x27;themes/landscape&#x27;: checked out &#x27;73a23c51f8487cfcd7c6deec96ccc7543960d350&#x27;</span><br><span class="line">INFO  Install dependencies</span><br><span class="line">...</span><br><span class="line">INFO  Start blogging with Hexo!</span><br></pre></td></tr></table></figure>
+
+<p>当看到 <code>Start blogging with Hexo</code> 就知道我们已经初始化成功了，Blog 文件夹中会创建如下文件：</p>
+<p>初始化以后的文件夹如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml # 网站的配置信息，您可以在此配置大部分的参数。 </span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds # 模版文件夹</span><br><span class="line">├── source  # 资源文件夹，除 _posts 文件，其他以下划线_开头的文件或者文件夹不会被编译打包到public文件夹</span><br><span class="line">|   ├── _drafts # 草稿文件</span><br><span class="line">|   └── _posts # 文章Markdowm文件 </span><br><span class="line">└── themes  # 主题文件夹</span><br></pre></td></tr></table></figure>
+
+<h3 id="生成博客页面"><a href="#生成博客页面" class="headerlink" title="生成博客页面"></a>生成博客页面</h3><p>在 \source_posts\ 文件夹中就保存着我们写的所有博客，当前我们并没有写任何博客，但是 Hexo 为自动生成一个 hello-world.md 文件，我们可以以此为例，看看我们的博客网页是啥样啦。</p>
+<p>在 Git Bash 中输入 <code>hexo g</code> 命令（是 <code>hexo generate</code> 的简写），等待 Hexo 自动生成网页，得到如下反馈则生成成功：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ hexo g</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in 192 ms</span><br><span class="line">INFO  Generated: index.html</span><br><span class="line">...</span><br><span class="line">INFO  28 files generated in 459 ms</span><br></pre></td></tr></table></figure>
+
+<p>接下来我们需要开启开启本地服务器，输入 <code>hexo s</code> 命令（是 <code>hexo server</code> 的简写），输出</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ hexo s</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure>
+
+<p>我们就知道了网页运行在 <a href="https://links.jianshu.com/go?to=http://localhost:4000">http://localhost:4000</a> 上，我们在浏览器中输入该地址便能进入我们创建的博客网页啦。</p>
+<h3 id="美化博客页面"><a href="#美化博客页面" class="headerlink" title="美化博客页面"></a>美化博客页面</h3><h4 id="下载主题"><a href="#下载主题" class="headerlink" title="下载主题"></a>下载主题</h4><p>可以看到打开的博客页面就是 Hexo 默认的页面，所以并不是非常得好看，我们可以自行选择更换，在 GitHub 上搜索 Hexo 主题还是有非常多的项目的。我在这里选择了目前使用人数比较多的 Next 主题进行演示。Next 主题的 Github 地址是 <a href="https://links.jianshu.com/go?to=https://github.com/theme-next/hexo-theme-next">theme-next&#x2F;hexotheme-next</a>。回到我们存放博客文件的根目录，输入如下指令，将该仓库克隆到本地。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cd Blog</span><br><span class="line">$ git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+
+<p>这样我们就将 Next 主题克隆到 themes&#x2F;next 文件夹下啦。</p>
+<h4 id="更改配置文件"><a href="#更改配置文件" class="headerlink" title="更改配置文件"></a>更改配置文件</h4><p>使用编辑器打开根目录下的 <code>_config.yml</code> 文件，这个文件保存的就是 Hexo 的诸多配置项，我们可以对其进行个性化修改。在文件中找到 <code>theme</code> 配置选项，如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: https://hexo.io/plugins/</span><br><span class="line">## Themes: https://hexo.io/themes/</span><br><span class="line">theme: landscape</span><br></pre></td></tr></table></figure>
+
+<p>可以看到现在的主题是默认的 <code>landscape</code> ，我们将其改为 <code>next</code> 即可。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: https://hexo.io/plugins/</span><br><span class="line">## Themes: https://hexo.io/themes/</span><br><span class="line">theme: next</span><br></pre></td></tr></table></figure>
+
+<p>再在 Git Bash 中依次输入下面三条指令（发布三连），<strong>请注意所有的 hexo 指令都是在根目录下进行的，如果当前目录不是根目录，必须先切换到根目录再执行命令</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ hexo clean   #清除之前生成的网站文件</span><br><span class="line">$ hexo g       #生成当前网站文件</span><br><span class="line">$ hexo s       #开启服务器</span><br></pre></td></tr></table></figure>
+
+<p><strong>再次打开</strong> <a href="https://links.jianshu.com/go?to=http://localhost:4000"><strong>http://localhost:4000</strong></a> <strong>，我们就能看到更换主题后的网站了，非常便捷。</strong></p>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>更换主题buttfly后，重新生成文件后，打开本地hexo出现错误提示</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">extends includes/layout.pug block content include ./includes/mixins/post-ui.pug #recent-posts.recent-posts +postUI include includes/pagination.pug</span><br></pre></td></tr></table></figure>
+
+<h3 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h3><p>参考：<a href="https://github.com/jerryc127/hexo-theme-butterfly/issues/4">https://github.com/jerryc127/hexo-theme-butterfly/issues/4</a></p>
+<h4 id="blog目录安装jade"><a href="#blog目录安装jade" class="headerlink" title="blog目录安装jade"></a>blog目录安装jade</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-renderer-jade --save</span><br></pre></td></tr></table></figure>
+
+<h4 id="在根目录重新安装npm"><a href="#在根目录重新安装npm" class="headerlink" title="在根目录重新安装npm"></a>在根目录重新安装npm</h4><p><strong>在package添加</strong><strong><code>&quot;hexo-renderer-jade&quot;: &quot;^0.5.0&quot;,</code></strong> <strong>在根目录重新安装npm</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p>附上安装成功的package.json</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;hexo-site&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;0.0.0&quot;,</span><br><span class="line">  &quot;private&quot;: true,</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;build&quot;: &quot;hexo generate&quot;,</span><br><span class="line">    &quot;clean&quot;: &quot;hexo clean&quot;,</span><br><span class="line">    &quot;deploy&quot;: &quot;hexo deploy&quot;,</span><br><span class="line">    &quot;server&quot;: &quot;hexo server&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;hexo&quot;: &#123;</span><br><span class="line">    &quot;version&quot;: &quot;5.2.0&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;dependencies&quot;: &#123;</span><br><span class="line">    &quot;hexo&quot;: &quot;^5.0.0&quot;,</span><br><span class="line">    &quot;hexo-generator-archive&quot;: &quot;^1.0.0&quot;,</span><br><span class="line">    &quot;hexo-generator-category&quot;: &quot;^1.0.0&quot;,</span><br><span class="line">    &quot;hexo-generator-index&quot;: &quot;^2.0.0&quot;,</span><br><span class="line">    &quot;hexo-generator-tag&quot;: &quot;^1.0.0&quot;,</span><br><span class="line">    &quot;hexo-renderer-ejs&quot;: &quot;^1.0.0&quot;,</span><br><span class="line">    &quot;hexo-renderer-jade&quot;: &quot;^0.5.0&quot;,</span><br><span class="line">    &quot;hexo-renderer-marked&quot;: &quot;^3.0.0&quot;,</span><br><span class="line">    &quot;hexo-renderer-stylus&quot;: &quot;^2.0.0&quot;,</span><br><span class="line">    &quot;hexo-server&quot;: &quot;^2.0.0&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="部署博客"><a href="#部署博客" class="headerlink" title="部署博客"></a>部署博客</h2><p>在完成了上述步骤之后，我们就可以在自己的电脑上打开博客网页了，但是怎么才能让别人也能访问到我们的网页呢？这就需要我们部署我们的博客网站了。幸运的是，GitHub 能为我们免费提供这一服务，那就是 GitHub Page ，我们需要做的就是在 GitHub 上新建一个名为 <code>&lt;username&gt;.github.io</code> (在<code>&lt;username&gt;</code>处填入你的用户名） 的仓库即可。</p>
+<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>打开根目录下的 <code>_config.yml</code> 文件，找到 <code>deploy</code> 选项，如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type:</span><br></pre></td></tr></table></figure>
+
+<p>将其修改为</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/&lt;username&gt;/&lt;username&gt;.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+
+<p>在其中的 <code>&lt;username&gt;</code> 处填入你的 GitHub 用户名即可。保存配置文件并退出。</p>
+<h3 id="安装部署Git插件"><a href="#安装部署Git插件" class="headerlink" title="安装部署Git插件"></a>安装部署Git插件</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+
+
+<p>接下来在 Git Bash 中输入下面三条指令（部署三连）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo g</span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
+
+<p>至此，我们就已经完成了个人博客网站的部署，在浏览器中输入你的地址 ：<code>&lt;username&gt;.github.io</code> ，就能看到我们的个人网站啦！</p>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+      <tags>
+        <tag>HEXO</tag>
+        <tag>Github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何使用 Travis CI 自动部署 Hexo 博客</title>
+    <url>/posts/756393619.html</url>
+    <content><![CDATA[<p>我们搭建个人网站的初衷，不就是为了能好好地写博客吗？一切重复且枯燥的工作都应该交给程序去自动完成，尤其是静态博客，<strong>我们只需要专注文字</strong>。</p>
+<h2 id="什么是-CI"><a href="#什么是-CI" class="headerlink" title="什么是 CI"></a>什么是 CI</h2><hr>
+<p><strong>CI(Continuous Integration)</strong> 翻译为<strong>持续集成</strong>。<a href="https://travis-ci.com/" title="https://travis-ci.com/">Travis CI</a> 是一个提供持续集成功能的平台，Github 可关联 Travis CI，当 GitHub 仓库有代码 push 时，会推送通知到 Travis CI，根据设置的脚本运行指定任务。</p>
+<h2 id="使用-CI-自动部署的好处"><a href="#使用-CI-自动部署的好处" class="headerlink" title="使用 CI 自动部署的好处"></a>使用 CI 自动部署的好处</h2><hr>
+<ul>
+<li><p>可以直接在线编辑 md 文件，立即生效。假设你已发布一篇文章，过几天你在别的电脑上浏览发现有几个明显的错别字，这是完全不能容忍的。但此时你电脑上又没有 <code>hexo + node.js + git</code> 等完整的开发环境，重新配置开发环境明显不现实。如果使用 CI，你可以直接用浏览器访问 GitHub 上的项目仓库，直接编辑带错别字的 md 文章，改完，在线提交，稍等片刻，你的网站就自动更新了。</p>
+</li>
+<li><p>手动部署需要推送 <code>public</code> 整个文件夹到 GitHub 上，当后期网站文章、图片较多时候，很多时候连接 GitHub 不是那么顺畅，经常要傻等很长的上传时间。有了 CI，你可以只提交 <code>post</code> 文件里单独的 md 文件即可，很快很爽，谁用谁知道。</p>
+</li>
+<li><p>使用 CI，你可以一次性将这些静态博客页面部署到多个服务器上，例如：GitHub Pages、七牛云、阿里云等。</p>
+</li>
+<li><p>…</p>
+</li>
+</ul>
+<h2 id="搭建流程"><a href="#搭建流程" class="headerlink" title="搭建流程"></a>搭建流程</h2><hr>
+<p><strong>本文以 Hexo + <a href="https://github.com/XPoet/hexo-theme-keep" title="https://github.com/XPoet/hexo-theme-keep">Keep</a> 主题搭建的静态网站为例，教你如何使用 Travis CI 自动部署到 GitHub Pages 服务器。</strong></p>
+<h3 id="新建-GitHub-仓库"><a href="#新建-GitHub-仓库" class="headerlink" title="新建 GitHub 仓库"></a>新建 GitHub 仓库</h3><p>创建一个用来存储 Hexo 项目源代码和静态页面的<a href="https://github.com/new" title="https://github.com/new">GitHub 仓库</a></p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/70e0255f975f46719209cd56367ab715~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image.png"></p>
+<p>备注：选公有仓库和私有仓库都可以，但 Travis CI 只对 GitHub 的 public 仓库免费。</p>
+<p>例如：本文案例仓库 <code>keep-site</code>。</p>
+<ul>
+<li>用 <code>main 分支</code> 来存储 hexo 博客项目源代码。</li>
+<li>用 <code>gh-pages 分支</code> 存储来编译生成后静态页面。</li>
+</ul>
+<p>当 <code>main</code> 分支的源代码（<code>主题文件</code>，<code>文章 md 文件</code>、<code>图片</code>等）有变动时，CI 会自动编译并部署到 <code>gh-pages</code> 分支。</p>
+<h3 id="新建-GitHub-Token"><a href="#新建-GitHub-Token" class="headerlink" title="新建 GitHub Token"></a>新建 GitHub Token</h3><p>创建一个有 repo 权限的 <a href="https://github.com/settings/tokens/new" title="https://github.com/settings/tokens/new">GitHub Token</a> 。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e6979a2732084e84b23cb8edfb1120ac~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp"></p>
+<p>新生成的 Token 只会显示一次，如有遗失，重新生成即可。</p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d8aec17eb8964c1e8d2778df6f3ee265~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image.png"></p>
+<h3 id="添加-travis-yml"><a href="#添加-travis-yml" class="headerlink" title="添加 .travis.yml"></a>添加 <code>.travis.yml</code></h3><p>在你的 Hexo 博客项目文件夹下添加 Travis CI 的配置文件 <code>.travis.yml</code>。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/17b5596c726448feaa35f5ac8f416e70~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp"></p>
+<p><code>.travis.yml</code> 文件的内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 编译环境、语言</span><br><span class="line">dist: xenial</span><br><span class="line">os: linux</span><br><span class="line">language: node_js</span><br><span class="line"></span><br><span class="line"># Node.js 版本</span><br><span class="line">node_js:</span><br><span class="line">  - 12</span><br><span class="line"></span><br><span class="line">branches:</span><br><span class="line">  only:</span><br><span class="line">    - main                      # 只有 main 分支检出更改才触发 CI</span><br><span class="line"></span><br><span class="line">before_install:</span><br><span class="line">  - export TZ=&#x27;Asia/Shanghai&#x27;   # 配置时区为东八区 UTC+8</span><br><span class="line">  - npm install hexo-cli        # 安装 hexo</span><br><span class="line"></span><br><span class="line">install:</span><br><span class="line">  - npm install                 # 安装 hexo 项目相关的依赖</span><br><span class="line"></span><br><span class="line"># 执行脚本</span><br><span class="line">script:</span><br><span class="line">  - hexo clean                  # 清除 hexo 缓存</span><br><span class="line">  - hexo generate               # 生成静态文件</span><br><span class="line"></span><br><span class="line">deploy:</span><br><span class="line">  on:</span><br><span class="line">    branch: main                # 工作分支</span><br><span class="line">  strategy: git</span><br><span class="line">  provider: pages</span><br><span class="line">  skip_cleanup: true            # 跳过清理</span><br><span class="line">  token: $GH_TOKEN              # GitHub Token 变量</span><br><span class="line">  keep_history: true            # 保持推送记录，以增量提交的方式</span><br><span class="line">  local_dir: public             # 需要推送到 gh-pages 分支的静态文件目录</span><br><span class="line">  target_branch: gh-pages       # 推送的目标文件夹 local_dir(public) -&gt; gh-pages 分支</span><br></pre></td></tr></table></figure>
+
+<h3 id="Travis-CI-关联项目仓库"><a href="#Travis-CI-关联项目仓库" class="headerlink" title="Travis CI 关联项目仓库"></a>Travis CI 关联项目仓库</h3><ul>
+<li><p>使用 GitHub 账号登录 <a href="https://travis-ci.com/" title="https://travis-ci.com/">Travis CI 官网</a>，关联你的 hexo 博客项目仓库，并绑定前面生成的 GitHub Token。 <img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/46bb9d16e6234325b3bab0102a542187~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp"></p>
+</li>
+<li><p>点击右上角头像，选择 “Settings”。 <img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1c7b29220e53423da0f806f13639fb57~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp"></p>
+</li>
+<li><p>在所列出来的仓库里找到你的 <code>hexo 项目仓库</code>，点击 “Settings” 。如果仓库过多，可以直接搜索。</p>
+</li>
+</ul>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0166bf440a644599b4c0aeefe06b91b1~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image.png"></p>
+<ul>
+<li>增加环境变量，<code>GH_TOKEN</code> 的值填你在前面生成的 <code>GitHub Token</code>，最后点击 “Add” 添加。</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/189e41adfac34eaf9fac6aec50ccf81f~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp"></p>
+<h2 id="使用流程"><a href="#使用流程" class="headerlink" title="使用流程"></a>使用流程</h2><h3 id="修改源代码文件"><a href="#修改源代码文件" class="headerlink" title="修改源代码文件"></a>修改源代码文件</h3><p>在你的 hexo 项目文件夹下，修改你的文章、图片、主题等。</p>
+<h3 id="push-到仓库"><a href="#push-到仓库" class="headerlink" title="push 到仓库"></a>push 到仓库</h3><p>将你的 Hexo 项目代码 <strong>push</strong> 到 GitHub 仓库的 <code>main</code> 分支，Travis CI 检测到 <code>main</code> 分支代码有变动，会自动执行脚本命令，将 Hexo 项目编译生成静态页面，部署到 <code>gh-pages</code> 分支。</p>
+<p>备注：<code>gh-pages</code> 分支是 GitHub Pages 服务的固定分支，你只需在 <code>.travis.yml</code> 文件正确填写，会自动创建。</p>
+<h3 id="使用自定义域名访问"><a href="#使用自定义域名访问" class="headerlink" title="使用自定义域名访问"></a>使用自定义域名访问</h3><p>你可以使用自己的域名来访问 GitHub Pages 服务，只需在 hexo 项目的 <code>source</code> 目录下添加 <code>CNANE</code> 文件。</p>
+<p><code>CNANE</code> 文件内容参考如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">keep.xpoet.cn</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/763c65c4c2224574bbacbd0189bc59d3~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp"></p>
+<h3 id="开启-https"><a href="#开启-https" class="headerlink" title="开启 https"></a>开启 https</h3><p>下图是 Travis CI 自动部署到 <code>gh-pages</code> 分支 成功的效果。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f312a03b62b0443a82de6e29b79104d6~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp"></p>
+<p>我们可在仓库 <code>Settings</code> 开启域名 https 协议。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7f1fad47be494818af1215a1526f2ec7~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp"></p>
+<p>至此，使用 Travis CI 自动部署 Hexo 静态博客到 GitHub Pages 教程完毕，有任何问题，欢迎在评论区留言。</p>
+<h2 id="类似工具"><a href="#类似工具" class="headerlink" title="类似工具"></a>类似工具</h2><hr>
+<p>除了 Travis CI，我们还可以使用 GitHub Actions 来实现 Hexo 自动部署，效果是一样的，任君选择。</p>
+<p>GitHub Actions 可以使用私有仓库，对私密性要求较高的同学，建议尝 GitHub Actions。</p>
+<p>作者写的另外一篇教程： <a href="https://juejin.cn/post/6943895271751286821" title="https://juejin.cn/post/6943895271751286821">如何使用 GitHub Actions 自动部署 Hexo 博客</a></p>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+      <tags>
+        <tag>HEXO</tag>
+      </tags>
+  </entry>
+</search>
