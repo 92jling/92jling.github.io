@@ -1,5 +1,7 @@
-https://jling.tk/link/index.html
+https://jling.tk/posts/2786860441.html
+https://jling.tk/posts/49222.html
 https://jling.tk/music/index.html
+https://jling.tk/link/index.html
 https://jling.tk/posts/42604.html
 https://jling.tk/posts/756393619.html
 https://jling.tk/posts/1245901822.html
@@ -10,4 +12,5 @@ https://jling.tk/tags/index.html
 https://jling.tk/
 https://jling.tk/tags/HEXO/
 https://jling.tk/tags/Github/
+https://jling.tk/tags/hexo/
 https://jling.tk/categories/other/
