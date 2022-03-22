@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>action自动部署hexo的方法</title>
+    <title>action自动部署hexo的方法2</title>
     <url>/posts/2786860441.html</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>早就听闻 GitHub+Actions 真相，于是今天便试了下，作为小康博客的第二个平台。至于为什么要自动部署，我在<a href="https://www.antmoe.com/posts/51b0fa77/index.html">另一篇文章</a>介绍过了。</p>
 <h2 id="准备仓库"><a href="#准备仓库" class="headerlink" title=" 准备仓库"></a><a href="https://www.antmoe.com/posts/6081157f/#%E5%87%86%E5%A4%87%E4%BB%93%E5%BA%93"></a> 准备仓库</h2><ul>
