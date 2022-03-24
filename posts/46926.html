@@ -1,0 +1,503 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>常用脚本收集 | 精灵客栈</title><meta name="author" content="Jling"><meta name="copyright" content="Jling"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="# 常用脚本及用法收集  WARP查看WARP当前统计状态：wg 查看当前IPV4 IP：curl -4 ip.p3terx.com 查看当前IPV6 IP：curl -6 ip.p3terx.com 手动临时关闭WARP网络接口 1wg-quick down wgcf  手动开启WARP网络接口 1wg-quick up wgcf  启动systemctl enable wg-quick@wgc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用脚本收集">
+<meta property="og:url" content="https://jling.tk/posts/46926.html">
+<meta property="og:site_name" content="精灵客栈">
+<meta property="og:description" content="# 常用脚本及用法收集  WARP查看WARP当前统计状态：wg 查看当前IPV4 IP：curl -4 ip.p3terx.com 查看当前IPV6 IP：curl -6 ip.p3terx.com 手动临时关闭WARP网络接口 1wg-quick down wgcf  手动开启WARP网络接口 1wg-quick up wgcf  启动systemctl enable wg-quick@wgc">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/w-gx/2D/20200206161623.webp">
+<meta property="article:published_time" content="2021-06-05T08:51:00.000Z">
+<meta property="article:modified_time" content="2022-03-24T04:09:27.684Z">
+<meta property="article:author" content="Jling">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/w-gx/2D/20200206161623.webp"><link rel="shortcut icon" href="https://mapp.alicdn.com/1648021137464zmldO8gM28bblyT.png"><link rel="canonical" href="https://jling.tk/posts/46926"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":1,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: {"limitDay":150,"position":"top","messagePrev":"🔔温馨提示：这篇文章最后更新于","messageNext":"，某些文章具有时效性，如有错漏或已经失效以及任何疑问，请联系博主或留言说明！"},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":200,"languages":{"author":"作者: Jling","link":"链接: ","source":"来源: 精灵客栈","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"top-right"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '常用脚本收集',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-03-24 12:09:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/92jling/myblog/ex.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/92jling/myblog/walin.css"><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="精灵客栈" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://mapp.alicdn.com/1648022375999eTSBUpjduQgkhV4.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">30</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/w-gx/2D/20200206161623.webp')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">精灵客栈</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">常用脚本收集</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-06-05T08:51:00.000Z" title="发表于 2021-06-05 16:51:00">2021-06-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-03-24T04:09:27.684Z" title="更新于 2022-03-24 12:09:27">2022-03-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/wall/">wall</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="常用脚本收集"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><!--markdown--># 常用脚本及用法收集
+
+<h2 id="WARP"><a href="#WARP" class="headerlink" title="WARP"></a>WARP</h2><p><strong>查看WARP当前统计状态：<code>wg</code></strong></p>
+<p><strong>查看当前IPV4 IP：<code>curl -4 ip.p3terx.com</code></strong></p>
+<p><strong>查看当前IPV6 IP：<code>curl -6 ip.p3terx.com</code></strong></p>
+<p><strong>手动临时关闭WARP网络接口</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wg-quick down wgcf</span><br></pre></td></tr></table></figure>
+
+<p><strong>手动开启WARP网络接口</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wg-quick up wgcf</span><br></pre></td></tr></table></figure>
+
+<p><strong>启动<code>systemctl enable wg-quick@wgcf</code></strong></p>
+<p><strong>开始<code>systemctl start wg-quick@wgcf</code></strong></p>
+<p><strong>重启<code>systemctl restart wg-quick@wgcf</code></strong></p>
+<p><strong>停止<code>systemctl stop wg-quick@wgcf</code></strong></p>
+<p><strong>关闭<code>systemctl disable wg-quick@wgcf</code></strong></p>
+<h2 id="①EUserv"><a href="#①EUserv" class="headerlink" title="①EUserv"></a><a target="_blank" rel="noopener" href="https://github.com/YG-tsj/EUserv-warp">①EUserv</a></h2><h5 id="恢复EUserv官方DNS64（重装系统者，可直接跳到第二步脚本安装）"><a href="#恢复EUserv官方DNS64（重装系统者，可直接跳到第二步脚本安装）" class="headerlink" title="恢复EUserv官方DNS64（重装系统者，可直接跳到第二步脚本安装）"></a><strong>恢复EUserv官方DNS64（重装系统者，可直接跳到第二步脚本安装）</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo -e &quot;search blue.kundencontroller.de\noptions rotate\nnameserver 2a02:180:6:5::1c\nnameserver 2a02:180:6:5::4\nnameserver 2a02:180:6:5::1e\nnameserver 2a02:180:6:5::1d&quot; &gt; /etc/resolv.conf</span><br></pre></td></tr></table></figure>
+
+<p><strong>仅支持Debian 10&#x2F;Ubuntu 20.04系统，根据自己需求选择以下脚本1或者脚本2</strong></p>
+<h5 id="脚本1：IPV4是WARP分配的IP，IPV6是VPS本地IP"><a href="#脚本1：IPV4是WARP分配的IP，IPV6是VPS本地IP" class="headerlink" title="脚本1：IPV4是WARP分配的IP，IPV6是VPS本地IP"></a><strong>脚本1：IPV4是WARP分配的IP，IPV6是VPS本地IP</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -qO- https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/warp4.sh|bash</span><br></pre></td></tr></table></figure>
+
+<h5 id="脚本2：IPV4与IPV6都是WARP分配的IP"><a href="#脚本2：IPV4与IPV6都是WARP分配的IP" class="headerlink" title="脚本2：IPV4与IPV6都是WARP分配的IP"></a><strong>脚本2：IPV4与IPV6都是WARP分配的IP</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -qO- https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/warp64.sh|bash</span><br></pre></td></tr></table></figure>
+
+<h5 id="IPV6-VPS专用分流配置文件-以下默认全局IPV4优先，IP、域名自定义，详情见视频教程"><a href="#IPV6-VPS专用分流配置文件-以下默认全局IPV4优先，IP、域名自定义，详情见视频教程" class="headerlink" title="IPV6 VPS专用分流配置文件(以下默认全局IPV4优先，IP、域名自定义，详情见视频教程)"></a><strong>IPV6 VPS专用分流配置文件(以下默认全局IPV4优先，IP、域名自定义，详情见视频教程)</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">&quot;outbounds&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;tag&quot;:&quot;IP6-out&quot;,</span><br><span class="line">      &quot;protocol&quot;: &quot;freedom&quot;,</span><br><span class="line">      &quot;settings&quot;: &#123;&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;tag&quot;:&quot;IP4-out&quot;,</span><br><span class="line">      &quot;protocol&quot;: &quot;freedom&quot;,</span><br><span class="line">      &quot;settings&quot;: &#123;</span><br><span class="line">        &quot;domainStrategy&quot;: &quot;UseIPv4&quot; </span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  &quot;routing&quot;: &#123;</span><br><span class="line">    &quot;rules&quot;: [</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;type&quot;: &quot;field&quot;,</span><br><span class="line">        &quot;outboundTag&quot;: &quot;IP4-out&quot;,</span><br><span class="line">        &quot;domain&quot;: [&quot;&quot;] </span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;type&quot;: &quot;field&quot;,</span><br><span class="line">        &quot;outboundTag&quot;: &quot;IP6-out&quot;,</span><br><span class="line">        &quot;network&quot;: &quot;udp,tcp&quot; </span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="②Oracle甲骨文脚本集合，针对KVM-X86架构-x2F-ARM架构"><a href="#②Oracle甲骨文脚本集合，针对KVM-X86架构-x2F-ARM架构" class="headerlink" title="②Oracle甲骨文脚本集合，针对KVM X86架构&#x2F;ARM架构"></a><a target="_blank" rel="noopener" href="https://github.com/YG-tsj/Oracle-warp">②Oracle甲骨文脚本集合，针对KVM X86架构&#x2F;ARM架构</a></h2><h4 id="1、root一键脚本"><a href="#1、root一键脚本" class="headerlink" title="1、root一键脚本"></a>1、root一键脚本</h4><p>用户名：root，密码自定义。方便登录与编辑文件！！后续再次执行脚本意味着更改root密码！！</p>
+<p>提示：密码不要设置得过于简单，容易被破解。密钥文件要保存好，以防万一！</p>
+<p><strong>统一适用于纯IPV4、纯IPV6、双栈IPV4+IPV6，非root状态下直接输入以下脚本（已测试支持甲骨文与谷歌云）</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash &lt;(curl -sSL https://cdn.jsdelivr.net/gh/YG-tsj/CFWarp-Pro/root.sh)</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、warp多功能一键脚本"><a href="#2、warp多功能一键脚本" class="headerlink" title="2、warp多功能一键脚本"></a>2、warp多功能一键脚本</h4><p><strong>支持X86&#x2F;ARM架构的纯IPV4、纯IPV6、双栈IPV4+IPV6 VPS脚本</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -N --no-check-certificate https://cdn.jsdelivr.net/gh/YG-tsj/CFWarp-Pro/multi.sh &amp;&amp; chmod +x multi.sh &amp;&amp; ./multi.sh</span><br></pre></td></tr></table></figure>
+
+<p>进入脚本快捷方式 <code>bash multi.sh</code></p>
+<h4 id="3、其他KVM架构VPS查看专用ip方式（待更新）"><a href="#3、其他KVM架构VPS查看专用ip方式（待更新）" class="headerlink" title="3、其他KVM架构VPS查看专用ip方式（待更新）"></a>3、其他KVM架构VPS查看专用ip方式（待更新）</h4><p>脚本5不用输入专用IP。其他脚本需要输入专用IP（防止VPS本地IP套WARP后失联），根据不同的VPS，专用IP可能是IP，也可能是IP段。</p>
+<p><strong>进入</strong>SSH查看专用IP命令：</p>
+<p><code>ip -4 route</code>或者<code>ip addr</code></p>
+<p>结果会显示IP或者IP段，IP段用 &#x2F;数字 表示！</p>
+<p>例：有的VPS公网IP为123.456.2.3，而专用IP段可能就是123.456.0.1&#x2F;16，此时，要输入的专用IP就是123.456.0.1&#x2F;16，别忘记输入后面的&#x2F;16哦！</p>
+<h4 id="4、如果Mark-a脚本安装错误执行下方操作即可"><a href="#4、如果Mark-a脚本安装错误执行下方操作即可" class="headerlink" title="4、如果Mark-a脚本安装错误执行下方操作即可"></a>4、如果Mark-a脚本安装错误执行下方操作即可</h4><p>一键V2:<br><code>bash &lt;(curl -s -L https://git.io/v2ray-setup.sh)</code></p>
+<p>一键XV2:<br><code>bash &lt;(curl -sL https://s.hijk.art/xray.sh)</code></p>
+<p><strong>先装第一个脚本 ，卸载后再装第二个脚本卸载在装8合一就能解决</strong></p>
+<h2 id="③mack-a"><a href="#③mack-a" class="headerlink" title="③mack-a"></a><a target="_blank" rel="noopener" href="https://github.com/mack-a/v2ray-agent">③mack-a</a></h2><ul>
+<li>支持快捷方式启动，安装完毕后，shell输入**<code>vasma</code><strong>即可打开脚本，脚本执行路径</strong><code>/etc/v2ray-agent/install.sh</code>**</li>
+<li><strong>Latest Version【推荐】</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -P /root -N --no-check-certificate &quot;https://raw.githubusercontent.com/mack-a/v2ray-agent/master/install.sh&quot; &amp;&amp; chmod 700 /root/install.sh &amp;&amp; /root/install.sh</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Stable-v2.4.32</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -P /root -N --no-check-certificate &quot;https://raw.githubusercontent.com/mack-a/v2ray-agent/fd4daa2cc88dc687b4a7d0a64c4ea7d984290938/install.sh&quot; &amp;&amp; chmod 700 /root/install.sh &amp;&amp; /root/install.sh</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Stable-v2.2.24</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -P /root -N --no-check-certificate &quot;https://raw.githubusercontent.com/mack-a/v2ray-agent/9ae23c13a56460d8c14f27c8eb65efc73b173f46/install.sh&quot; &amp;&amp; chmod 700 /root/install.sh &amp;&amp; /root/install.sh</span><br></pre></td></tr></table></figure>
+
+<h2 id="④SKY-BOX"><a href="#④SKY-BOX" class="headerlink" title="④SKY-BOX"></a><a target="_blank" rel="noopener" href="https://github.com/BlueSkyXN/SKY-BOX">④SKY-BOX</a></h2><h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>wget -O box.sh <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/BlueSkyXN/SKY-BOX/main/box.sh">https://raw.githubusercontent.com/BlueSkyXN/SKY-BOX/main/box.sh</a> &amp;&amp; chmod +x box.sh &amp;&amp; clear &amp;&amp; .&#x2F;box.sh</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O box.sh https://raw.githubusercontent.com/BlueSkyXN/SKY-BOX/main/box.sh &amp;&amp; chmod +x box.sh &amp;&amp; clear &amp;&amp; ./box.sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="ARM-beta使用方法"><a href="#ARM-beta使用方法" class="headerlink" title="ARM beta使用方法"></a>ARM beta使用方法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O box.sh https://raw.githubusercontent.com/BlueSkyXN/SKY-BOX/main/armbox.sh &amp;&amp; chmod +x box.sh &amp;&amp; clear &amp;&amp; ./box.sh</span><br></pre></td></tr></table></figure>
+
+<h2 id="⑤NEZHA"><a href="#⑤NEZHA" class="headerlink" title="⑤NEZHA"></a><a target="_blank" rel="noopener" href="https://github.com/naiba/nezha">⑤NEZHA</a></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -L https://raw.githubusercontent.com/naiba/nezha/master/script/install.sh  -o nezha.sh &amp;&amp; chmod +x nezha.sh</span><br><span class="line">sudo ./nezha.sh</span><br></pre></td></tr></table></figure>
+
+<p><strong>国内镜像加速：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -L https://cdn.jsdelivr.net/gh/naiba/nezha@master/script/install.sh -o nezha.sh &amp;&amp; chmod +x nezha.sh</span><br><span class="line">CN=true sudo ./nezha.sh</span><br></pre></td></tr></table></figure>
+
+<h2 id="⑥MTPROTO"><a href="#⑥MTPROTO" class="headerlink" title="⑥MTPROTO"></a>⑥MTPROTO</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubiBackup/doubi/master/mtproxy.sh &amp;&amp; chmod +x mtproxy.sh &amp;&amp; bash mtproxy.sh</span><br></pre></td></tr></table></figure>
+
+<h2 id="⑦其他"><a href="#⑦其他" class="headerlink" title="⑦其他"></a>⑦其他</h2><p><strong>工具箱：</strong></p>
+<p><code>bash &lt;(curl -s -L http://file.twovps.co/cs)</code></p>
+<p><strong>配置一览：</strong></p>
+<p><code>bash &lt;(wget -qO- git.io/ceshi)</code></p>
+<p><strong>流媒体解锁：</strong></p>
+<p><code>bash &lt;(curl -sSL &quot;https://github.com/CoiaPrant/MediaUnlock_Test/raw/main/check.sh&quot;)</code></p>
+<p><strong>YABS：</strong></p>
+<p><code>curl -sL yabs.sh | bash</code></p>
+<p><strong>LemonBenchIntl：</strong></p>
+<p><code>wget -O- https://ilemonra.in/LemonBenchIntl | bash -s full</code></p>
+<h2 id="⑧系统命令"><a href="#⑧系统命令" class="headerlink" title="⑧系统命令"></a>⑧系统命令</h2><p><code>apt-get update</code><br>升级安装包相关的命令,刷新可安装的软件列表(但是不做任何实际的安装动作)</p>
+<p><code>apt-get upgrade</code><br>进行安装包的更新(软件版本的升级)</p>
+<p><code>apt-get dist-upgrade</code><br>进行系统版本的升级(Ubuntu版本的升级)</p>
+<p><code>do-release-upgrade</code><br>Ubuntu官方推荐的系统升级方式,若加参数-d还可以升级到开发版本,但会不稳定</p>
+<p>⑨⑩</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Jling</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://jling.tk/posts/46926.html">https://jling.tk/posts/46926.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://jling.tk" target="_blank">精灵客栈</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/w-gx/2D/20200206161623.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/30879.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/w-gx/2D/20200206161629.webp" onerror="onerror=null;src='https://mapp.alicdn.com/16480245965576uTysDbUe28XWcX.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">How to build telegram proxy</div></div></a></div><div class="next-post pull-right"><a href="/posts/16125.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/w-gx/2D/20200206164317.webp" onerror="onerror=null;src='https://mapp.alicdn.com/16480245965576uTysDbUe28XWcX.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">VPS常用测试脚本合集</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Waline</span><span class="switch-btn"></span><span class="second-comment">Disqus</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://mapp.alicdn.com/1648022375999eTSBUpjduQgkhV4.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Jling</div><div class="author-info__description">知之为知之，不知为不知。</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">30</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/92jling"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/92jling" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:i@jling.tk" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS链接"><i class="fa fa-rss"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#WARP"><span class="toc-number">1.</span> <span class="toc-text">WARP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%91%A0EUserv"><span class="toc-number">2.</span> <span class="toc-text">①EUserv</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%81%A2%E5%A4%8DEUserv%E5%AE%98%E6%96%B9DNS64%EF%BC%88%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F%E8%80%85%EF%BC%8C%E5%8F%AF%E7%9B%B4%E6%8E%A5%E8%B7%B3%E5%88%B0%E7%AC%AC%E4%BA%8C%E6%AD%A5%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%85%EF%BC%89"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">恢复EUserv官方DNS64（重装系统者，可直接跳到第二步脚本安装）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC1%EF%BC%9AIPV4%E6%98%AFWARP%E5%88%86%E9%85%8D%E7%9A%84IP%EF%BC%8CIPV6%E6%98%AFVPS%E6%9C%AC%E5%9C%B0IP"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">脚本1：IPV4是WARP分配的IP，IPV6是VPS本地IP</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC2%EF%BC%9AIPV4%E4%B8%8EIPV6%E9%83%BD%E6%98%AFWARP%E5%88%86%E9%85%8D%E7%9A%84IP"><span class="toc-number">2.0.0.3.</span> <span class="toc-text">脚本2：IPV4与IPV6都是WARP分配的IP</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#IPV6-VPS%E4%B8%93%E7%94%A8%E5%88%86%E6%B5%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-%E4%BB%A5%E4%B8%8B%E9%BB%98%E8%AE%A4%E5%85%A8%E5%B1%80IPV4%E4%BC%98%E5%85%88%EF%BC%8CIP%E3%80%81%E5%9F%9F%E5%90%8D%E8%87%AA%E5%AE%9A%E4%B9%89%EF%BC%8C%E8%AF%A6%E6%83%85%E8%A7%81%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B"><span class="toc-number">2.0.0.4.</span> <span class="toc-text">IPV6 VPS专用分流配置文件(以下默认全局IPV4优先，IP、域名自定义，详情见视频教程)</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%91%A1Oracle%E7%94%B2%E9%AA%A8%E6%96%87%E8%84%9A%E6%9C%AC%E9%9B%86%E5%90%88%EF%BC%8C%E9%92%88%E5%AF%B9KVM-X86%E6%9E%B6%E6%9E%84-x2F-ARM%E6%9E%B6%E6%9E%84"><span class="toc-number">3.</span> <span class="toc-text">②Oracle甲骨文脚本集合，针对KVM X86架构&#x2F;ARM架构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81root%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC"><span class="toc-number">3.0.1.</span> <span class="toc-text">1、root一键脚本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81warp%E5%A4%9A%E5%8A%9F%E8%83%BD%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC"><span class="toc-number">3.0.2.</span> <span class="toc-text">2、warp多功能一键脚本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%85%B6%E4%BB%96KVM%E6%9E%B6%E6%9E%84VPS%E6%9F%A5%E7%9C%8B%E4%B8%93%E7%94%A8ip%E6%96%B9%E5%BC%8F%EF%BC%88%E5%BE%85%E6%9B%B4%E6%96%B0%EF%BC%89"><span class="toc-number">3.0.3.</span> <span class="toc-text">3、其他KVM架构VPS查看专用ip方式（待更新）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E5%A6%82%E6%9E%9CMark-a%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%85%E9%94%99%E8%AF%AF%E6%89%A7%E8%A1%8C%E4%B8%8B%E6%96%B9%E6%93%8D%E4%BD%9C%E5%8D%B3%E5%8F%AF"><span class="toc-number">3.0.4.</span> <span class="toc-text">4、如果Mark-a脚本安装错误执行下方操作即可</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%91%A2mack-a"><span class="toc-number">4.</span> <span class="toc-text">③mack-a</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%91%A3SKY-BOX"><span class="toc-number">5.</span> <span class="toc-text">④SKY-BOX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">6.</span> <span class="toc-text">使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ARM-beta%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">6.1.</span> <span class="toc-text">ARM beta使用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%91%A4NEZHA"><span class="toc-number">7.</span> <span class="toc-text">⑤NEZHA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%91%A5MTPROTO"><span class="toc-number">8.</span> <span class="toc-text">⑥MTPROTO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%91%A6%E5%85%B6%E4%BB%96"><span class="toc-number">9.</span> <span class="toc-text">⑦其他</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%91%A7%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4"><span class="toc-number">10.</span> <span class="toc-text">⑧系统命令</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/49222.html" title="Hexo如何使用添加歌单(音乐)页面"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://imgbed.top/images/2022/03/08/c6c6a2356f2e2261921ea412cdb7ac5a.jpg" onerror="this.onerror=null;this.src='https://mapp.alicdn.com/16480245965576uTysDbUe28XWcX.jpg'" alt="Hexo如何使用添加歌单(音乐)页面"/></a><div class="content"><a class="title" href="/posts/49222.html" title="Hexo如何使用添加歌单(音乐)页面">Hexo如何使用添加歌单(音乐)页面</a><time datetime="2022-03-22T09:36:32.000Z" title="发表于 2022-03-22 17:36:32">2022-03-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/2786860441.html" title="action自动部署hexo的方法2"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://imgbed.top/images//2cy/5ed08d457cbed80d5dd795bf8f7b63ea.webp" onerror="this.onerror=null;this.src='https://mapp.alicdn.com/16480245965576uTysDbUe28XWcX.jpg'" alt="action自动部署hexo的方法2"/></a><div class="content"><a class="title" href="/posts/2786860441.html" title="action自动部署hexo的方法2">action自动部署hexo的方法2</a><time datetime="2022-03-21T10:29:30.000Z" title="发表于 2022-03-21 18:29:30">2022-03-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/42604.html" title="Hexo添加音乐和电影页面"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://imgbed.top/images/2019/5dd14c308e0e2e3ee9af0305.jpg" onerror="this.onerror=null;this.src='https://mapp.alicdn.com/16480245965576uTysDbUe28XWcX.jpg'" alt="Hexo添加音乐和电影页面"/></a><div class="content"><a class="title" href="/posts/42604.html" title="Hexo添加音乐和电影页面">Hexo添加音乐和电影页面</a><time datetime="2022-03-19T10:00:30.000Z" title="发表于 2022-03-19 18:00:30">2022-03-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/2153285795.html" title="Hexo优化文章永久链接为数字编号"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/002.jpg" onerror="this.onerror=null;this.src='https://mapp.alicdn.com/16480245965576uTysDbUe28XWcX.jpg'" alt="Hexo优化文章永久链接为数字编号"/></a><div class="content"><a class="title" href="/posts/2153285795.html" title="Hexo优化文章永久链接为数字编号">Hexo优化文章永久链接为数字编号</a><time datetime="2022-03-17T12:48:36.024Z" title="发表于 2022-03-17 20:48:36">2022-03-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/756393619.html" title="如何使用 Travis CI 自动部署 Hexo 博客"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://imgbed.top/images//2cy/780b547e9c6c87aa4ea2fdef22170af3.webp" onerror="this.onerror=null;this.src='https://mapp.alicdn.com/16480245965576uTysDbUe28XWcX.jpg'" alt="如何使用 Travis CI 自动部署 Hexo 博客"/></a><div class="content"><a class="title" href="/posts/756393619.html" title="如何使用 Travis CI 自动部署 Hexo 博客">如何使用 Travis CI 自动部署 Hexo 博客</a><time datetime="2022-03-17T11:58:30.000Z" title="发表于 2022-03-17 19:58:30">2022-03-17</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Jling</div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo"/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender"/></a><a class="github-badge" target="_blank" href="https://www.jsdelivr.com/" style="margin-inline:5px"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&amp;logo=jsDelivr"/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel"/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&amp;logo=Codio"/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub"/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris"/></a></p></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadWaline () {
+  function initWaline () {
+    const waline = new Waline(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline-f2y64rvsq-92jling.vercel.app/',
+      path: location.pathname,
+      visitor: false,
+      dark: 'html[data-theme="dark"]'
+    }, null))
+  }
+
+  if (typeof Waline === 'function') initWaline()
+  else getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js').then(initWaline)
+}
+
+if ('Waline' === 'Waline' || !true) {
+  if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'https://jling.tk/posts/46926.html'
+    this.page.identifier = 'posts/46926.html'
+    this.page.title = '常用脚本收集'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://92jling.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+}
+
+if ('Waline' === 'Disqus' || !true) {
+  if (true) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = () => {
+    const loadWaline = () => {
+      Waline.Widget.RecentComments({
+        serverURL: 'https://waline-f2y64rvsq-92jling.vercel.app/',
+        count: 6
+      }).then(res => {
+        const walineArray = res.comments.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.objectId,
+            'date': e.insertedAt,
+          }
+        })
+        saveToLocal.set('waline-newest-comments', JSON.stringify(walineArray), 10/(60*24))
+        generateHtml(walineArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      }) 
+    }
+
+    if (typeof Waline === 'function') loadWaline() 
+    else getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js').then(loadWaline)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('waline-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><div class="aplayer no-destroy" data-id="3778678" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="true" data-text="富强,民主,文明,和谐,平等,公正,法治,爱国,敬业,诚信,友善" data-fontsize="15px" data-random="true" async="async"></script><script>((window.gitter = {}).chat = {}).options = {
+  room: '92jling/talk',
+};
+
+if (false) {
+  function chatBtnHide () {
+    document.getElementsByClassName('gitter-open-chat-button')[0].style.display= 'none'
+  }
+
+  function chatBtnShow () {
+    document.getElementsByClassName('gitter-open-chat-button')[0].style.display= 'block'
+  }
+}
+</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -6,7 +6,7 @@
   <link href="https://jling.tk/atom.xml" rel="self"/>
   
   <link href="https://jling.tk/"/>
-  <updated>2022-03-22T10:38:29.065Z</updated>
+  <updated>2022-03-24T04:08:38.066Z</updated>
   <id>https://jling.tk/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://jling.tk/posts/49222.html"/>
     <id>https://jling.tk/posts/49222.html</id>
     <published>2022-03-22T09:36:32.000Z</published>
-    <updated>2022-03-22T10:38:29.065Z</updated>
+    <updated>2022-03-24T04:08:38.066Z</updated>
     
     
       
@@ -34,7 +34,7 @@
     
     
     
-    <category term="other" scheme="https://jling.tk/categories/other/"/>
+    <category term="hexo" scheme="https://jling.tk/categories/hexo/"/>
     
     
     <category term="hexo" scheme="https://jling.tk/tags/hexo/"/>
@@ -46,7 +46,7 @@
     <link href="https://jling.tk/posts/2786860441.html"/>
     <id>https://jling.tk/posts/2786860441.html</id>
     <published>2022-03-21T10:29:30.000Z</published>
-    <updated>2022-03-22T10:41:52.241Z</updated>
+    <updated>2022-03-24T04:08:37.982Z</updated>
     
     
       
@@ -59,7 +59,7 @@
     
     
     
-    <category term="other" scheme="https://jling.tk/categories/other/"/>
+    <category term="hexo" scheme="https://jling.tk/categories/hexo/"/>
     
     
     <category term="HEXO" scheme="https://jling.tk/tags/HEXO/"/>
@@ -73,7 +73,7 @@
     <link href="https://jling.tk/posts/42604.html"/>
     <id>https://jling.tk/posts/42604.html</id>
     <published>2022-03-19T10:00:30.000Z</published>
-    <updated>2022-03-19T10:01:23.087Z</updated>
+    <updated>2022-03-24T04:08:38.098Z</updated>
     
     
       
@@ -86,7 +86,7 @@
     
     
     
-    <category term="other" scheme="https://jling.tk/categories/other/"/>
+    <category term="hexo" scheme="https://jling.tk/categories/hexo/"/>
     
     
     <category term="HEXO" scheme="https://jling.tk/tags/HEXO/"/>
@@ -98,7 +98,7 @@
     <link href="https://jling.tk/posts/2153285795.html"/>
     <id>https://jling.tk/posts/2153285795.html</id>
     <published>2022-03-17T12:48:36.024Z</published>
-    <updated>2022-03-19T07:45:11.502Z</updated>
+    <updated>2022-03-24T04:08:38.008Z</updated>
     
     
       
@@ -111,7 +111,7 @@
     
     
     
-    <category term="other" scheme="https://jling.tk/categories/other/"/>
+    <category term="hexo" scheme="https://jling.tk/categories/hexo/"/>
     
     
     <category term="HEXO" scheme="https://jling.tk/tags/HEXO/"/>
@@ -123,7 +123,7 @@
     <link href="https://jling.tk/posts/756393619.html"/>
     <id>https://jling.tk/posts/756393619.html</id>
     <published>2022-03-17T11:58:30.000Z</published>
-    <updated>2022-03-19T07:45:11.514Z</updated>
+    <updated>2022-03-24T04:08:37.847Z</updated>
     
     
       
@@ -137,7 +137,7 @@
     
     
     
-    <category term="other" scheme="https://jling.tk/categories/other/"/>
+    <category term="hexo" scheme="https://jling.tk/categories/hexo/"/>
     
     
     <category term="HEXO" scheme="https://jling.tk/tags/HEXO/"/>
@@ -149,7 +149,7 @@
     <link href="https://jling.tk/posts/2786860441.html"/>
     <id>https://jling.tk/posts/2786860441.html</id>
     <published>2022-03-17T11:55:30.000Z</published>
-    <updated>2022-03-19T07:45:11.495Z</updated>
+    <updated>2022-03-24T04:08:37.900Z</updated>
     
     
       
@@ -162,7 +162,7 @@
     
     
     
-    <category term="other" scheme="https://jling.tk/categories/other/"/>
+    <category term="hexo" scheme="https://jling.tk/categories/hexo/"/>
     
     
     <category term="HEXO" scheme="https://jling.tk/tags/HEXO/"/>
@@ -172,11 +172,330 @@
   </entry>
   
   <entry>
+    <title>宝塔面板安装v2-ui全攻略</title>
+    <link href="https://jling.tk/posts/52703.html"/>
+    <id>https://jling.tk/posts/52703.html</id>
+    <published>2021-06-23T02:17:00.000Z</published>
+    <updated>2022-03-24T04:09:27.668Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;!--markdown--&gt;##  准备工作
+
+&lt;ol&gt;
+&lt;li&gt;VPS 一台，提前重置好主流的操作系统（生产环境请别随意折腾），推荐 CentOS ≥ 7，这样宝塔插件安装更快。&lt;/li&gt;
+&lt;li&gt;域名一个（最好托管在 Cloudflare ）做好解析，不会托管 &lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="wall" scheme="https://jling.tk/categories/wall/"/>
+    
+    
+    <category term="教程" scheme="https://jling.tk/tags/%E6%95%99%E7%A8%8B/"/>
+    
+    <category term="宝塔面板" scheme="https://jling.tk/tags/%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF/"/>
+    
+    <category term="v2-ui" scheme="https://jling.tk/tags/v2-ui/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>利用腾讯云函数自动续期freenom的免费域名</title>
+    <link href="https://jling.tk/posts/64982.html"/>
+    <id>https://jling.tk/posts/64982.html</id>
+    <published>2021-06-22T03:47:00.000Z</published>
+    <updated>2022-03-24T04:15:51.349Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;!--markdown--&gt;众所周知，Freenom是地球上唯一一个提供免费顶级域名的商家，不过需要每年续期，每次续期最多一年。由于我申请了一堆域名，而且不是同一时段申请的， 所以每次续期都觉得折腾，于是就写了这个自动续期的脚本。
+
+&lt;h2 id=&quot;效果&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="other" scheme="https://jling.tk/categories/other/"/>
+    
+    
+    <category term="freenom" scheme="https://jling.tk/tags/freenom/"/>
+    
+    <category term="免费域名" scheme="https://jling.tk/tags/%E5%85%8D%E8%B4%B9%E5%9F%9F%E5%90%8D/"/>
+    
+    <category term="腾讯云函数" scheme="https://jling.tk/tags/%E8%85%BE%E8%AE%AF%E4%BA%91%E5%87%BD%E6%95%B0/"/>
+    
+    <category term="自动续期" scheme="https://jling.tk/tags/%E8%87%AA%E5%8A%A8%E7%BB%AD%E6%9C%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>宝塔面板+OCI自动开通Oracle甲骨文ARM VPS</title>
+    <link href="https://jling.tk/posts/33977.html"/>
+    <id>https://jling.tk/posts/33977.html</id>
+    <published>2021-06-21T07:47:19.000Z</published>
+    <updated>2022-03-24T04:09:27.668Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;!--markdown--&gt;
+&lt;h2 id=&quot;一、生成main-tf文件&quot;&gt;&lt;a href=&quot;#一、生成main-tf文件&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="other" scheme="https://jling.tk/categories/other/"/>
+    
+    
+    <category term="甲骨文" scheme="https://jling.tk/tags/%E7%94%B2%E9%AA%A8%E6%96%87/"/>
+    
+    <category term="ARM" scheme="https://jling.tk/tags/ARM/"/>
+    
+    <category term="VPS" scheme="https://jling.tk/tags/VPS/"/>
+    
+    <category term="OCI" scheme="https://jling.tk/tags/OCI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Oracle ARM install BT-panel</title>
+    <link href="https://jling.tk/posts/13964.html"/>
+    <id>https://jling.tk/posts/13964.html</id>
+    <published>2021-06-19T22:37:00.000Z</published>
+    <updated>2022-03-24T04:09:27.621Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;!--markdown--&gt;甲骨文新推出的ARM架构的免费云主机实际最高可以拥有4核心24G内存4G带宽200G存储的实例。但是CPU是ARM架构，所以在实际使用中安装BT宝塔面板时遇到了一些问题导致无法完成安装，实际都是关联软件的原因。这里搬主题就分享一下ARM架构安装BT宝</summary>
+        
+      
+    
+    
+    
+    <category term="other" scheme="https://jling.tk/categories/other/"/>
+    
+    
+    <category term="宝塔面板" scheme="https://jling.tk/tags/%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF/"/>
+    
+    <category term="BT-panel" scheme="https://jling.tk/tags/BT-panel/"/>
+    
+    <category term="Oracle" scheme="https://jling.tk/tags/Oracle/"/>
+    
+    <category term="甲骨文" scheme="https://jling.tk/tags/%E7%94%B2%E9%AA%A8%E6%96%87/"/>
+    
+    <category term="ARM" scheme="https://jling.tk/tags/ARM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>最新取消宝塔面板强制绑定帐号的方法</title>
+    <link href="https://jling.tk/posts/64741.html"/>
+    <id>https://jling.tk/posts/64741.html</id>
+    <published>2021-06-19T09:43:00.000Z</published>
+    <updated>2022-03-24T04:09:27.684Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;!--markdown--&gt;### 1、安装aapanel
+
+&lt;p&gt;我们可以安装宝塔国际版aapanel，和宝塔面板使用起来没有任何区别，只不过aapanel是英文版本。&lt;/p&gt;
+&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="other" scheme="https://jling.tk/categories/other/"/>
+    
+    
+    <category term="教程" scheme="https://jling.tk/tags/%E6%95%99%E7%A8%8B/"/>
+    
+    <category term="宝塔面板" scheme="https://jling.tk/tags/%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF/"/>
+    
+    <category term="强制绑定" scheme="https://jling.tk/tags/%E5%BC%BA%E5%88%B6%E7%BB%91%E5%AE%9A/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Google Voice转移及保号教程</title>
+    <link href="https://jling.tk/posts/10982.html"/>
+    <id>https://jling.tk/posts/10982.html</id>
+    <published>2021-06-15T08:37:39.000Z</published>
+    <updated>2022-03-24T04:09:27.606Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;!--markdown--&gt;## Google Voice号码转移教程
+
+&lt;h3 id=&quot;准备工作&quot;&gt;&lt;a href=&quot;#准备工作&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="wall" scheme="https://jling.tk/categories/wall/"/>
+    
+    
+    <category term="Google Voice" scheme="https://jling.tk/tags/Google-Voice/"/>
+    
+    <category term="转移" scheme="https://jling.tk/tags/%E8%BD%AC%E7%A7%BB/"/>
+    
+    <category term="保号" scheme="https://jling.tk/tags/%E4%BF%9D%E5%8F%B7/"/>
+    
+    <category term="教程" scheme="https://jling.tk/tags/%E6%95%99%E7%A8%8B/"/>
+    
+    <category term="GV" scheme="https://jling.tk/tags/GV/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Telegram注册及使用教程2021【转载】</title>
+    <link href="https://jling.tk/posts/49539.html"/>
+    <id>https://jling.tk/posts/49539.html</id>
+    <published>2021-06-12T23:50:27.000Z</published>
+    <updated>2022-03-24T04:09:27.621Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;!--markdown--&gt;##</summary>
+        
+      
+    
+    
+    
+    <category term="wall" scheme="https://jling.tk/categories/wall/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Google Cloud Common command script</title>
+    <link href="https://jling.tk/posts/30374.html"/>
+    <id>https://jling.tk/posts/30374.html</id>
+    <published>2021-06-12T10:27:48.000Z</published>
+    <updated>2022-03-24T04:09:27.606Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;!--markdown--&gt;# **两种本地客户端登录 Google Cloud 的方法：**
+
+&lt;blockquote&gt;
+&lt;p&gt;1.开启谷歌云 Root 账户密码使用本地 SSH 客户端登录。&lt;/p&gt;
+&lt;p&gt;2.通过 Google Cloud SSH 密钥使用 XShell</summary>
+        
+      
+    
+    
+    
+    <category term="wall" scheme="https://jling.tk/categories/wall/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>How to build telegram proxy</title>
+    <link href="https://jling.tk/posts/30879.html"/>
+    <id>https://jling.tk/posts/30879.html</id>
+    <published>2021-06-12T10:25:00.000Z</published>
+    <updated>2022-03-24T04:09:27.606Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;!--markdown--&gt;This article introduces the following three methods to use the refactored `mtproxy` proxy of `9seconds/mtg`, which also has</summary>
+        
+      
+    
+    
+    
+    <category term="wall" scheme="https://jling.tk/categories/wall/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>常用脚本收集</title>
+    <link href="https://jling.tk/posts/46926.html"/>
+    <id>https://jling.tk/posts/46926.html</id>
+    <published>2021-06-05T08:51:00.000Z</published>
+    <updated>2022-03-24T04:09:27.684Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;!--markdown--&gt;# 常用脚本及用法收集
+
+&lt;h2 id=&quot;WARP&quot;&gt;&lt;a href=&quot;#WARP&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="wall" scheme="https://jling.tk/categories/wall/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>VPS常用测试脚本合集</title>
+    <link href="https://jling.tk/posts/16125.html"/>
+    <id>https://jling.tk/posts/16125.html</id>
+    <published>2021-03-31T00:00:00.000Z</published>
+    <updated>2022-03-24T04:09:27.621Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;!--markdown--&gt;[![img](https://cdn.jsdelivr.net/gh/love2wind/cloudimg/img/88ab78543756a25051f1a1f838b1dd25.jpeg)](https://www.mrkevin.net/wp</summary>
+        
+      
+    
+    
+    
+    <category term="other" scheme="https://jling.tk/categories/other/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>从头开始搭建HEXO</title>
     <link href="https://jling.tk/posts/1245901822.html"/>
     <id>https://jling.tk/posts/1245901822.html</id>
     <published>2020-11-02T17:42:30.000Z</published>
-    <updated>2022-03-19T07:45:11.505Z</updated>
+    <updated>2022-03-24T04:08:31.237Z</updated>
     
     
       
@@ -189,12 +508,61 @@
     
     
     
-    <category term="other" scheme="https://jling.tk/categories/other/"/>
+    <category term="hexo" scheme="https://jling.tk/categories/hexo/"/>
     
     
     <category term="HEXO" scheme="https://jling.tk/tags/HEXO/"/>
     
     <category term="Github" scheme="https://jling.tk/tags/Github/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>markdown基本语法</title>
+    <link href="https://jling.tk/posts/8530.html"/>
+    <id>https://jling.tk/posts/8530.html</id>
+    <published>2020-09-24T22:53:27.000Z</published>
+    <updated>2022-03-24T04:09:27.637Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;!--markdown--&gt;Markdown是一种纯文本格式的标记语言。通过简单的标记语法，它可以使普通文本内容具有一定的格式。
+
+&lt;p&gt;&lt;font color=red</summary>
+        
+      
+    
+    
+    
+    <category term="other" scheme="https://jling.tk/categories/other/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>背景图片</title>
+    <link href="https://jling.tk/posts/7350.html"/>
+    <id>https://jling.tk/posts/7350.html</id>
+    <published>2020-09-23T19:43:21.000Z</published>
+    <updated>2022-03-24T04:09:27.699Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;!--markdown--&gt;![](http://i.imgur.com/bAS5g0D.png)
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/Bdsd06L.jpg&quot;&gt;&lt;br&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="other" scheme="https://jling.tk/categories/other/"/>
+    
     
   </entry>
   

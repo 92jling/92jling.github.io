@@ -1,6 +1,1781 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Google Chrome相关问题收集</title>
+    <url>/posts/19612.html</url>
+    <content><![CDATA[<!--markdown-->google chrome是目前最受欢迎且用户最多的浏览器，也是我的主力浏览器。但是并不是所有人都喜欢用chrome，大多数都是因为你还没有充分发挥chrome的最大特色——扩展性，以及某些设置方面的问题造成大家在使用过程中感到不适。所以在这篇文章中我列举出一些大家在使用中经常遇到的问题供大家参考。
+
+<h1 id="一、怎么获取和安装chrome"><a href="#一、怎么获取和安装chrome" class="headerlink" title="一、怎么获取和安装chrome"></a>一、怎么获取和安装chrome</h1><p>由于你懂的不可抗力的问题，大陆用户获取chrome会比较困难，所以这里重点给介绍下怎么在国内环境下获取chrome。</p>
+<p><strong>1、Google Chrome 官网，大陆访问下载速度比较喜人，所以不推荐直接下载。</strong></p>
+<blockquote>
+<ul>
+<li><a href="https://www.google.com/chrome/%EF%BC%88%E4%B8%AD%E5%9B%BD%E5%A4%A7%E9%99%86%E5%9C%B0%E5%8C%BA%E4%B8%8D%E5%8F%AF%E8%AE%BF%E9%97%AE%EF%BC%89">https://www.google.com/chrome/（中国大陆地区不可访问）</a></li>
+<li><a href="https://www.google.cn/chrome/%EF%BC%88%E4%B8%AD%E5%9B%BD%E5%A4%A7%E9%99%86%E5%9C%B0%E5%8C%BA%E5%8F%AF%E8%AE%BF%E9%97%AE%EF%BC%89">https://www.google.cn/chrome/（中国大陆地区可访问）</a></li>
+</ul>
+</blockquote>
+<p><strong>2、最简单的就是爬墙，这个方面大家自行百度，网上的解决方案一大把。</strong></p>
+<p>3、<strong>从Chrome 离线包下载网直接获取离线包安装。（推荐此方法）</strong></p>
+<blockquote>
+<p>地址：<a href="http://chrome-dl.com/">http://chrome-dl.com</a></p>
+<p>此站点基于开源项目假设而成，并且提供api，有需要的可以很方便的获取chrome离线安装包。一般用户直接在站点下载即可，分别提供四中版本的32位、64位供大家选择，速度也非常好。</p>
+<p><a href="http://tc.love2wind.cn/superbed/2019/11/20/5dd4cb768e0e2e3ee9497f5b.png"><img src="http://tc.love2wind.cn/superbed/2019/11/20/5dd4cb768e0e2e3ee9497f5b.png" alt="img"></a></p>
+</blockquote>
+<p>chrome的安装非常简单，直接打开离线安装包就会自动安装了，安装过程也比较快，一会儿你就可以享用强大的chrome浏览器了。</p>
+<h1 id="二、开启chrome多线程下载"><a href="#二、开启chrome多线程下载" class="headerlink" title="二、开启chrome多线程下载"></a>二、开启chrome多线程下载</h1><h3 id="方式一：开启Chrome自带的并行下载功能"><a href="#方式一：开启Chrome自带的并行下载功能" class="headerlink" title="方式一：开启Chrome自带的并行下载功能"></a>方式一：开启Chrome自带的并行下载功能</h3><p>在地址栏输入 <code>chrome://flags/</code>,然后在搜索框中输入 <code>Parallel downloading</code>，选择enabled，重启Chrome即可。</p>
+<h3 id="方式二：使用插件-Aria2"><a href="#方式二：使用插件-Aria2" class="headerlink" title="方式二：使用插件 + Aria2"></a>方式二：使用插件 + Aria2</h3><ul>
+<li>安装插件Camtd， | <a href="https://github.com/jae-jae/Camtd/wiki/Camtd%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B">使用教程</a> |</li>
+<li>安装Aria2, | <a href="https://aria2.github.io/">下载地址</a> | <a href="https://www.moerats.com/archives/519/">使用教程</a> |</li>
+</ul>
+<h1 id="三、怎么获取插件"><a href="#三、怎么获取插件" class="headerlink" title="三、怎么获取插件"></a>三、怎么获取插件</h1>]]></content>
+      <categories>
+        <category>soft</category>
+      </categories>
+      <tags>
+        <tag>chrome</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Google Cloud Common command script</title>
+    <url>/posts/30374.html</url>
+    <content><![CDATA[<!--markdown--># **两种本地客户端登录 Google Cloud 的方法：**
+
+<blockquote>
+<p>1.开启谷歌云 Root 账户密码使用本地 SSH 客户端登录。</p>
+<p>2.通过 Google Cloud SSH 密钥使用 XShell 客户端登录。</p>
+</blockquote>
+<p>默认谷歌是通过 GCloud 命令在浏览器窗口访问 SSH 控制台的，它是这样实现的：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gcloud beta compute --project &quot;Project Name&quot; ssh --zone &quot;VM Zone&quot; &quot;VM ID&quot;</span><br></pre></td></tr></table></figure>
+
+<p>但是我们一般都习惯了用本地客户端登录 SSH，而有时候一些操作本地直接登录的确更方便，开启本地登录还是很有必要的，不过我建议第二种方法，因为开了 Root 账户密码后会让 Hacker 对你的实例更有机可乘。</p>
+<h2 id="I-开启谷歌云-Root-账户密码使用本地-SSH-客户端登录"><a href="#I-开启谷歌云-Root-账户密码使用本地-SSH-客户端登录" class="headerlink" title="I.开启谷歌云 Root 账户密码使用本地 SSH 客户端登录"></a>I.开启谷歌云 Root 账户密码使用本地 SSH 客户端登录</h2><h3 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h3><ul>
+<li>网页打开 Google SSH 控制台连接到实例，并切换到 Root 账户：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo -i</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开SSH配置文件：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>按 <strong><code>i</code></strong> 进入 INSERT 模式后找到并修改以下两行：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PermitRootLogin yes</span><br><span class="line">PasswordAuthentication yesCopy</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>保存并退出：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">:wq</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>设置 Root 登录密码：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">passwd root</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>重启 SSH 服务后就可以直接用 Root 账户登录了：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">service sshd restart</span><br><span class="line"># or</span><br><span class="line">systemctl restart sshdCopy</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h3><p><strong>CentOS和Debian通用，输入以下两条命令</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sed -i &#x27;s/PermitRootLogin no/PermitRootLogin yes/g&#x27; /etc/ssh/sshd_config</span><br><span class="line">sed -i &#x27;s/PasswordAuthentication no/PasswordAuthentication yes/g&#x27; /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
+
+<p><strong>Ubuntu系统，输入以下两条命令</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sed -i &#x27;s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g&#x27; /etc/ssh/sshd_config</span><br><span class="line">sed -i &#x27;s/PasswordAuthentication no/PasswordAuthentication yes/g&#x27; /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
+
+<p><strong>重启服务器</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+<h3 id="II-通过-Google-Cloud-SSH-密钥使用-XShell-客户端登录"><a href="#II-通过-Google-Cloud-SSH-密钥使用-XShell-客户端登录" class="headerlink" title="II.通过 Google Cloud SSH 密钥使用 XShell 客户端登录"></a>II.通过 Google Cloud SSH 密钥使用 XShell 客户端登录</h3><ul>
+<li>XShell 菜单栏 -&gt; 工具 -&gt; 新建用户密钥生成向导：</li>
+</ul>
+<p><a href="https://cee.cx/images/pasted-0.png"><img src="https://cee.cx/images/pasted-0.png" alt="img"></a><br><a href="https://cee.cx/images/pasted-1.png"><img src="https://cee.cx/images/pasted-1.png" alt="img"></a></p>
+<ul>
+<li>保存好你的公钥以便待会使用</li>
+</ul>
+<p><a href="https://cee.cx/images/pasted-2.png"><img src="https://cee.cx/images/pasted-2.png" alt="img"></a></p>
+<ul>
+<li>添加 SSH 密钥到 Google Cloud：</li>
+</ul>
+<p><a href="https://cee.cx/images/pasted-3.png"><img src="https://cee.cx/images/pasted-3.png" alt="img"></a></p>
+<ul>
+<li>粘贴你刚才生成的密钥，并在后面加上你密钥生成时设置的用户名然后保存。</li>
+</ul>
+<p><a href="https://cee.cx/images/pasted-4.png"><img src="https://cee.cx/images/pasted-4.png" alt="img"></a></p>
+<ul>
+<li>使用 XShell 连接测试</li>
+</ul>
+<p><a href="https://cee.cx/images/pasted-5.png"><img src="https://cee.cx/images/pasted-5.png" alt="img"></a><br><a href="https://cee.cx/images/pasted-6.png"><img src="https://cee.cx/images/pasted-6.png" alt="img"></a></p>
+<p>如果登录成功你可以使用 <code>sudo -i</code> 切到 Root 账户，请保存好你的密钥信息，如果不慎丢失也没关系，删除谷歌云上你刚才创建的 SSH 密钥根据操作重新创建一个即可。我比较推荐这种安全登录方法，没有涉及到登录密码信息，也不需要你输入，除非 Hacker 有你的 SSH 密钥证书，不然几乎没有可能破解你的 SSH 登录权限。</p>
+<p><a href="https://cee.cx/google-cloud-local-root-login/">谷歌云开启本地 SSH 工具 Root 用户登录权限 - Cee</a></p>
+<h1 id="常用脚本命令"><a href="#常用脚本命令" class="headerlink" title="常用脚本命令"></a>常用脚本命令</h1><h3 id="升级系统"><a href="#升级系统" class="headerlink" title="升级系统"></a>升级系统</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt upgrade</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装curl"><a href="#安装curl" class="headerlink" title="安装curl"></a>安装curl</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install curl</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install curl</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装wget"><a href="#安装wget" class="headerlink" title="安装wget"></a>安装wget</h3><ul>
+<li><h4 id="yum安装"><a href="#yum安装" class="headerlink" title="yum安装"></a>yum安装</h4></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum -y install wget</span><br></pre></td></tr></table></figure>
+
+<p><strong>在Ubuntu &#x2F;Debian平台上安装wget</strong></p>
+<ul>
+<li>要在Ubuntu &#x2F; Debian发行版上安装wget ，请以root用户身份通过SSH登录并运行命令。<br> <code>apt-get install wget</code></li>
+<li>要确认安装了wget工具，请运行命令:<br> <code>dpkg -l | grep wget</code></li>
+</ul>
+<h3 id="工具箱"><a href="#工具箱" class="headerlink" title="工具箱"></a>工具箱</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget -O box.sh https://raw.githubusercontent.com/BlueSkyXN/SKY-BOX/main/box.sh &amp;&amp; chmod +x box.sh &amp;&amp; clear &amp;&amp; ./box.sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="WARP"><a href="#WARP" class="headerlink" title="WARP"></a>WARP</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget -N --no-check-certificate https://raw.githubusercontent.com/YG-tsj/Oracle-warp/main/multiV464.sh &amp;&amp; chmod +x multiV464.sh &amp;&amp; ./multiV464.sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="MPROTO"><a href="#MPROTO" class="headerlink" title="MPROTO"></a>MPROTO</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubiBackup/doubi/master/mtproxy.sh &amp;&amp; chmod +x mtproxy.sh &amp;&amp; bash mtproxy.sh</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>wall</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Google Voice转移及保号教程</title>
+    <url>/posts/10982.html</url>
+    <content><![CDATA[<!--markdown-->## Google Voice号码转移教程
+
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a><strong>准备工作</strong></h3><blockquote>
+<ul>
+<li>准备一个干净的美国 IP 转移成功率很高</li>
+<li>转移得用电脑，所以电脑也是必须的</li>
+</ul>
+</blockquote>
+<h3 id="开始转移"><a href="#开始转移" class="headerlink" title="开始转移"></a>开始转移</h3><h4 id="一、打开网站"><a href="#一、打开网站" class="headerlink" title="一、打开网站"></a><strong>一、打开网站</strong></h4><p><a href="https://voice.google.com/">https://voice.google.com/</a></p>
+<h4 id="二、登录两个google账号"><a href="#二、登录两个google账号" class="headerlink" title="二、登录两个google账号"></a><strong>二、登录两个google账号</strong></h4><blockquote>
+<p>登录要转入跟转出的两个Google账户</p>
+</blockquote>
+<h4 id="三、切换至带有Google-Voice号码的账户"><a href="#三、切换至带有Google-Voice号码的账户" class="headerlink" title="三、切换至带有Google Voice号码的账户"></a><strong>三、切换至带有Google Voice号码的账户</strong></h4><blockquote>
+<p>点击左侧的三根横线展开菜单</p>
+<p>点击Legacy Google Voice切换到旧版本</p>
+</blockquote>
+<p><img src="https://ae01.alicdn.com/kf/U40bf5fcb344b4ef2965b7bd4781a2af6P.jpg" alt="img"></p>
+<h4 id="四、进去旧版页面后点击左侧的号码进入转移界面"><a href="#四、进去旧版页面后点击左侧的号码进入转移界面" class="headerlink" title="四、进去旧版页面后点击左侧的号码进入转移界面"></a><strong>四、进去旧版页面后点击左侧的号码进入转移界面</strong></h4><p><img src="https://ae01.alicdn.com/kf/Ua7360d6394b345ca81b02d6dd4f18313B.jpg" alt="img"></p>
+<h4 id="五、点击Tranfer进行转号"><a href="#五、点击Tranfer进行转号" class="headerlink" title="五、点击Tranfer进行转号"></a><strong>五、点击Tranfer进行转号</strong></h4><p><img src="https://ae01.alicdn.com/kf/U0602f1deb41047b0b796fb15a06a57af5.jpg" alt="img"></p>
+<h4 id="六、选择你要转移的账户，再点击Tranfer"><a href="#六、选择你要转移的账户，再点击Tranfer" class="headerlink" title="六、选择你要转移的账户，再点击Tranfer"></a><strong>六、选择你要转移的账户，再点击Tranfer</strong></h4><p><img src="https://ae01.alicdn.com/kf/U3e4bcd0962984dff9dc69854608de1fcp.jpg" alt="img"></p>
+<blockquote>
+<p>转移大概就几秒钟内完成，如果你的账户是灰色的，有可能是你的账户没有同意协议，同意一下即可</p>
+</blockquote>
+<h2 id="Google-Voice保号教程"><a href="#Google-Voice保号教程" class="headerlink" title="Google Voice保号教程"></a>Google Voice保号教程</h2><h3 id="Google-Voice-官方号码回收规则："><a href="#Google-Voice-官方号码回收规则：" class="headerlink" title="Google Voice 官方号码回收规则："></a>Google Voice 官方号码回收规则：</h3><blockquote>
+<p><a href="https://www.google.com/intl/zh-CN/googlevoice/program-policies.html">https://www.google.com/intl/zh-CN/googlevoice/program-policies.html</a></p>
+</blockquote>
+<p>在9个月内你的Google Voice没拔打电话或接收短信，你的号码将被回收。Google不会回收已转携至Google语音服务或申请了永久使用权的号码</p>
+<h3 id="保号方法"><a href="#保号方法" class="headerlink" title="保号方法"></a>保号方法</h3><h4 id="1-主动拔打或接收语音电话"><a href="#1-主动拔打或接收语音电话" class="headerlink" title="1.主动拔打或接收语音电话"></a>1.主动拔打或接收语音电话</h4><p>两个Google Voice号码互相拔打 ，或者申请一个textnow虚拟号码拔打也行。</p>
+<h4 id="2、拔打免费电话"><a href="#2、拔打免费电话" class="headerlink" title="2、拔打免费电话"></a>2、拔打免费电话</h4><blockquote>
+<p>美国之声：+1(213)493-0288<br>Apple客服： +1(800)275-2273<br>微软客服：+1 (800) 642-7676<br>亚马逊客服：+1(206)266-2992</p>
+</blockquote>
+<h4 id="3、订阅短信"><a href="#3、订阅短信" class="headerlink" title="3、订阅短信"></a>3、订阅短信</h4><blockquote>
+<p>67135 发送AUTO 回复Y AutoZone 4条&#x2F;mo<br>555444 发送SIGNUP 回复Y 6msgs&#x2F;mo<br>22122 发送JOIN 星巴克 2msg&#x2F;mo<br>527365 发送join 回复yes 8msg &#x2F; mo<br>25666 先发code 然后回复PROMO<br>47272 发送START 回复 OK 6msgs&#x2F;mo</p>
+</blockquote>
+<h4 id="4、加入保号电报群群友互相拔打"><a href="#4、加入保号电报群群友互相拔打" class="headerlink" title="4、加入保号电报群群友互相拔打"></a>4、加入保号电报群群友互相拔打</h4><p>google voice 互拔保号交流群：<code>https://t.me/googlevoice888</code></p>
+]]></content>
+      <categories>
+        <category>wall</category>
+      </categories>
+      <tags>
+        <tag>Google Voice</tag>
+        <tag>转移</tag>
+        <tag>保号</tag>
+        <tag>教程</tag>
+        <tag>GV</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>How to build telegram proxy</title>
+    <url>/posts/30879.html</url>
+    <content><![CDATA[<!--markdown-->This article introduces the following three methods to use the refactored `mtproxy` proxy of `9seconds/mtg`, which also has the following characteristics:
+
+<ul>
+<li>Lightweight and resource-saving, the mirror image is also small</li>
+<li>Easy to deploy, similar to shadowsocks</li>
+<li>Support FakeTLS mode</li>
+<li>Support ADTag association</li>
+<li>Project address: <a href="https://github.com/9seconds/mtg">https://github.com/9seconds/mtg</a></li>
+<li>Project docker hub address: <a href="https://hub.docker.com/r/nineseconds/mtg">https://hub.docker.com/r/nineseconds/mtg</a></li>
+<li>Resistance to replay attacks</li>
+</ul>
+<ol>
+<li>Generate Fake tls form proxy</li>
+</ol>
+<hr>
+<h3 id="1-Switch-to-the-root-directory"><a href="#1-Switch-to-the-root-directory" class="headerlink" title="1. Switch to the root directory"></a>1. Switch to the root directory</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /root</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-Directly-download-the-compiled-mtg-binary-file"><a href="#2-Directly-download-the-compiled-mtg-binary-file" class="headerlink" title="2. Directly download the compiled mtg binary file"></a>2. Directly download the compiled mtg binary file</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget https://github.com/9seconds/mtg/releases/download/v2.0.1/mtg-2.0.1-linux-amd64.tar.gz //This is the package compiled by the author of 9seconds</span><br><span class="line">mv mtg-linux-amd64 mtg //Rename the binary package for later use</span><br></pre></td></tr></table></figure>
+<p>两者的命令主要是参数的不同，解压tar.gz和tar.bz2不同压缩文件的命令如下：</p>
+<ul>
+<li>解压tar.gz文件</li>
+</ul>
+<p><code>tar -zxvf ×××.tar.gz</code></p>
+<ul>
+<li>解压tar.bz2文件</li>
+</ul>
+<p><code>tar -jxvf ×××.tar.bz2</code><br>　　-z ：是否同时具有 gzip 的属性？亦即是否需要用 gzip 压缩？<br>　　-j ：是否同时具有 bzip2 的属性？亦即是否需要用 bzip2 压缩？</p>
+<blockquote>
+<p><strong>Description</strong>: The releases address of the package compiled by the author: <a href="https://github.com/9seconds/mtg/releases">https://github.com/9seconds/mtg/releases</a></p>
+</blockquote>
+<h3 id="3-Give-root-user-executable-permissions-to-the-binary-file"><a href="#3-Give-root-user-executable-permissions-to-the-binary-file" class="headerlink" title="3. Give root user executable permissions to the binary file"></a>3. Give root user executable permissions to the binary file</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chmod +x /root/mtg</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-Use-the-binary-file-to-generate-a-key-to-counter-generate-an-https-website"><a href="#4-Use-the-binary-file-to-generate-a-key-to-counter-generate-an-https-website" class="headerlink" title="4. Use the binary file to generate a key to counter-generate an https website"></a>4. Use the binary file to generate a key to counter-generate an https website</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/root/mtg generate-secret -c baidu.com tls</span><br><span class="line">ee1e5273b2938f82c3c0eb62b776b0832662616964752e636f6d //Assuming this is the generated key</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-Let-the-mtg-program-run-in-the-background-with-a-key-monitoring-port"><a href="#5-Let-the-mtg-program-run-in-the-background-with-a-key-monitoring-port" class="headerlink" title="5. Let the mtg program run in the background with a key monitoring port"></a>5. Let the mtg program run in the background with a key monitoring port</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nohup /root/mtg run -b 0.0.0.0:12345 ee1e5273b2938f82c3c0eb62b776b0832662616964752e636f6d &amp;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>Explanation</strong>: <code>-b</code> is followed by the listening address and port, and that large string of characters is the key. <code>cat nohup.out</code> can view the program running output log, which contains the tg proxy link. For more variable usage, please visit the author’s project address: <a href="https://github.com/9seconds/mtg">https://github.com/9seconds/mtg</a></p>
+</blockquote>
+<h2 id="Second-generate-a-32-bit-key-agent"><a href="#Second-generate-a-32-bit-key-agent" class="headerlink" title="Second, generate a 32-bit key agent"></a>Second, generate a 32-bit key agent</h2><h3 id="The-first-three-steps-are-the-same-as-above"><a href="#The-first-three-steps-are-the-same-as-above" class="headerlink" title="The first three steps are the same as above"></a>The first three steps are the same as above</h3><h3 id="4-Let-the-mtg-program-run-in-the-background-with-a-key-monitoring-port"><a href="#4-Let-the-mtg-program-run-in-the-background-with-a-key-monitoring-port" class="headerlink" title="4. Let the mtg program run in the background with a key monitoring port"></a>4. Let the mtg program run in the background with a key monitoring port</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nohup /root/mtg run -b 0.0.0.0:443 dd28d1eea5fcc3a833f773155f4589a4e3 &amp;</span><br></pre></td></tr></table></figure>
+
+<p>Note: 443 in the above code is the port number, dd28d1eea5fcc3a833f773155f4589a4e3 is the proxy key (change this key yourself, don’t use this, don’t change the front dd). Someone must say that I am not good at math. It is obviously 34 digits, but it is not.</p>
+<p>Adding dd in the front is mandatory security verification. Clients without dd cannot connect. This can better disguise traffic and prevent it from being identified</p>
+]]></content>
+      <categories>
+        <category>wall</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Oracle ARM install BT-panel</title>
+    <url>/posts/13964.html</url>
+    <content><![CDATA[<!--markdown-->甲骨文新推出的ARM架构的免费云主机实际最高可以拥有4核心24G内存4G带宽200G存储的实例。但是CPU是ARM架构，所以在实际使用中安装BT宝塔面板时遇到了一些问题导致无法完成安装，实际都是关联软件的原因。这里搬主题就分享一下ARM架构安装BT宝塔面板及NGINX+PHP+MySQL的安装教程。
+
+<h3 id="一、手动安装"><a href="#一、手动安装" class="headerlink" title="一、手动安装"></a>一、手动安装</h3><p>很多人会通过DD的方式安装Debian，但是这是存在风险的，很多人被甲骨文删号的原因是被系统侦测到闲置，而DD系统会导致部分检测功能失效，所以并不推荐这样做，以下为默认的ubuntu下进行安装。</p>
+<p>首先更新系统软件包：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+
+<p>先正常安装宝塔！</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -sSO http://download.bt.cn/install/install_panel.sh &amp;&amp; bash install_panel.sh</span><br></pre></td></tr></table></figure>
+
+<p>然后安装各项依赖：</p>
+<p><strong>以下是以Nginx ，PHP8.0， Mysql 5.7为例</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt-get install gcc build-essential</span><br><span class="line">apt-get install gcc gcc-c++ autoconf automake</span><br><span class="line">apt-get -y install zlib zlib-devel openssl openssl-devel pcre pcre-devel</span><br></pre></td></tr></table></figure>
+
+<p>下载Libiconv</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.13.1.tar.gz</span><br><span class="line">tar zxvf libiconv-1.13.1.tar.gz</span><br><span class="line">cd libiconv-1.13.1</span><br></pre></td></tr></table></figure>
+
+<p>配置libiconv</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./configure -prefix=/usr/local --build arm-pc-linux</span><br></pre></td></tr></table></figure>
+
+<p>编译安装</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<p>创建文件链接到Libiconv库</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ln -s /usr/local/lib/libiconv.so /usr/lib</span><br><span class="line">ln -s /usr/local/lib/libiconv.so.2 /usr/lib/libiconv.so.2</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后再宝塔面板内完成对WEB环境的配置即可。</p>
+<p>最后顺手开启BBR：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget -N --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; bash bbr.sh</span><br></pre></td></tr></table></figure>
+
+<p>检查一下是否开启成功以及是否自启动：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sysctl net.ipv4.tcp_available_congestion_control</span><br><span class="line">sysctl net.ipv4.tcp_congestion_control</span><br><span class="line">sysctl net.core.default_qdisc</span><br><span class="line">lsmod | grep bbr</span><br><span class="line">ps -ef | grep bbr</span><br></pre></td></tr></table></figure>
+
+<h3 id="二、适配ARM架构的开心版安装"><a href="#二、适配ARM架构的开心版安装" class="headerlink" title="二、适配ARM架构的开心版安装"></a>二、适配ARM架构的开心版安装</h3><p>全新安装：默认安装的是 7.5.1 面板，请在面板上点击 “更新” 或者 “修复” 升级到最新版，或者执行下面的 “Linux面板7.5.2升级命令”</p>
+<p>已安装（免费版）：直接执行下面的 “Linux面板7.5.2升级命令”</p>
+<p>甲骨文arm架构的面板 nginx是专属订制的“Nginx openresty.1.19.3.1” btwaf防火墙、系统防火墙、监控报表 完美使用，其他功能一切正常！</p>
+<p>甲骨文arm架构的面板 apache是使用的官方的 apache防火墙“xxx”功能使用不了， 监控报表使用不了，其他功能一切正常！ &gt;&gt;&gt;&gt; 这里推荐使用 nginx环境</p>
+<p>移除了一些 不兼容arm架构的环境与插件，宝塔没适配arm架构 而官方适配arm架构的环境，会根据大家需求为大家适配上架！</p>
+<blockquote>
+<p><strong>更新记录</strong></p>
+<ul>
+<li>修复了安装面板需要手动放行的问题！</li>
+<li>修复了面板上放行端口需要手动放行的问题！</li>
+<li>修复了面板修改端口需要手动放行的问题！</li>
+<li>修复了 btwaf防火墙、系统防火墙、监控报表 无法使用的问题！</li>
+<li>已知apache环境下 apache防火墙 监控报表等问题无法使用，推荐使用 nignx环境 后期会修复！</li>
+</ul>
+</blockquote>
+<p><strong>目前仅支持企业版</strong><br>已在 <strong>甲骨文 Red Hat Enterprise Server 7.9 &#x2F; Ubuntu 20.04.2 LTS</strong> 测试 暂未发现BUG！</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -sSO https://download.seele.wang/ltd/install/arm/install_panel.sh &amp;&amp; bash install_panel.sh</span><br></pre></td></tr></table></figure>
+
+<p>Linux面板7.5.2升级企业版命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget -O updatearm.sh https://download.seele.wang/ltd/install/arm/updatearm.sh &amp;&amp; bash updatearm.sh</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+      <tags>
+        <tag>宝塔面板</tag>
+        <tag>BT-panel</tag>
+        <tag>Oracle</tag>
+        <tag>甲骨文</tag>
+        <tag>ARM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Telegram注册及使用教程2021【转载】</title>
+    <url>/posts/49539.html</url>
+    <content><![CDATA[<!--markdown-->## 一.下载安装应用程序
+
+<p>注意：</p>
+<p>1.我们需要下载telegram最新版本。<br>2.平台支持：telegram支持目前的“几乎”所有平台（其实就是全部的啦），手机端支持安卓,ios,wp。桌面端支持windows，linux，mac os,还有网页版（不推荐）。<br>3.以下教程只针对大家最常用的手机端的安卓和ios，其余客户端注册教程大同小异，如有任何疑问欢迎到位于文章底部的群组找我哦！<br>4.所有用户均可通过telegram官网:t.me(全称telegram.org)获得安装程式</p>
+<p><del>为了能及时帮助大家解决问题和发布重要提示，新增了QQ群，欢迎大家加入哦！</del><br>群号:已被永久封禁，不再开放</p>
+<p>telegram群： @onmoe</p>
+<h3 id="1-安卓用户"><a href="#1-安卓用户" class="headerlink" title="1.安卓用户"></a>1.安卓用户</h3><h4 id="（1）安卓有能力（手机装有谷歌服务以及play商店，能访问谷歌服务）的用户可以直接在play商店里面下载安装原版客户端。"><a href="#（1）安卓有能力（手机装有谷歌服务以及play商店，能访问谷歌服务）的用户可以直接在play商店里面下载安装原版客户端。" class="headerlink" title="（1）安卓有能力（手机装有谷歌服务以及play商店，能访问谷歌服务）的用户可以直接在play商店里面下载安装原版客户端。"></a>（1）安卓有能力（手机装有谷歌服务以及play商店，能访问谷歌服务）的用户可以直接在play商店里面下载安装原版客户端。</h4><p><img src="https://cdn.jsdelivr.net/gh/cutemoe/moepic/img/2019/10/tele-1.jpg" alt="img"></p>
+<p>没有play商店的用户可以先通过下方链接安装客户端的测试版（不保证稳定性），可以后续在官方频道中下载正式版软件代替测试版<br><a href="https://install.appcenter.ms/users/drklo-2kb-ghpo/apps/telegram-beta-2/distribution_groups/all-users-of-telegram-beta-2">测试版链接</a></p>
+<p>Telegram Android官方下载频道<br>@TAndroidAPK<br>注：我始终建议安卓手机安装全套谷歌服务，具体原因下文会讲</p>
+<h4 id="（2）安装第三方客户端"><a href="#（2）安装第三方客户端" class="headerlink" title="（2）安装第三方客户端"></a>（2）安装第三方客户端</h4><p>由于telegram的开源特性，造就了无数第三方开发者根据各国用户的使用习惯开发适合自己国家的第三方客户端。这些客户端拥有更多实用功能，不过第三方客户端也有隐私泄露的风险。</p>
+<p>下面介绍一款安全、开源、好用的第三方客户端，更加符合用户使用习惯<br>以下客户端只可通过play商店下载</p>
+<h4 id="Nekogram"><a href="#Nekogram" class="headerlink" title="Nekogram"></a>Nekogram</h4><p>这个客户端由国内开发者开发，当然她也是我的好朋友：猫耳逆变器<br>目前博主在使用，很喜欢，自带了简体中文，省去了汉化的麻烦<br>紧跟官方源码更新，新功能会及时加入，能够耐心听取用户建议并采纳<br>具体特性请见下图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cutemoe/moepic/img/2019/10/tele-17.jpg" alt="img"></p>
+<p>以下是实际使用图片</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cutemoe/moepic/img/2019/10/tele-19.jpg" alt="img"></p>
+<p>此外，还有另一位开发者开发的nekogramX可以使用，功能上大同小异，增加了代理自动订阅功能，可以省去手动添加代理的麻烦。但是吐槽一下，进入该软件时会弹出泄露手机号之类的安全提示，怪吓人的TwT，具体见仁见智啦。</p>
+<p>再啰嗦一句，对于坊间流传的nekogram的负面评价，请自行判断，因为传言并没有给出证据证明nekogram存在隐私泄露风险。</p>
+<p><strong>尤其不要使用币用，蝴蝶IM等套壳客户端，他们会上传你的手机通讯录，电话号码等信息！！！</strong></p>
+<h3 id="2-ios用户"><a href="#2-ios用户" class="headerlink" title="2.ios用户"></a>2.ios用户</h3><p>ios用户直接在appstore中搜索telegram<br>注1：国区Appstore没有下架该软件，不过我始终建议使用外区下载，因为国区的情况大家也懂得，不一定什么时候就会被下架<br>注2:ios的telegramX版客户端已停更，请即刻切换到telegram</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cutemoe/moepic/img/2019/10/tele-20.jpg" alt="img"></p>
+<h3 id="3-PC端用户"><a href="#3-PC端用户" class="headerlink" title="3.PC端用户"></a>3.PC端用户</h3><p>1.Windows用户</p>
+<p>请在telegram官网<a href="http://telegram.org/">http://telegram.org</a><br>下载PC端最新安装包（需要特定网络环境）</p>
+<p>2.Mac用户</p>
+<p>直接在软件商店安装即可</p>
+<h2 id="二-确认网络环境"><a href="#二-确认网络环境" class="headerlink" title="二.确认网络环境"></a>二.确认网络环境</h2><p>这里会遇到问题，无法进行下一步，因为telegram的服务器在中国大陆地区是无法正常连接的，这里需要用到特定软件连接到国外服务器。别急，还有解决方案！</p>
+<h3 id="方法一：使用代理工具"><a href="#方法一：使用代理工具" class="headerlink" title="方法一：使用代理工具"></a>方法一：使用代理工具</h3><p>请自行寻找可用机场或代理链接，咱的v2射线由于被滥用已停止服务</p>
+<h3 id="方法二：使用mtproxy（推荐）"><a href="#方法二：使用mtproxy（推荐）" class="headerlink" title="方法二：使用mtproxy（推荐）"></a>方法二：使用mtproxy（推荐）</h3><p>这个是telegram内置的专用代理，用于在不能连接到telegram的地方正常连接。带给我们的体验就是像平常用微信一样，不需要任何额外的代理，打开即用，很方便。更便于你推广给朋友使用！<br>注意：从2021年3月开始，此方法已被精准识别，暂时没有太好的解决方案，有需要的朋友可以自己找找方法一中提到的“机场”，这里博主不做推荐</p>
+<p>这里给出由本人提供的telegram的mtproxy</p>
+<p><strong>请勿转载、售卖、分发下列服务器，如发现，将更换密钥，请不要给别人的使用带来不便！</strong></p>
+<p><strong>服务器也是有成本的呢。咱是省吃俭用攒下来的呢，为了咱能健康成长，欢迎各位给咱投食哦！你投入的每一分钱，都会成为我身上的脂肪(*?ω-q) ，相关付款链接请在文章下方打赏作者！</strong></p>
+<p>注：目前网路上使用脚本搭建mtproxy的全部方法几乎都无效，因为其加密特征已被功夫土墙精准识别，会被立刻封禁ip。有需要自己搭建的请食用该文章。</p>
+<p><a href="https://imoe.moe/Tutorial/build-9second-mtproxy.html">https://imoe.moe/Tutorial/build-9second-mtproxy.html</a></p>
+<p>安卓用户：点击上方connecting的部分，仿照下方图片将链接的相应字符段复制粘贴下去</p>
+<p>ios用户：在打开软件时进行下一步操作会直接询问，请点击Use Proxy<br>特别提示：ios用户请在设置中确认开启telegram的联网权限，否则无法联网</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cutemoe/moepic/img/2019/10/telegram01.jpg" alt="img"></p>
+<p>国内中转阿里云(ios首选）</p>
+<ul>
+<li>server:eatbadmoe.ga</li>
+<li>port：30005</li>
+<li>secret:09f2198a2d790167c2ec7d4d83249ae4</li>
+</ul>
+<p>韩国甲骨文，三网CN2 GIA（暂不可用）</p>
+<ul>
+<li>server：kr.owowowo.cn</li>
+<li>port：543</li>
+<li>secret:dd243798c31328ec775f3db86e6e4c09bb</li>
+</ul>
+<p>日本甲骨文，线路一般（暂不可用）</p>
+<ul>
+<li>server：jp.owowowo.cn</li>
+<li>port：543</li>
+<li>secret:dd28d1eea5fcc3a833f121314f4589a4e3</li>
+</ul>
+<p>完整代理链接附上，便于后续在软件中复制直接点击添加<br><a href="https://t.me/proxy?server=eatbadmoe.ga&port=30005&secret=09f2198a2d790167c2ec7d4d83249ae4">链接1</a><br><a href="https://t.me/proxy?server=kr.owowowo.cn&port=543&secret=dd243798c31328ec775f3db86e6e4c09bb">链接3</a><br><a href="https://t.me/proxy?server=jp.owowowo.cn&port=543&secret=dd28d1eea5fcc3a833f121314f4589a4e3">链接4</a></p>
+<p>serve&#x3D;对应的是服务器，port&#x3D;对应的是端口，secret&#x3D;对应的是密钥<br>把相关内容填入各自的洞洞里（</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cutemoe/moepic/img/2019/10/telegram02.jpg" alt="img"></p>
+<p>填好后点击右上角保存</p>
+<p>提示下ios用户：由于一个很迷的bug，大量用户反馈，即使开启了联网权限也一直是waiting。这里还请<strong>清除后台多尝试几次</strong>。<del>具体问题要等到我换iphone才能知道了╮(╯﹏╰）╭</del><br>咱终于搞清楚了问题所在。不需要重启手机，只需要划掉后台再次开启即可，这算是个官方bug吧<br>p.有人居然不知道什么叫后台，你自己百度一下好吧。用那么长时间苹果手机居然后台都不知道。。。</p>
+<p>确保出现connected（已连接）后即可退出该页面，继续注册的进程</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cutemoe/moepic/img/2019/10/telegram03.jpg" alt="img"></p>
+<h2 id="三-登陆并注册账号"><a href="#三-登陆并注册账号" class="headerlink" title="三.登陆并注册账号"></a>三.登陆并注册账号</h2><p>安卓：确认左上角connecting标志变成Your phone<br>ios：能跳转到下一步即表示网络环境良好</p>
+<p>1.输入自己的手机号，注意添加国家代码（中国大陆为＋86）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cutemoe/moepic/img/2019/10/tele-10.jpg" alt="img"></p>
+<p>2.填写验证码</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cutemoe/moepic/img/2019/10/telegram04.jpg" alt="img"></p>
+<p>这里也许会提示进行语音验证，请不要接听电话，telegram会自动完成验证</p>
+<p>注：有部分评论反馈无法接到验证码，这可能与运营商、网络等因素有关。如切换不同网络依旧无果，可尝试更换其他手机号，没有其他解决方案。</p>
+<h2 id="四-完善账号信息"><a href="#四-完善账号信息" class="headerlink" title="四.完善账号信息"></a>四.完善账号信息</h2><p>在下方依次填写姓、名（你也可以只在第一个空处填写完整姓名，下方空格留白）<br>顺便提醒一下，中文名称可能出现反转问题，所以强烈推荐将姓名全部填入第一栏</p>
+<p>如果你不嫌烦的话，你还可以在这一步设置头像（doge）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cutemoe/moepic/img/2019/10/tele-11.jpg" alt="img"></p>
+<p>这时候就可以顺利进入telegram主界面了</p>
+<h2 id="五-进阶使用步骤（必看）"><a href="#五-进阶使用步骤（必看）" class="headerlink" title="五.进阶使用步骤（必看）"></a>五.进阶使用步骤（必看）</h2><h3 id="1-汉化"><a href="#1-汉化" class="headerlink" title="1.汉化"></a>1.汉化</h3><p>telegram原生不支持中文，其实是由于简体中文语言包翻译人员翻译不及时，导致被官方排除在外。<del>我们可以通过应用来自zh_cn团队的中文翻译汉化telegram</del></p>
+<p><strong>注：zhcn团队已经于2020年4月12日停止更新，感谢5年相伴</strong></p>
+<p>语言包：Moecn</p>
+<p>这是由我个人创建的语言包，原有翻译为zhcn翻译组的资源，新翻译由我和我的朋友们完成。</p>
+<p>安装方式：</p>
+<p>1.在主界面点击搜索按钮（注意安卓和iOS的操作方式不同，如图）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cutemoe/moepic/img/2019/10/telegram05.jpg" alt="img"></p>
+<p>2.搜索@cnmoe并加入图示的频道</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cutemoe/moepic/img/2019/10/telegram06.jpg" alt="img"></p>
+<p>3.按提示点击安装汉化文件</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cutemoe/moepic/img/2019/10/telegram07.jpg" alt="img"></p>
+<p>4.点击“change”按钮应用汉化文件</p>
+<p>这样以后回到主页就完成了汉化，尽情使用吧！</p>
+<h3 id="2-解除-86手机号码私聊限制"><a href="#2-解除-86手机号码私聊限制" class="headerlink" title="2.解除+86手机号码私聊限制"></a>2.解除+86手机号码私聊限制</h3><p>如果您在尝试向其他用户发送私聊信息时被提示「只能发信给双向联系人」，那么很可能是您的账号被 Telegram 官方被判定为 spam（即垃圾信息）账号了。</p>
+<p><strong>最新通知:目前telegram官方已将+86手机号用户拉入黑名单，究其原因是中国币圈用户利用批量注册手机号，发送垃圾信息导致引发telegram垃圾消息泛滥，官方不得已做出了这个残酷的决定。</strong><br>新注册用户会被直接定义为spam用户，新用户需要联系@SpamBot 并按照以下图片操作，半小时左右即可解除限制！！！</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cutemoe/moepic/img/2019/10/tele-16.jpg" alt="img"></p>
+<h3 id="3-解锁-iOS-色情群组浏览限制（我猜你想ghs￣ω￣-x3D-）"><a href="#3-解锁-iOS-色情群组浏览限制（我猜你想ghs￣ω￣-x3D-）" class="headerlink" title="3.解锁 iOS 色情群组浏览限制（我猜你想ghs￣ω￣&#x3D;）"></a>3.解锁 iOS 色情群组浏览限制（我猜你想ghs￣ω￣&#x3D;）</h3><ol>
+<li>下载 Telegram Desktop v1.9.3 或更高版本，可前往TG极客软件站 (<a href="https://t.me/joinchat/AAAAAEeOCvpM8JSknojYeQ">https://t.me/joinchat/AAAAAEeOCvpM8JSknojYeQ</a> )下载。</li>
+<li>使用 Telegram Desktop 桌面版登录账号，进入设置（Settings）—隐私和安全（Privacy and Security）—敏感内容（Sensitive content），找到”关闭过滤（Disable filtering）”并开启此功能。</li>
+<li>重启 iOS 客户端，现在可使用官方 Telegram iOS 客户端浏览访问成人群组和频道（但是显示不了群组和频道的头像），不再需要第三方客户端来访问成人内容了。</li>
+</ol>
+<h3 id="4-安卓用户接收消息延迟"><a href="#4-安卓用户接收消息延迟" class="headerlink" title="4.安卓用户接收消息延迟"></a>4.安卓用户接收消息延迟</h3><p>有用户反馈安卓手机经常收不到消息，或者消息过了好几个小时才收到，其实这是由于国内手机大都没有谷歌框架，其中telegram是利用谷歌推送（gcm）收取消息的。因此，建议安卓用户参照网路上的教程装好谷歌框架，这样就能使用gcm愉快的接受消息了。<br>国产手机大多数都有严格的后台管理机制，会导致gcm接收消息后无法拉起telegram通知通道，同样无法推送。请把谷歌服务和telegram加入后台白名单并允许自启和交叉唤醒（大可不必担心耗电，只有国产流氓软件才会利用这个频繁唤醒）</p>
+<h3 id="5-如何更新telegram"><a href="#5-如何更新telegram" class="headerlink" title="5.如何更新telegram"></a>5.如何更新telegram</h3><p>由于在国内应用商店未上架telegram，想要更新可以通过Google play商店。</p>
+<p>没有使用谷歌商店条件的用户，可以通过搜索官方更新频道下载apk安装包更新</p>
+<p>官方更新频道@TAndroidAPK</p>
+<h3 id="6-如何发现好玩的群"><a href="#6-如何发现好玩的群" class="headerlink" title="6.如何发现好玩的群"></a>6.如何发现好玩的群</h3><p>在这里推荐一个机器人（群组频道狐） @zh_groups_bot，也是zh_cn团队创建的，目前已经索引了大部分中文圈群组。大家可以通过向机器人发送关键字查找相关群组，或者通过机器人的菜单选择群组分类查找</p>
+<p>注：你们也许会发现机器人里面有不少菠菜、涩情群组，这个我和开发者沟通过，开发者说，这是为了保证机器人的公开透明，并且在telegram中是允许这类信息存在的，大家可以自行辨别一下。<br>当然，在座的某些人可能就是想找ghs的群组采用的telegram吧（笑~）</p>
+<h3 id="7-保持telegram始终能正常连接服务器"><a href="#7-保持telegram始终能正常连接服务器" class="headerlink" title="7.保持telegram始终能正常连接服务器"></a>7.保持telegram始终能正常连接服务器</h3><p>您可以加入频道@socks5list 里面有免费公益telegram代理，和博主提供的代理形式相同，大家可以点击链接多添加几个，以防失联！！</p>
+<p>请一定要认真读完下面的新手入门文章哦！！！<br><a href="https://zhuanlan.zhihu.com/p/64595764">https://zhuanlan.zhihu.com/p/64595764</a></p>
+<p>有什么问题可以在电报群中向我提问，也欢迎大家加入我的群组@onmoe<br>进入群组请务必通过机器人验证。否则会被移除，10分钟以后可再次加入！群组内禁止发布广告和色情内容，否则也会一律封锁！<br>被误封请在telegram找 @moeecc 私信解封。</p>
+<p>转自：<a href="https://www.cupmoe.com/geek/telegram-register.html">Telegram注册及使用教程2021 - 杯子萌 (cupmoe.com)</a></p>
+]]></content>
+      <categories>
+        <category>wall</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>VPS常用测试脚本合集</title>
+    <url>/posts/16125.html</url>
+    <content><![CDATA[<!--markdown-->[![img](https://cdn.jsdelivr.net/gh/love2wind/cloudimg/img/88ab78543756a25051f1a1f838b1dd25.jpeg)](https://www.mrkevin.net/wp-content/uploads/2019/05/0076lr2Tgy1fs66oz1flwj33vc2kwhdv.jpg)
+
+<p>平时测试VPS的时候，总是要找各种各样的脚本，所以就想做个合集，方便一下自己……</p>
+<h3 id="I-综合测试脚本"><a href="#I-综合测试脚本" class="headerlink" title="I.综合测试脚本"></a>I.综合测试脚本</h3><p>※这类脚本是综合测试VPS基础信息、硬盘IO、带宽和网络延迟等项目的一键式脚本，主要有以下几个</p>
+<h4 id="1、秋水逸冰大佬的Bench-sh脚本"><a href="#1、秋水逸冰大佬的Bench-sh脚本" class="headerlink" title="1、秋水逸冰大佬的Bench.sh脚本"></a>1、秋水逸冰大佬的Bench.sh脚本</h4><p>特点：</p>
+<ol>
+<li>显示当前测试的各种系统信息；</li>
+<li>取自世界多处的知名数据中心的测试点，下载测试比较全面；</li>
+<li>支持 IPv6 下载测速；</li>
+<li>IO 测试三次，并显示平均值。</li>
+</ol>
+<p>使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget -qO- bench.sh | bash</span><br><span class="line">#或者</span><br><span class="line">curl -Lso- bench.sh | bash</span><br><span class="line">#或者</span><br><span class="line">wget -qO- 86.re/bench.sh | bash</span><br><span class="line">#或者</span><br><span class="line">curl -so- 86.re/bench.sh | bash</span><br></pre></td></tr></table></figure>
+
+<p>Github地址：<a href="https://github.com/teddysun/across/blob/master/bench.sh">https://github.com/teddysun/across/blob/master/bench.sh</a></p>
+<p>Demo示例：</p>
+<p><a href="https://www.mrkevin.net/wp-content/uploads/2019/05/0076lr2Tgy1fs66v8tgymj30jw0rdabz.jpg"><img src="https://cdn.jsdelivr.net/gh/love2wind/cloudimg/img/4457ed1d5b906c225a70e0e9bd927749.jpeg" alt="img"></a></p>
+<h4 id="2、老鬼大佬的SuperBench测试脚本"><a href="#2、老鬼大佬的SuperBench测试脚本" class="headerlink" title="2、老鬼大佬的SuperBench测试脚本"></a>2、老鬼大佬的SuperBench测试脚本</h4><p>这个脚本是在基于秋水大佬脚本的基础上，加入了独服通电时间，服务器虚拟化架构等内容</p>
+<p>特点：</p>
+<ol>
+<li>改进了显示的模式，基本参数添加了颜色，方面区分与查找。</li>
+<li>I&#x2F;O测试，更改了原来默认的测试的内容，采用小文件，中等文件，大文件，分别测试IO性能，然后取平均值。</li>
+<li>速度测试替换成了 Superspeed 里面的测试，第一个默认节点是，Speedtest 默认，其他分别测试到中国电信，联通，移动，各三个不同地区的速度。</li>
+</ol>
+<p>使用方法</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget -qO- --no-check-certificate https://raw.githubusercontent.com/oooldking/script/master/superbench.sh | bash</span><br><span class="line">#或者</span><br><span class="line">curl -Lso- -no-check-certificate https://raw.githubusercontent.com/oooldking/script/master/superbench.sh | bash</span><br></pre></td></tr></table></figure>
+
+<p>演示图</p>
+<p><a href="https://www.mrkevin.net/wp-content/uploads/2019/05/0076lr2Tgy1fs66z8i6suj30dc0crwjg.jpg"><img src="https://cdn.jsdelivr.net/gh/love2wind/cloudimg/img/5d2baa75d2299eac9621ec68e2eddbba.jpeg" alt="img"></a></p>
+<p>Github：<a href="https://github.com/oooldking/script/blob/master/superbench.sh">https://github.com/oooldking/script/blob/master/superbench.sh</a></p>
+<h4 id="3、Zbench"><a href="#3、Zbench" class="headerlink" title="3、Zbench"></a>3、Zbench</h4><p>脚本由漏水和kirito，基于Oldking大佬 的 SuperBench，然后加入Ping以及路由测试的功能，还能生成测评报告，分享给其他人查看测评数据</p>
+<p>使用方法</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#中文版</span><br><span class="line">wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/ZBench/master/ZBench-CN.sh &amp;&amp; bash ZBench-CN.sh</span><br><span class="line">#英文版</span><br><span class="line">wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/ZBench/master/ZBench.sh &amp;&amp; bash ZBench.sh</span><br></pre></td></tr></table></figure>
+
+<p>Demo</p>
+<p><a href="https://www.mrkevin.net/wp-content/uploads/2019/05/0076lr2Tgy1fs673ffsiyj30ll0vbdpc.jpg"><img src="https://cdn.jsdelivr.net/gh/love2wind/cloudimg/img/bf384bf1ec94dcd24996bfa0e751d202.jpeg" alt="img"></a></p>
+<p>演示地址：<a href="https://www.zhujiboke.com/zbench-example.html">https://www.zhujiboke.com/zbench-example.html</a></p>
+<h4 id="4、LemonBench"><a href="#4、LemonBench" class="headerlink" title="4、LemonBench"></a>4、LemonBench</h4><p>LemonBench工具(别名LBench、柠檬Bench)，是一款针对Linux服务器设计的服务器性能测试工具。通过综合测试，可以快速评估服务器的综合性能，为使用者提供服务器硬件配置信息。</p>
+<p>使用方法</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -fsSL https://ilemonrain.com/download/shell/LemonBench.sh | bash</span><br><span class="line">#或者</span><br><span class="line">wget -qO- https://ilemonrain.com/download/shell/LemonBench.sh | bash</span><br></pre></td></tr></table></figure>
+
+<p>[post id&#x3D;”2086”][&#x2F;post]</p>
+<h3 id="II-内存检测脚本"><a href="#II-内存检测脚本" class="headerlink" title="II.内存检测脚本"></a>II.内存检测脚本</h3><p>检测VPS真实可分配内存的小工具，适用于检测VPS超售情况。本程序检测的可分配内存指的是用户使用时最大能占用的内存量。</p>
+<p>使用方法</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#CentOS / RHEL</span><br><span class="line">yum install wget -y</span><br><span class="line">yum groupinstall &quot;Development Tools&quot; -y</span><br><span class="line">wget https://raw.githubusercontent.com/FunctionClub/Memtester/master/memtester.cpp</span><br><span class="line">gcc -l stdc++ memtester.cpp</span><br><span class="line">./a.out</span><br><span class="line">#Ubuntu / Debian</span><br><span class="line">apt-get update</span><br><span class="line">apt-get install wget build-essential -y</span><br><span class="line">wget https://raw.githubusercontent.com/FunctionClub/Memtester/master/memtester.cpp</span><br><span class="line">gcc -l stdc++ memtester.cpp</span><br><span class="line">./a.out</span><br></pre></td></tr></table></figure>
+
+<h3 id="III-UnixBench测试脚本"><a href="#III-UnixBench测试脚本" class="headerlink" title="III.UnixBench测试脚本"></a>III.UnixBench测试脚本</h3><p>UnixBench是一个类unix系（Unix，BSD，Linux）统下的性能测试工具，一个开源工具，被广泛用与测试linux系统主机的性能。Unixbench的主要测试项目有：系统调用、读写、进程、图形化测试、2D、3D、管道、运算、C库等系统基准性能提供测试数据。</p>
+<p>使用方法</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/unixbench.sh</span><br><span class="line">chmod +x unixbench.sh</span><br><span class="line">./unixbench.sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="IV-带宽测试"><a href="#IV-带宽测试" class="headerlink" title="IV.带宽测试"></a>IV.带宽测试</h3><p>SpeedTest是用来测试网络上传&#x2F;下载速率的一款工具，在Windows上能很方便的测试本地网络的上传&#x2F;下载速率，而在Linux上，也可以很方便的使用命令行SpeedTest来测试。</p>
+<p>SpeedTest是用Python编写的轻量级Linux命令行工具，在Python2.4至3.4版本下均可运行，一般我都是用SpeedTest来测试VPS的带宽，以下内容仅做个记录，毕竟我老是忘记应该打什么代码……（大佬勿喷）</p>
+<p>下载：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget https://raw.github.com/sivel/speedtest-cli/master/speedtest.py</span><br></pre></td></tr></table></figure>
+
+<p>添加权限</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chmod a+rx speedtest.py</span><br></pre></td></tr></table></figure>
+
+<p>现在就已经能使用了，最简单的使用方法</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python speedtest.py</span><br></pre></td></tr></table></figure>
+
+<p>如果你想生成一张图片，并分享给其他人，那么应该这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python speedtest.py --share</span><br></pre></td></tr></table></figure>
+
+<p>在默认情况下，SpeedTest是选择离测试机最近的一个节点进行测试的，如果你想要自定义测试到某个地区的上传&#x2F;下载速率，那首先列出目前可用的SpeedTest服务器：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python speedtest.py --list</span><br></pre></td></tr></table></figure>
+
+<p>此时会列出所有的服务器（按照距离远近进行排列）</p>
+<p>如果想一点一点的列出服务器，请输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python speedtest.py --list|more</span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到，列出的服务器前面有一串数字</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">root@debian:~# python speedtest.py --list|more</span><br><span class="line">Retrieving speedtest.net configuration...</span><br><span class="line">14939) Mimosa Networks (San Jose, CA, United States) [0.45 km]</span><br><span class="line">10384) Speedtest.net (San Jose, CA, United States) [4.19 km]</span><br><span class="line">11899) Janus Networks (San Jose, CA, United States) [4.19 km]</span><br><span class="line">15786) Sprint (San Jose, CA, United States) [4.19 km]</span><br><span class="line"> 9383) Sneaker Server (San Jose, CA, United States) [4.19 km]</span><br><span class="line"> 9540) DNASOLES (San Jose, CA, United States) [4.19 km]</span><br><span class="line">11599) Mimosa Networks (Santa Clara, CA, United States) [7.10 km]</span><br><span class="line">18007) T-Mobile (Santa Clara, CA, United States) [7.10 km]</span><br><span class="line">12818) Ridge Wireless (Cupertino, CA, United States) [12.57 km]</span><br><span class="line">10455) Cytranet (Fremont, CA, United States) [24.84 km]</span><br><span class="line"> 6468) Tekify Broadband Internet Services (Fremont, CA, United States) [24.84 km]</span><br></pre></td></tr></table></figure>
+
+<p>如果你想列出指定地区的测试节点，可以使用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python speedtest.py --list | grep China</span><br></pre></td></tr></table></figure>
+
+<p>如果我们想测试主机到Mimosa Networks这个节点的速率，那么是这样输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python speedtest.py --server 11599</span><br></pre></td></tr></table></figure>
+
+<p>如果是要生成分享的图片，那就加上share</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python speedtest.py --server 11599 --share</span><br></pre></td></tr></table></figure>
+
+<p>是不是很简单……嗯……没错，没什么技术含量</p>
+<h3 id="V-Ping值测试"><a href="#V-Ping值测试" class="headerlink" title="V.Ping值测试"></a>V.Ping值测试</h3><p><strong>uPing-一个24小时监测VPS延迟的工具</strong></p>
+<p>依赖安装</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#Debian / Ubuntu</span><br><span class="line">apt-get update</span><br><span class="line">apt-get install python wget screen -y</span><br><span class="line">#CentOS / RHEL</span><br><span class="line">yum install screen wget python -y</span><br></pre></td></tr></table></figure>
+
+<p>使用方法</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">screen -S uping</span><br><span class="line">wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/uPing/master/uping.py</span><br><span class="line">python uping.py</span><br></pre></td></tr></table></figure>
+
+<p>Demo</p>
+<p><a href="https://www.mrkevin.net/wp-content/uploads/2019/05/0076lr2Tgy1fs6d8oz9tdj30uc12g7bn.jpg"><img src="https://cdn.jsdelivr.net/gh/love2wind/cloudimg/img/cc1b321b192fb19c7af148260e921667.jpeg" alt="img"></a></p>
+<h2 id="VI-回程路由测试"><a href="#VI-回程路由测试" class="headerlink" title="VI.回程路由测试"></a>VI.回程路由测试</h2><p>从你的 Linux(X86&#x2F;ARM)&#x2F;Mac&#x2F;BSD 系统环境下发起 traceroute 请求，附带链路可视化，兼容性更好，支持 JSON 格式</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#下载</span><br><span class="line">https://cdn.ipip.net/17mon/besttrace4linux.zip</span><br><span class="line">#解压</span><br><span class="line">unzip besttrace4linux.zip</span><br><span class="line">#使用</span><br><span class="line">./besttrace -q 1 这里是目标IP</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>WPS2019官方正版的终身会员激活码</title>
+    <url>/posts/55904.html</url>
+    <content><![CDATA[<!--markdown-->今天给大家的是基于官方最新的 WPS2019 专业版（WPS分为普通版和专业版，普通版是免费的，但是有广告，专业版是提供给企业使用，需要激活）。下载安装软件。
+
+<p><strong>WPS官网下载地址：</strong></p>
+<blockquote>
+<p><a href="https://ep.wps.cn/download">https://ep.wps.cn/download</a></p>
+</blockquote>
+<h1 id="终身激活码"><a href="#终身激活码" class="headerlink" title="终身激活码"></a>终身激活码</h1><blockquote>
+<p><strong>694BF-YUDBG-EAR69-BPRGB-ATQXH</strong></p>
+</blockquote>
+<p>#其他激活码</p>
+<p><em>安装后如果没有激活也可使用下面序列号<br>需要安装VBA，在解压后的根目录有WPSVBA.exe</em></p>
+<blockquote>
+<p>某政府版激活码：THUV2-32HH7-6NMHN-PTX7Y-QQCTH</p>
+</blockquote>
+<blockquote>
+<p>某人社局激活码：R7AKQ-KLBXV-RNX3F-BPACQ-NQDGE</p>
+</blockquote>
+<blockquote>
+<p>企业版序列号1：R8R8P-MTT6F-KLRPM-J7CAB-PJM8C</p>
+</blockquote>
+<blockquote>
+<p>企业版序列号2：A4XV7-QP9JN-E7FCB-VQFRD-4NLKC</p>
+</blockquote>
+<blockquote>
+<p>企业版序列号3：694BF-YUDBG-EAR69-BPRGB-ATQXH</p>
+</blockquote>
+<blockquote>
+<p>企业版序列号4：7LR67-WTXPA-KLUHV-GEK2E-QW4CK</p>
+</blockquote>
+<blockquote>
+<p>企业版序列号5：EUYTH-3KWKL-PJMX7-XBCPW-9U2DD</p>
+</blockquote>
+<blockquote>
+<p>企业版序列号6：U2PWU-H7D9H-69T3B-JEYC2-3R2NG</p>
+</blockquote>
+<blockquote>
+<p>企业版序列号7：7G2HE-JR8KL-ABB9D-Y7789-GLNFL</p>
+</blockquote>
+<blockquote>
+<p>企业版序列号8：9DP6T-9AGWG-KWV33-9MPC8-JDCVF</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>soft</category>
+      </categories>
+      <tags>
+        <tag>wps</tag>
+        <tag>激活码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Win10 数字权利激活工具 HWIDGen v60.01 简体中文版</title>
+    <url>/posts/61300.html</url>
+    <content><![CDATA[<!--markdown-->HWIDGEN是一款由国外Nsane论坛会员s1ave77制作的Windows 10数字权利激活工具，这款Win10数字权利获取工具，可以自动获取Windows 10 数字许可证激活，无需产品密钥，以最简单的方式永久激活。
+
+<p><a href="https://res.iowen.cn/wp-content/uploads/2019/02/87c01ec7gy1fsq6qp6sygj20iz0c7dg5-1.jpg"><img src="https://res.iowen.cn/wp-content/uploads/2019/02/87c01ec7gy1fsq6qp6sygj20iz0c7dg5-1.jpg" alt="Win10 数字权利激活工具 HWIDGen v60.01 简体中文版"></a><a href="https://res.iowen.cn/wp-content/uploads/2019/02/d59964da394f3d771284632b8376e2a2.png"><img src="https://res.iowen.cn/wp-content/uploads/2019/02/d59964da394f3d771284632b8376e2a2.png" alt="Win10 数字权利激活工具 HWIDGen v60.01 简体中文版"></a><a href="https://res.iowen.cn/wp-content/uploads/2019/02/47de28dabcf1875cb5090fa8fb647089.jpg"><img src="https://res.iowen.cn/wp-content/uploads/2019/02/47de28dabcf1875cb5090fa8fb647089.jpg" alt="Win10 数字权利激活工具 HWIDGen v60.01 简体中文版"></a></p>
+<p>数字许可证激活是 Windows 10 中新加入的激活方式，是一种授权方法的分类。数字许可证会记录您的硬件设备信息，只要在CPU和主板设备没有更换的情况下就可以连接微软服务器自动永久性的激活系统，重新安装系统时无需再次输入产品密钥，安装后会自动永久激活。“数字权利激活”在不更换电脑硬件的情况下一直有效，无论您安装的系统是正式版还是预览版，不影响激活效果。</p>
+<p>仅支持以下Windows 10 版本           (SKUs):<br>Windows 10 Cloud                 sku&#x3D;178<br>Windows 10 CloudN                sku&#x3D;179<br>Windows 10 CoreN                sku&#x3D;98<br>Windows 10 CoreCountrySpecific       sku&#x3D;99<br>CWindows 10 oreSingleLanguage      sku&#x3D;100<br>Windows 10 Core                  sku&#x3D;101<br>Windows 10 Education              sku&#x3D;121<br>Windows 10 EducationN              sku&#x3D;122<br>Windows 10 Enterprise              sku&#x3D;4<br>Windows 10 EnterpriseN              sku&#x3D;27<br>Windows 10 EnterpriseS             sku&#x3D;125<br>Windows 10 EnterpriseSN             sku&#x3D;126<br>Windows 10 Professional             sku&#x3D;48<br>Windows 10 ProfessionalN            sku&#x3D;49<br>Windows 10 ProfessionalEducation     sku&#x3D;164<br>Windows 10 ProfessionalEducationN    sku&#x3D;165<br>Windows 10 ProfessionalWorkstation   sku&#x3D;161<br>Windows 10 ProfessionalWorkstationN  sku&#x3D;162</p>
+<h3 id="更新日志"><a href="#更新日志" class="headerlink" title="更新日志"></a>更新日志</h3><p>[Windows 10] Digital License (HWID) Generation without KMS or predecessor install&#x2F;upgrade<br><a href="https://www.iowen.cn/go/?url=aHR0cDovL3d3dy5uc2FuZWZvcnVtcy5jb20vdG9waWMvMzEyODcxLXdpbmRvd3MtMTAtZGlnaXRhbC1saWNlbnNlLWh3aWQtZ2VuZXJhdGlvbi13aXRob3V0LWttcy1vci1wcmVkZWNlc3Nvci1pbnN0YWxsdXBncmFkZS8=">http://www.nsaneforums.com/topic/312871-windows-10-digital-license-hwid-generation-without-kms-or-predecessor-installupgrade/</a></p>
+<h3 id="如何查看激活"><a href="#如何查看激活" class="headerlink" title="如何查看激活"></a>如何查看激活</h3><p>1、打开命令提示符（管理员）模式打开输入 slmgr.vbs -xpr 可查看是否永久激活；</p>
+<p>2、查看激活状态的命令 slmgr.vbs -dlv</p>
+<p>原版本静默参数：silent<br>汉化版静默参数：&#x2F;Q</p>
+<h3 id="kus证书安装方法"><a href="#kus证书安装方法" class="headerlink" title="kus证书安装方法"></a>kus证书安装方法</h3><p>1、复制需要的证书目录(注意已存在的证书不能覆盖)，粘贴到：<br>C:\Windows\System32\spp\tokens\skus</p>
+<p>2、打开有管理员权限的命令提示符，执行命令（此步骤时间稍长，请耐心等待完成）：<br>cscript slmgr.vbs &#x2F;rilc</p>
+<p>3、执行命令安装相应的密钥：<br>cscript slmgr.vbs &#x2F;ipk XXXXX-XXXXX-XXXXX-XXXXX-XXXXX</p>
+<h3 id="支持激活的-Windows-版本列表："><a href="#支持激活的-Windows-版本列表：" class="headerlink" title="支持激活的 Windows 版本列表："></a>支持激活的 Windows 版本列表：</h3><p>Core: cscript slmgr.vbs &#x2F;ipk  YTMG3-N6DKC-DKB77-7M9GH-8HVX7<br>CoreN: cscript slmgr.vbs &#x2F;ipk  4CPRK-NM3K3-X6XXQ-RXX86-WXCHW<br>CoreCountrySpecific: cscript slmgr.vbs &#x2F;ipk  N2434-X9D7W-8PF6X-8DV9T-8TYMD<br>CoreSingleLanguage: cscript slmgr.vbs &#x2F;ipk  BT79Q-G7N6G-PGBYW-4YWX6-6F4BT<br>Professional: cscript slmgr.vbs &#x2F;ipk  VK7JG-NPHTM-C97JM-9MPGT-3V66T<br>ProfessionalN: cscript slmgr.vbs &#x2F;ipk  2B87N-8KFHP-DKV6R-Y2C8J-PKCKT<br>Enterprise: cscript slmgr.vbs &#x2F;ipk  XGVPP-NMH47-7TTHJ-W3FW7-8HV2C<br>EnterpriseN: cscript slmgr.vbs &#x2F;ipk  3V6Q6-NQXCX-V8YXR-9QCYV-QPFCT<br>&gt;EnterpriseS: cscript slmgr.vbs &#x2F;ipk  NK96Y-D9CD8-W44CQ-R8YTK-DYJWX<br>EnterpriseSN: cscript slmgr.vbs &#x2F;ipk  2DBW3-N2PJG-MVHW3-G7TDK-9HKR4<br>Education: cscript slmgr.vbs &#x2F;ipk  YNMGQ-8RYV3-4PGQ3-C8XTP-7CFBY<br>EducationN: cscript slmgr.vbs &#x2F;ipk  84NGF-MHBT6-FXBX8-QWJK7-DRR8H<br>ProfessionalEducation: cscript slmgr.vbs &#x2F;ipk  8PTT6-RNW4C-6V7J2-C2D3X-MHBPB<br>ProfessionalEducationN: cscript slmgr.vbs &#x2F;ipk  GJTYN-HDMQY-FRR76-HVGC7-QPF8P<br>ProfessionalWorkstation: cscript slmgr.vbs &#x2F;ipk  DXG7C-N36C4-C4HTG-X4T3X-2YV77<br>ProfessionalWorkstationN: cscript slmgr.vbs &#x2F;ipk  WYPNQ-8C467-V2W6J-TX4WX-WT2RQ</p>
+<h3 id="下载信息"><a href="#下载信息" class="headerlink" title="下载信息"></a>下载信息</h3><p><strong>链接:</strong> <a href="https://pan.baidu.com/s/1Hlf_Bnk722CKCCGW6-VyFQ">https://pan.baidu.com/s/1Hlf_Bnk722CKCCGW6-VyFQ</a> <strong>提取码:</strong> <code>love</code></p>
+]]></content>
+      <categories>
+        <category>soft</category>
+      </categories>
+      <tags>
+        <tag>win10</tag>
+        <tag>激活工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>cloudflare：电信&amp;amp;联通优化IP搜集</title>
+    <url>/posts/40227.html</url>
+    <content><![CDATA[<!--markdown-->Cloudflare 百度云合作节点IP:
+
+<p>162.159.208.4-162.159.208.103</p>
+<p>162.159.209.4-162.159.209.103</p>
+<p>162.159.210.4-162.159.210.103</p>
+<p>162.159.211.4-162.159.211.103<br>各线路推荐列表：<br>电信：推荐走圣何塞，例：104.16.160.* 或者上面的百度云合作 ip。<br>移动：推荐走移动香港，例：172.64.32.* 141.101.115.* 或者 104.23.240.0-104.23.243.254。<br>联通：没发布什么好线路，可走圣何塞。例：104.16.160.* 或者 104.23.240.0-104.23.243.254。也可以试一下走亚特兰大 108.162.236.* 。</p>
+]]></content>
+      <categories>
+        <category>wall</category>
+      </categories>
+      <tags>
+        <tag>cloudflare</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>markdown基本语法</title>
+    <url>/posts/8530.html</url>
+    <content><![CDATA[<!--markdown-->Markdown是一种纯文本格式的标记语言。通过简单的标记语法，它可以使普通文本内容具有一定的格式。
+
+<p><font color=red size=72>颜色</font></p>
+<p>相比WYSIWYG编辑器</p>
+<p>优点：</p>
+<p>1、因为是纯文本，所以只要支持Markdown的地方都能获得一样的编辑效果，可以让作者摆脱排版的困扰，专心写作。</p>
+<p>2、操作简单。比如:WYSIWYG编辑时标记个标题，先选中内容，再点击导航栏的标题按钮，选择几级标题。要三个步骤。而Markdown只需要在标题内容前加#即可</p>
+<p>缺点：</p>
+<p>1、需要记一些语法(当然，是很简单。五分钟学会)。</p>
+<p>2、有些平台不支持Markdown编辑模式。</p>
+<p>一、标题</p>
+<p>在想要设置为标题的文字前面加#来表示</p>
+<p>一个#是一级标题，二个#是二级标题，以此类推。支持六级标题。</p>
+<p>注：标准语法一般在#后跟个空格再写文字，貌似简书不加空格也行。</p>
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 这是一级标题</span><br><span class="line"></span><br><span class="line">## 这是二级标题</span><br><span class="line"></span><br><span class="line">### 这是三级标题</span><br><span class="line"></span><br><span class="line">#### 这是四级标题</span><br><span class="line"></span><br><span class="line">##### 这是五级标题</span><br><span class="line"></span><br><span class="line">###### 这是六级标题</span><br></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<h1 id="这是一级标题"><a href="#这是一级标题" class="headerlink" title="这是一级标题"></a>这是一级标题</h1><h2 id="这是二级标题"><a href="#这是二级标题" class="headerlink" title="这是二级标题"></a>这是二级标题</h2><h3 id="这是三级标题"><a href="#这是三级标题" class="headerlink" title="这是三级标题"></a>这是三级标题</h3><h4 id="这是四级标题"><a href="#这是四级标题" class="headerlink" title="这是四级标题"></a>这是四级标题</h4><h5 id="这是五级标题"><a href="#这是五级标题" class="headerlink" title="这是五级标题"></a>这是五级标题</h5><h6 id="这是六级标题"><a href="#这是六级标题" class="headerlink" title="这是六级标题"></a>这是六级标题</h6><p>二、字体</p>
+<p>加粗</p>
+<p>要加粗的文字左右分别用两个*号包起来</p>
+<p>斜体</p>
+<p>要倾斜的文字左右分别用一个*号包起来</p>
+<p>斜体加粗</p>
+<p>要倾斜和加粗的文字左右分别用三个*号包起来</p>
+<p>删除线</p>
+<p>要加删除线的文字左右分别用两个~~号包起来</p>
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">**这是加粗的文字**</span><br><span class="line"></span><br><span class="line">*这是倾斜的文字*`</span><br><span class="line"></span><br><span class="line">***这是斜体加粗的文字***</span><br><span class="line"></span><br><span class="line">~~这是加删除线的文字~~</span><br></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<p><strong>这是加粗的文字</strong></p>
+<p><em>这是倾斜的文字</em>&#96;</p>
+<p>*<strong>这是斜体加粗的文字*</strong></p>
+<p><del>这是加删除线的文字</del></p>
+<p>三、引用</p>
+<p>在引用的文字前加&gt;即可。引用也可以嵌套，如加两个&gt;&gt;三个&gt;&gt;&gt;</p>
+<p>n个…</p>
+<p>貌似可以一直加下去，但没神马卵用</p>
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;这是引用的内容    </span><br><span class="line">&gt;&gt;这是引用的内容    </span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;这是引用的内容</span><br></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<blockquote>
+<p>这是引用的内容</p>
+<blockquote>
+<p>这是引用的内容</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>这是引用的内容</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>四、分割线</p>
+<p>三个或者三个以上的 - 或者 * 都可以。</p>
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">----</span><br><span class="line">***</span><br><span class="line">*****</span><br></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<p>可以看到，显示效果是一样的。</p>
+<hr>
+<hr>
+<hr>
+<hr>
+<p>五、超链接</p>
+<p>语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[超链接名](超链接地址 &quot;超链接title&quot;)</span><br><span class="line">title可加可不加</span><br></pre></td></tr></table></figure>
+
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[简书](http://jianshu.com)</span><br><span class="line"></span><br><span class="line">[百度](http://baidu.com)</span><br></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<p><a href="http://jianshu.com/">简书</a><br><a href="http://baidu.com/">百度</a></p>
+<p>注：Markdown本身语法不支持链接在新页面中打开，貌似简书做了处理，是可以的。别的平台可能就不行了，如果想要在新页面中打开的话可以用html语言的a标签代替。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;a href=&quot;超链接地址&quot; target=&quot;_blank&quot;&gt;超链接名&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">示例</span><br><span class="line">&lt;a href=&quot;https://www.jianshu.com/u/1f5ac0cf6a8b&quot; target=&quot;_blank&quot;&gt;简书&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<p>六、列表</p>
+<p>无序列表</p>
+<p>语法：</p>
+<p>无序列表用 - + * 任何一种都可以</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">- 列表内容</span><br><span class="line">+ 列表内容</span><br><span class="line">* 列表内容</span><br><span class="line"></span><br><span class="line">注意：- + * 跟内容之间都要有一个空格</span><br></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<ul>
+<li>列表内容</li>
+<li>列表内容</li>
+<li>列表内容</li>
+</ul>
+<p>有序列表</p>
+<p>语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 列表内容</span><br><span class="line">2. 列表内容</span><br><span class="line">3. 列表内容</span><br><span class="line"></span><br><span class="line">注意：序号跟内容之间要有空格</span><br></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<ol>
+<li>列表内容</li>
+<li>列表内容</li>
+<li>列表内容</li>
+</ol>
+<p>数字加点</p>
+<p>八、表格</p>
+<p>语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">表头|表头|表头</span><br><span class="line">---|:--:|---:</span><br><span class="line">内容|内容|内容</span><br><span class="line">内容|内容|内容</span><br><span class="line"></span><br><span class="line">第二行分割表头和内容。</span><br><span class="line">- 有一个就行，为了对齐，多加了几个</span><br><span class="line">文字默认居左</span><br><span class="line">-两边加：表示文字居中</span><br><span class="line">-右边加：表示文字居右</span><br><span class="line">注：原生的语法两边都要用 | 包起来。此处省略</span><br></pre></td></tr></table></figure>
+
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">| 姓名 | 技能 | 排行 |</span><br><span class="line">| :--- | ----: | :--: |</span><br><span class="line">| 刘备 |   哭 | 大哥 |</span><br><span class="line">| 关羽 |   打 | 二哥 |</span><br><span class="line">| 张飞 |   骂 | 三弟 |</span><br></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<table>
+<thead>
+<tr>
+<th>姓名</th>
+<th>技能</th>
+<th>排行</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>刘备</td>
+<td>哭</td>
+<td>大哥</td>
+</tr>
+<tr>
+<td>关羽</td>
+<td>打</td>
+<td>二哥</td>
+</tr>
+<tr>
+<td>张飞</td>
+<td>骂</td>
+<td>三弟</td>
+</tr>
+</tbody></table>
+<p>单行代码</p>
+<p><code>height: 100%;</code></p>
+<p>多行代码</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;sidebox fixside s_ping&quot;</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h4</span> <span class="attr">class</span>=<span class="string">&quot;sidebox__title&quot;</span>&gt;</span>新冠动态<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;bg-primary&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">iframe</span> <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">frameborder</span>=<span class="string">&quot;0&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://www.lovestu.com/api/project/cnmapyinqing/obj.php&quot;</span> <span class="attr">onload</span>=<span class="string">&#x27;this.style.height=Math.max(this.contentWindow.document.body.scrollHeight,this.contentWindow.document.documentElement.scrollHeight,200)+&quot;px&quot;;&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>图像</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[![样式实例](https://imgsrc.xyz/images/2020/09/15/20200915154031.jpg)](https://imgsrc.xyz/images/2020/09/15/20200915154031.jpg)</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://imgsrc.xyz/images/2020/09/15/20200915154031.jpg"><img src="https://imgsrc.xyz/images/2020/09/15/20200915154031.jpg" alt="样式实例"></a></p>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>一个支持多图床的上传神器：PicGO</title>
+    <url>/posts/2569.html</url>
+    <content><![CDATA[<!--markdown--># 主机
+
+<p>百度云加速-免费CDN、网站攻击防护、SEO优化工具<br><a href="https://su.baidu.com/console/index.html#/nosite">https://su.baidu.com/console/index.html#/nosite</a></p>
+<p>主机酷 - 购买主机<br><a href="http://my.hostcool.cn/index.php/buy/index/9/">http://my.hostcool.cn/index.php/buy/index/9/</a></p>
+<p>购物车 - IT云<br><a href="https://ityun.org/cart.php?a=add&amp;domain=register">https://ityun.org/cart.php?a=add&amp;domain=register</a></p>
+<p>nicepub.top域名管理 CDN管理面板<br><a href="https://cdn.bnxb.com/main.php?domain=nicepub.top&amp;zoneid=bbc7d39e44624cb05fd904fdeb54b830">https://cdn.bnxb.com/main.php?domain=nicepub.top&amp;zoneid=bbc7d39e44624cb05fd904fdeb54b830</a></p>
+<p>2020年最详细的Vultr新手图解教程 - 知乎<br><a href="https://zhuanlan.zhihu.com/p/106640076">https://zhuanlan.zhihu.com/p/106640076</a></p>
+<p>Workers | Account | Cloudflare - Web Performance &amp; Security<br><a href="https://dash.cloudflare.com/b9e41242bc003208fbe8b80b9279560d/workers/overview">https://dash.cloudflare.com/b9e41242bc003208fbe8b80b9279560d/workers/overview</a></p>
+<p>云上萝莉-产品购买<br><a href="http://idc.la/index.php/buy/index/21/#">http://idc.la/index.php/buy/index/21/#</a></p>
+<p>开源分享：gh-proxy——基于cloudflare workers的GitHub文件加速 - Hunsh’s Blog<br><a href="https://hunsh.net/archives/23/">https://hunsh.net/archives/23/</a></p>
+<p>米上云|香港高性价比vps|香港云服务器<br><a href="https://www.mishangyun.com/cart.php">https://www.mishangyun.com/cart.php</a></p>
+<p>Client Area - ProFreeHost<br><a href="https://profreehost.com/account/?view=manage&amp;account_id=662526">https://profreehost.com/account/?view=manage&amp;account_id=662526</a></p>
+<p>购买vps赠送cdn - 订购产品 - 易加速<br><a href="http://www.1jiasu.cc/index.php/buy/index/5/">http://www.1jiasu.cc/index.php/buy/index/5/</a></p>
+<p>用户中心 - 其云否-主机+服务一站式平台<br><a href="https://manage.qyfou.com/clientarea.php?action=productdetails&amp;id=1310">https://manage.qyfou.com/clientarea.php?action=productdetails&amp;id=1310</a></p>
+<h1 id="机场"><a href="#机场" class="headerlink" title="机场"></a>机场</h1><p>用户面板 - GetfreeCloud<br><a href="https://portal.getfree.cloud/user">https://portal.getfree.cloud/user</a></p>
+<p>首页 — 斯故云加速<br><a href="https://www.siguvpn.com/user##">https://www.siguvpn.com/user##</a></p>
+<p>首页 — LeiSu-雷速<br><a href="https://lei-su.me/user">https://lei-su.me/user</a></p>
+<p>安全高效的跨域传输服务 | otto | 游戏加速 | ssr | 免费<br><a href="https://ottof.xyz/">https://ottof.xyz/</a></p>
+<p>免费节点<br><a href="https://proxy.tgbot.co/">https://proxy.tgbot.co/</a></p>
+<p>v2.freeok.xyz<br><a href="https://v2.freeok.xyz/user">https://v2.freeok.xyz/user</a></p>
+<p>521xueweihan&#x2F;GitHub520: 让你“爱”上 GitHub，解决访问时图裂、加载慢的问题。<br><a href="https://github.com/521xueweihan/GitHub520">https://github.com/521xueweihan/GitHub520</a></p>
+<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>typecho 博客完美备份还原教程 - 木灵鱼儿<br><a href="https://www.mulingyuer.com/archives/340/#comment-1028">https://www.mulingyuer.com/archives/340/#comment-1028</a></p>
+<p>我的文件 - 伏安私有云网盘 - 林澈思的茶<br><a href="https://pan.gxuzf.com/Home?path=/">https://pan.gxuzf.com/Home?path=%2F</a></p>
+<p>自媒体博客Spimes主题 - 小灯泡设计<br><a href="https://www.dpaoz.com/85">https://www.dpaoz.com/85</a></p>
+<p>分类 Typecho插件 下的文章 - Typecho爱好者博客<br><a href="https://qqdie.com/plugins/">https://qqdie.com/plugins/</a></p>
+<p>Marked Demo<br><a href="https://marked.js.org/demo/?outputType=html&amp;text=%3C!--%20wp:heading%20--%3E%0A%0A%23%23%20%E5%AF%BC%E8%AF%AD%0A%0A%3C!--%20/wp:heading%20--%3E%0A%0A%3C!--%20wp:paragraph%20%7B%22textColor%22:%22vivid-red%22%7D%20--%3E%0A%0A%3Cp%20class=%22has-text-color%20has-vivid-red-color%22%3E%0A%20%20%3Cstrong%3E%E5%A4%A7%E7%A5%9E%E6%B1%9F%E5%8D%97%E7%9A%84%E7%BB%8F%E5%85%B8%E8%A5%BF%E5%B9%BB%E6%96%87%EF%BC%8C%E6%9C%80%E6%96%B0%E6%96%87%E6%9C%AC%E6%9D%A5%E8%87%AA@%E6%98%93%E6%B0%B4%E8%A5%BF%E9%A3%8E%E5%A4%A7%E4%BD%AC%E7%9A%84%E7%B2%BE%E6%A0%A1%E6%96%87%E6%9C%AC%EF%BC%8C%E5%85%88%E5%89%8D%E6%8E%92%E7%9A%84%E7%89%88%E6%9C%AC%E6%96%87%E6%9C%AC%E4%B8%8D%E7%AE%97%E5%A4%AA%E5%A5%BD%EF%BC%8C%E6%8E%92%E7%89%88%E4%B9%9F%E9%A9%AC%E9%A9%AC%E8%99%8E%E8%99%8E%EF%BC%8C%E6%89%80%E4%BB%A5%E5%86%8D%E5%BE%97%E5%88%B0%E7%B2%BE%E6%A0%A1%E6%96%87%E6%9C%AC%E5%90%8E%E5%B0%B1%E9%A1%BA%E4%BE%BF%E9%87%8D%E6%96%B0%E6%8E%92%E7%89%88%E4%BA%86%E4%B8%80%E4%B8%8B%E3%80%82%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB%E3%80%82%E5%A4%A7%E5%AE%B6%E5%9C%A8%E7%9C%8B%E7%9A%84%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%A6%82%E6%9E%9C%E5%8F%91%E7%8E%B0%E9%97%AE%E9%A2%98%EF%BC%8C%E5%8F%AF%E4%BB%A5%E7%95%99%E8%A8%80%E8%81%94%E7%B3%BB%E6%88%91%E5%86%8D%E4%BF%AE%E6%94%B9%E3%80%82%3C/strong%3E%0A%3C/p%3E%0A%0A%3C!--%20/wp:paragraph%20--%3E%0A%0A%3C!--%20wp:image%20%7B%22align%22:%22center%22,%22width%22:384,%22height%22:576%7D%20--%3E%0A%0A%3Cdiv%20class=%22wp-block-image%22%3E%0A%20%20%3Cfigure%20class=%22aligncenter%20is-resized%22%3E%3Cimg%20class=%22aligncenter%22%20src=%22https://ae01.alicdn.com/kf/Hbe1343f15a5746c689179872fc9fd32aO.jpg%22%20alt=%22%22%20/%3E%3C/figure%3E%0A%3C/div%3E%0A%0A%3C!--%20/wp:image%20--%3E%0A%0A%3C!--%20wp:heading%20--%3E%0A%0A%23%23%20%E5%86%85%E5%AE%B9%E6%8F%90%E8%A6%81%0A%0A%3C!--%20/wp:heading%20--%3E%0A%0A%3C!--%20wp:paragraph%20%7B%22textColor%22:%22vivid-green-cyan%22,%22backgroundColor%22:%22very-light-gray%22%7D%20--%3E%0A%0A%3Cp%20class=%22has-text-color%20has-background%20has-vivid-green-cyan-color%20has-very-light-gray-background-color%22%3E%0A%20%20%E7%94%9F%E9%80%A2%E4%B9%B1%E4%B8%96%EF%BC%8C%E4%B8%8A%E5%B8%9D%E6%AD%BB%E4%BA%86%EF%BC%8C%E4%BD%86%E5%BF%83%E5%BA%95%E7%9A%84%E7%9C%9F%E6%83%85%E4%B9%9F%E6%AD%BB%E4%BA%86%E5%90%97%EF%BC%9F%20%E7%9D%A1%E8%A7%89%E7%9D%A1%E5%88%B0%E8%87%AA%E7%84%B6%E9%86%92%EF%BC%8C%E6%95%B0%E9%92%B1%E6%95%B0%E5%88%B0%E6%89%8B%E6%8A%BD%E7%AD%8B%E3%80%82%E4%B8%80%E4%B8%AA%E6%9C%89%E4%BA%9B%E5%8D%91%E9%84%99%EF%BC%8C%E5%8F%AA%E6%83%B3%E5%B9%B3%E6%B7%A1%E7%94%9F%E6%B4%BB%E7%9A%84%E5%B0%8F%E4%BA%BA%E7%89%A9%EF%BC%8C%E5%8D%B4%E5%9B%A0%E4%B8%BA%E5%91%BD%E8%BF%90%E7%9A%84%E6%88%8F%E5%BC%84%EF%BC%8C%E8%80%8C%E6%88%90%E4%B8%BA%E4%BA%86%E6%8C%91%E6%88%98%E7%A5%9E%E7%9A%84%E5%A4%A7%E4%BA%A1%E7%81%B5%E6%B3%95%E5%B8%88%E7%9A%84%E7%BB%A7%E6%89%BF%E4%BA%BA%E3%80%82%20%E7%8A%B9%E5%A6%82%E5%A4%A7%E6%B2%B3%E4%B8%AD%E7%9A%84%E4%B8%80%E6%9D%A1%E5%B0%8F%E9%B1%BC%EF%BC%8C%E7%94%9F%E9%80%82%E4%B9%B1%E4%B8%96%E7%9A%84%E7%BD%97%E6%A0%BC%E8%8C%AB%E7%84%B6%E5%9C%B0%E5%AF%BB%E6%89%BE%E7%9D%80%E5%91%BD%E8%BF%90%E7%9A%84%E6%96%B9%E5%90%91%EF%BC%8C%E5%8D%B4%E5%9C%A8%E7%A5%9E%E7%95%8C%E3%80%81%E7%B2%BE%E7%81%B5%E6%97%8F%E3%80%81%E7%9F%AE%E4%BA%BA%E5%9B%BD%E3%80%81%E5%BC%82%E7%B1%BB%E7%A9%BA%E9%97%B4%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%A4%A7%E9%99%86%E5%90%84%E5%9B%BD%E7%9A%84%E6%94%BF%E6%B2%BB%E3%80%81%E6%88%98%E4%BA%89%E3%80%81%E5%95%86%E8%B4%B8%EF%BC%8C%E7%94%9A%E8%87%B3%E4%B8%AA%E4%BA%BA%E6%83%85%E8%89%B2%E5%8E%86%E9%99%A9%E4%B8%AD%EF%BC%8C%E5%B7%A6%E5%8F%B3%E9%80%A2%E6%BA%90%EF%BC%8C%E7%9B%98%E6%97%8B%E8%80%8C%E4%B8%8A%E3%80%82%20%E4%B8%80%E9%83%A8%E8%B7%A8%E8%B6%8A%E4%B8%8D%E5%90%8C%E7%A9%BA%E9%97%B4%EF%BC%8C%E8%83%8C%E6%99%AF%E7%B9%81%E5%A4%8D%E5%AE%8F%E5%A4%A7%E7%9A%84%E6%9C%AC%E5%9C%9F%E5%A5%87%E5%B9%BB%E5%B7%A8%E8%91%97%EF%BC%8C%E4%BB%8E%E6%95%85%E4%BA%8B%E6%83%85%E8%8A%82%E3%80%81%E5%9C%BA%E6%99%AF%E7%BB%93%E6%9E%84%EF%BC%8C%E5%88%B0%E4%BA%BA%E7%89%A9%E5%91%BD%E8%BF%90%E3%80%81%E5%93%B2%E7%90%86%E5%86%85%E8%95%B4%EF%BC%8C%E5%85%A8%E9%9D%A2%E8%B6%85%E8%B6%8A%E5%90%8C%E7%B1%BB%E5%9E%8B%E5%B0%8F%E8%AF%B4%E3%80%82%20%E5%9C%A8%E6%97%A0%E6%95%B0%E7%9A%84%E5%A5%87%E5%B9%BB%E5%B0%8F%E8%AF%B4%E4%B8%AD%EF%BC%8C%E6%9C%AC%E4%B9%A6%E5%B0%B1%E6%98%AF%E9%82%A3%E9%97%AA%E7%83%81%E7%9D%80%E5%BC%82%E7%B1%BB%E5%85%89%E8%8A%92%E7%9A%84%E7%8C%AB%E7%9C%BC%E5%AE%9D%E7%9F%B3%EF%BC%8C%E5%8F%AA%E8%A6%81%E6%8B%BF%E8%B5%B7%EF%BC%8C%E5%B0%B1%E9%9A%BE%E4%BB%A5%E6%94%BE%E4%B8%8B%E3%80%82%0A%3C/p%3E%0A%0A%3C!--%20/wp:paragraph%20--%3E%0A%0A%3C!--%20wp:heading%20--%3E%0A%0A%23%23%20%E6%8E%92%E7%89%88%E6%AC%A3%E8%B5%8F%0A%0A%3C!--%20/wp:heading%20--%3E%0A%0A%3C!--%20wp:image%20%7B%22align%22:%22center%22%7D%20--%3E%0A%0A%3Cdiv%20class=%22wp-block-image%22%3E%0A%20%20%3Cfigure%20class=%22aligncenter%22%3E%3Cimg%20class=%22aligncenter%22%20src=%22https://ae01.alicdn.com/kf/H7e22b912abe04d249a295de61360ca004.jpg%22%20alt=%22%22%20/%3E%3C/figure%3E%0A%3C/div%3E%0A%0A%3C!--%20/wp:image%20--%3E%0A%0A%3C!--%20wp:paragraph%20%7B%22textColor%22:%22luminous-vivid-orange%22%7D%20--%3E%0A%0A%3Cp%20class=%22has-text-color%20has-luminous-vivid-orange-color%22%3E%0A%20%20%3Cblockquote%3E%0A%20%20%20%20%3Cp%20class=%22has-text-color%20has-luminous-vivid-orange-color%22%3E%0A%20%20%20%20%20%20%3Cspan%20style=%22color:%20%23ff6600;%22%3E%E6%9C%AC%E4%B9%A6%E4%BB%A5%3C/span%3E%3Cspan%20style=%22color:%20%23ff6600;%22%3E%3Cspan%20style=%22color:%20%23000080;%22%3E%3Ci%3E%E6%98%93%E6%B0%B4%E8%A5%BF%E9%A3%8E%3C/i%3E%3C/span%3E%3Cspan%20style=%22color:%20%23ff6600;%22%3E%E6%8F%90%E4%BE%9B%E7%9A%84%E8%AF%BB%E6%A0%A1%E6%96%87%E6%9C%AC%E4%B8%BA%E5%BA%95%E6%9C%AC%EF%BC%8C%E8%BF%9B%E8%A1%8C%E5%B0%81%E9%9D%A2%E8%AE%BE%E8%AE%A1%E3%80%81%E6%8E%92%E7%89%88%E5%88%B6%E4%BD%9C%E8%80%8C%E6%88%90%E3%80%82%E5%9C%A8%E6%AD%A4%E5%AF%B9%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B%E4%B8%AD%E8%BF%9B%E8%A1%8C%E6%8C%87%E5%AF%BC%E7%9A%84%E5%8F%8B%E4%BA%BA%E8%A1%A8%E7%A4%BA%E6%84%9F%E8%B0%A2%E3%80%82%E6%B2%A1%E6%9C%89%E4%BB%96%E4%BB%AC%E7%9A%84%E5%8F%82%E4%B8%8E%E5%92%8C%E5%B8%AE%E5%8A%A9%EF%BC%8C%E4%B8%8D%E4%BC%9A%E6%9C%89%E8%BF%99%E6%9C%AC%E4%B9%A6%E3%80%82%E9%9E%A0%E8%BA%AC%E3%80%82%3C/span%3E%3C/span%3E%0A%20%20%20%20%3C/p%3E%0A%20%20%3C/blockquote%3E%0A%3C/p%3E%0A%0A%3C!--%20/wp:paragraph%20--%3E%0A%0A%3C!--%20wp:heading%20--%3E%0A%0A%23%23%20%E6%B8%A9%E9%A6%A8%E6%8F%90%E7%A4%BA%0A%0A%3C!--%20/wp:heading%20--%3E%0A%0A%3C!--%20wp:block%20%7B%22ref%22:1947%7D%20/--%3E&amp;options=%7B%0A%20%22baseUrl%22:%20null,%0A%20%22breaks%22:%20false,%0A%20%22gfm%22:%20true,%0A%20%22headerIds%22:%20true,%0A%20%22headerPrefix%22:%20%22%22,%0A%20%22highlight%22:%20null,%0A%20%22langPrefix%22:%20%22language-%22,%0A%20%22mangle%22:%20true,%0A%20%22pedantic%22:%20false,%0A%20%22sanitize%22:%20false,%0A%20%22sanitizer%22:%20null,%0A%20%22silent%22:%20false,%0A%20%22smartLists%22:%20false,%0A%20%22smartypants%22:%20false,%0A%20%22tokenizer%22:%20null,%0A%20%22walkTokens%22:%20null,%0A%20%22xhtml%22:%20false%0A%7D&amp;version=master">https://marked.js.org/demo/?outputType=html&amp;text=%3C!--%20wp%3Aheading%20--%3E%0A%0A%23%23%20%E5%AF%BC%E8%AF%AD%0A%0A%3C!--%20%2Fwp%3Aheading%20--%3E%0A%0A%3C!--%20wp%3Aparagraph%20%7B%22textColor%22%3A%22vivid-red%22%7D%20--%3E%0A%0A%3Cp%20class%3D%22has-text-color%20has-vivid-red-color%22%3E%0A%20%20%3Cstrong%3E%E5%A4%A7%E7%A5%9E%E6%B1%9F%E5%8D%97%E7%9A%84%E7%BB%8F%E5%85%B8%E8%A5%BF%E5%B9%BB%E6%96%87%EF%BC%8C%E6%9C%80%E6%96%B0%E6%96%87%E6%9C%AC%E6%9D%A5%E8%87%AA%40%E6%98%93%E6%B0%B4%E8%A5%BF%E9%A3%8E%E5%A4%A7%E4%BD%AC%E7%9A%84%E7%B2%BE%E6%A0%A1%E6%96%87%E6%9C%AC%EF%BC%8C%E5%85%88%E5%89%8D%E6%8E%92%E7%9A%84%E7%89%88%E6%9C%AC%E6%96%87%E6%9C%AC%E4%B8%8D%E7%AE%97%E5%A4%AA%E5%A5%BD%EF%BC%8C%E6%8E%92%E7%89%88%E4%B9%9F%E9%A9%AC%E9%A9%AC%E8%99%8E%E8%99%8E%EF%BC%8C%E6%89%80%E4%BB%A5%E5%86%8D%E5%BE%97%E5%88%B0%E7%B2%BE%E6%A0%A1%E6%96%87%E6%9C%AC%E5%90%8E%E5%B0%B1%E9%A1%BA%E4%BE%BF%E9%87%8D%E6%96%B0%E6%8E%92%E7%89%88%E4%BA%86%E4%B8%80%E4%B8%8B%E3%80%82%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB%E3%80%82%E5%A4%A7%E5%AE%B6%E5%9C%A8%E7%9C%8B%E7%9A%84%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%A6%82%E6%9E%9C%E5%8F%91%E7%8E%B0%E9%97%AE%E9%A2%98%EF%BC%8C%E5%8F%AF%E4%BB%A5%E7%95%99%E8%A8%80%E8%81%94%E7%B3%BB%E6%88%91%E5%86%8D%E4%BF%AE%E6%94%B9%E3%80%82%3C%2Fstrong%3E%0A%3C%2Fp%3E%0A%0A%3C!--%20%2Fwp%3Aparagraph%20--%3E%0A%0A%3C!--%20wp%3Aimage%20%7B%22align%22%3A%22center%22%2C%22width%22%3A384%2C%22height%22%3A576%7D%20--%3E%0A%0A%3Cdiv%20class%3D%22wp-block-image%22%3E%0A%20%20%3Cfigure%20class%3D%22aligncenter%20is-resized%22%3E%3Cimg%20class%3D%22aligncenter%22%20src%3D%22https%3A%2F%2Fae01.alicdn.com%2Fkf%2FHbe1343f15a5746c689179872fc9fd32aO.jpg%22%20alt%3D%22%22%20%2F%3E%3C%2Ffigure%3E%0A%3C%2Fdiv%3E%0A%0A%3C!--%20%2Fwp%3Aimage%20--%3E%0A%0A%3C!--%20wp%3Aheading%20--%3E%0A%0A%23%23%20%E5%86%85%E5%AE%B9%E6%8F%90%E8%A6%81%0A%0A%3C!--%20%2Fwp%3Aheading%20--%3E%0A%0A%3C!--%20wp%3Aparagraph%20%7B%22textColor%22%3A%22vivid-green-cyan%22%2C%22backgroundColor%22%3A%22very-light-gray%22%7D%20--%3E%0A%0A%3Cp%20class%3D%22has-text-color%20has-background%20has-vivid-green-cyan-color%20has-very-light-gray-background-color%22%3E%0A%20%20%E7%94%9F%E9%80%A2%E4%B9%B1%E4%B8%96%EF%BC%8C%E4%B8%8A%E5%B8%9D%E6%AD%BB%E4%BA%86%EF%BC%8C%E4%BD%86%E5%BF%83%E5%BA%95%E7%9A%84%E7%9C%9F%E6%83%85%E4%B9%9F%E6%AD%BB%E4%BA%86%E5%90%97%EF%BC%9F%20%E7%9D%A1%E8%A7%89%E7%9D%A1%E5%88%B0%E8%87%AA%E7%84%B6%E9%86%92%EF%BC%8C%E6%95%B0%E9%92%B1%E6%95%B0%E5%88%B0%E6%89%8B%E6%8A%BD%E7%AD%8B%E3%80%82%E4%B8%80%E4%B8%AA%E6%9C%89%E4%BA%9B%E5%8D%91%E9%84%99%EF%BC%8C%E5%8F%AA%E6%83%B3%E5%B9%B3%E6%B7%A1%E7%94%9F%E6%B4%BB%E7%9A%84%E5%B0%8F%E4%BA%BA%E7%89%A9%EF%BC%8C%E5%8D%B4%E5%9B%A0%E4%B8%BA%E5%91%BD%E8%BF%90%E7%9A%84%E6%88%8F%E5%BC%84%EF%BC%8C%E8%80%8C%E6%88%90%E4%B8%BA%E4%BA%86%E6%8C%91%E6%88%98%E7%A5%9E%E7%9A%84%E5%A4%A7%E4%BA%A1%E7%81%B5%E6%B3%95%E5%B8%88%E7%9A%84%E7%BB%A7%E6%89%BF%E4%BA%BA%E3%80%82%20%E7%8A%B9%E5%A6%82%E5%A4%A7%E6%B2%B3%E4%B8%AD%E7%9A%84%E4%B8%80%E6%9D%A1%E5%B0%8F%E9%B1%BC%EF%BC%8C%E7%94%9F%E9%80%82%E4%B9%B1%E4%B8%96%E7%9A%84%E7%BD%97%E6%A0%BC%E8%8C%AB%E7%84%B6%E5%9C%B0%E5%AF%BB%E6%89%BE%E7%9D%80%E5%91%BD%E8%BF%90%E7%9A%84%E6%96%B9%E5%90%91%EF%BC%8C%E5%8D%B4%E5%9C%A8%E7%A5%9E%E7%95%8C%E3%80%81%E7%B2%BE%E7%81%B5%E6%97%8F%E3%80%81%E7%9F%AE%E4%BA%BA%E5%9B%BD%E3%80%81%E5%BC%82%E7%B1%BB%E7%A9%BA%E9%97%B4%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%A4%A7%E9%99%86%E5%90%84%E5%9B%BD%E7%9A%84%E6%94%BF%E6%B2%BB%E3%80%81%E6%88%98%E4%BA%89%E3%80%81%E5%95%86%E8%B4%B8%EF%BC%8C%E7%94%9A%E8%87%B3%E4%B8%AA%E4%BA%BA%E6%83%85%E8%89%B2%E5%8E%86%E9%99%A9%E4%B8%AD%EF%BC%8C%E5%B7%A6%E5%8F%B3%E9%80%A2%E6%BA%90%EF%BC%8C%E7%9B%98%E6%97%8B%E8%80%8C%E4%B8%8A%E3%80%82%20%E4%B8%80%E9%83%A8%E8%B7%A8%E8%B6%8A%E4%B8%8D%E5%90%8C%E7%A9%BA%E9%97%B4%EF%BC%8C%E8%83%8C%E6%99%AF%E7%B9%81%E5%A4%8D%E5%AE%8F%E5%A4%A7%E7%9A%84%E6%9C%AC%E5%9C%9F%E5%A5%87%E5%B9%BB%E5%B7%A8%E8%91%97%EF%BC%8C%E4%BB%8E%E6%95%85%E4%BA%8B%E6%83%85%E8%8A%82%E3%80%81%E5%9C%BA%E6%99%AF%E7%BB%93%E6%9E%84%EF%BC%8C%E5%88%B0%E4%BA%BA%E7%89%A9%E5%91%BD%E8%BF%90%E3%80%81%E5%93%B2%E7%90%86%E5%86%85%E8%95%B4%EF%BC%8C%E5%85%A8%E9%9D%A2%E8%B6%85%E8%B6%8A%E5%90%8C%E7%B1%BB%E5%9E%8B%E5%B0%8F%E8%AF%B4%E3%80%82%20%E5%9C%A8%E6%97%A0%E6%95%B0%E7%9A%84%E5%A5%87%E5%B9%BB%E5%B0%8F%E8%AF%B4%E4%B8%AD%EF%BC%8C%E6%9C%AC%E4%B9%A6%E5%B0%B1%E6%98%AF%E9%82%A3%E9%97%AA%E7%83%81%E7%9D%80%E5%BC%82%E7%B1%BB%E5%85%89%E8%8A%92%E7%9A%84%E7%8C%AB%E7%9C%BC%E5%AE%9D%E7%9F%B3%EF%BC%8C%E5%8F%AA%E8%A6%81%E6%8B%BF%E8%B5%B7%EF%BC%8C%E5%B0%B1%E9%9A%BE%E4%BB%A5%E6%94%BE%E4%B8%8B%E3%80%82%0A%3C%2Fp%3E%0A%0A%3C!--%20%2Fwp%3Aparagraph%20--%3E%0A%0A%3C!--%20wp%3Aheading%20--%3E%0A%0A%23%23%20%E6%8E%92%E7%89%88%E6%AC%A3%E8%B5%8F%0A%0A%3C!--%20%2Fwp%3Aheading%20--%3E%0A%0A%3C!--%20wp%3Aimage%20%7B%22align%22%3A%22center%22%7D%20--%3E%0A%0A%3Cdiv%20class%3D%22wp-block-image%22%3E%0A%20%20%3Cfigure%20class%3D%22aligncenter%22%3E%3Cimg%20class%3D%22aligncenter%22%20src%3D%22https%3A%2F%2Fae01.alicdn.com%2Fkf%2FH7e22b912abe04d249a295de61360ca004.jpg%22%20alt%3D%22%22%20%2F%3E%3C%2Ffigure%3E%0A%3C%2Fdiv%3E%0A%0A%3C!--%20%2Fwp%3Aimage%20--%3E%0A%0A%3C!--%20wp%3Aparagraph%20%7B%22textColor%22%3A%22luminous-vivid-orange%22%7D%20--%3E%0A%0A%3Cp%20class%3D%22has-text-color%20has-luminous-vivid-orange-color%22%3E%0A%20%20%3Cblockquote%3E%0A%20%20%20%20%3Cp%20class%3D%22has-text-color%20has-luminous-vivid-orange-color%22%3E%0A%20%20%20%20%20%20%3Cspan%20style%3D%22color%3A%20%23ff6600%3B%22%3E%E6%9C%AC%E4%B9%A6%E4%BB%A5%3C%2Fspan%3E%3Cspan%20style%3D%22color%3A%20%23ff6600%3B%22%3E%3Cspan%20style%3D%22color%3A%20%23000080%3B%22%3E%3Ci%3E%E6%98%93%E6%B0%B4%E8%A5%BF%E9%A3%8E%3C%2Fi%3E%3C%2Fspan%3E%3Cspan%20style%3D%22color%3A%20%23ff6600%3B%22%3E%E6%8F%90%E4%BE%9B%E7%9A%84%E8%AF%BB%E6%A0%A1%E6%96%87%E6%9C%AC%E4%B8%BA%E5%BA%95%E6%9C%AC%EF%BC%8C%E8%BF%9B%E8%A1%8C%E5%B0%81%E9%9D%A2%E8%AE%BE%E8%AE%A1%E3%80%81%E6%8E%92%E7%89%88%E5%88%B6%E4%BD%9C%E8%80%8C%E6%88%90%E3%80%82%E5%9C%A8%E6%AD%A4%E5%AF%B9%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B%E4%B8%AD%E8%BF%9B%E8%A1%8C%E6%8C%87%E5%AF%BC%E7%9A%84%E5%8F%8B%E4%BA%BA%E8%A1%A8%E7%A4%BA%E6%84%9F%E8%B0%A2%E3%80%82%E6%B2%A1%E6%9C%89%E4%BB%96%E4%BB%AC%E7%9A%84%E5%8F%82%E4%B8%8E%E5%92%8C%E5%B8%AE%E5%8A%A9%EF%BC%8C%E4%B8%8D%E4%BC%9A%E6%9C%89%E8%BF%99%E6%9C%AC%E4%B9%A6%E3%80%82%E9%9E%A0%E8%BA%AC%E3%80%82%3C%2Fspan%3E%3C%2Fspan%3E%0A%20%20%20%20%3C%2Fp%3E%0A%20%20%3C%2Fblockquote%3E%0A%3C%2Fp%3E%0A%0A%3C!--%20%2Fwp%3Aparagraph%20--%3E%0A%0A%3C!--%20wp%3Aheading%20--%3E%0A%0A%23%23%20%E6%B8%A9%E9%A6%A8%E6%8F%90%E7%A4%BA%0A%0A%3C!--%20%2Fwp%3Aheading%20--%3E%0A%0A%3C!--%20wp%3Ablock%20%7B%22ref%22%3A1947%7D%20%2F--%3E&amp;options=%7B%0A%20%22baseUrl%22%3A%20null%2C%0A%20%22breaks%22%3A%20false%2C%0A%20%22gfm%22%3A%20true%2C%0A%20%22headerIds%22%3A%20true%2C%0A%20%22headerPrefix%22%3A%20%22%22%2C%0A%20%22highlight%22%3A%20null%2C%0A%20%22langPrefix%22%3A%20%22language-%22%2C%0A%20%22mangle%22%3A%20true%2C%0A%20%22pedantic%22%3A%20false%2C%0A%20%22sanitize%22%3A%20false%2C%0A%20%22sanitizer%22%3A%20null%2C%0A%20%22silent%22%3A%20false%2C%0A%20%22smartLists%22%3A%20false%2C%0A%20%22smartypants%22%3A%20false%2C%0A%20%22tokenizer%22%3A%20null%2C%0A%20%22walkTokens%22%3A%20null%2C%0A%20%22xhtml%22%3A%20false%0A%7D&amp;version=master</a></p>
+<p>Html&#x2F;MarkDown互转工具-BeJSON.com<br><a href="https://www.bejson.com/convert/html2markdown/">https://www.bejson.com/convert/html2markdown/</a></p>
+<p>Heroku 免费容器服务申请，通过cf加速搭建v2 - 久别重逢<br><a href="https://www.uibobo.com/20200711/cid=99.html?hao.su">https://www.uibobo.com/20200711/cid=99.html?hao.su</a></p>
+<p>缙哥哥-分享缙哥哥的中医药心得、武术笔记、趣闻杂谈、软件分享、无损音乐、视频短片、技术教程、摄影图片、旅游攻略、购物优惠。<br><a href="https://www.dujin.org/">https://www.dujin.org/</a></p>
+<p>分享几个免费申请SSL证书的网站 - 哔哩哔哩<br><a href="https://www.bilibili.com/read/cv5724946/">https://www.bilibili.com/read/cv5724946/</a></p>
+<p>什么是CSR以及CSR的作用和生成 - xuegqcto - 博客园<br><a href="https://www.cnblogs.com/xuegqcto/p/9116712.html">https://www.cnblogs.com/xuegqcto/p/9116712.html</a></p>
+<p>免费SSL证书推荐 - 简书<br><a href="https://www.jianshu.com/p/47adf9beee64">https://www.jianshu.com/p/47adf9beee64</a></p>
+<p>Typecho 主题开发 - 一些常用方法 - Mr. Ma’s Blog<br><a href="https://www.misterma.com/archives/830/">https://www.misterma.com/archives/830/</a></p>
+<p>PicUploader: 一个还不错的图床工具 | Bruce’s Blog<br><a href="https://www.xiebruce.top/17.html#i-9">https://www.xiebruce.top/17.html#i-9</a></p>
+<p>日本Xrea免费空间申请与使用-优秀稳定的免费主机1GB空间免费SSL - 挖站否-挖掘建站的乐趣<br><a href="https://wzfou.com/xrea/">https://wzfou.com/xrea/</a></p>
+<p>ArmxMod for Typecho - Typecho 个性化响应式自适应主题 - VirCloud’s Blog - Learning&amp;Sharing<br><a href="https://vircloud.net/default/change-theme.html">https://vircloud.net/default/change-theme.html</a></p>
+<p>用Google Voice号码注册Telegram&#x2F;电报&#x2F;纸飞机的流程和注意事项-谷姐靓号网<br><a href="https://www.goojie.eu/1287.html">https://www.goojie.eu/1287.html</a></p>
+<p>小文’s blog - 小文的个人博客<br><a href="https://www.qcgzxw.cn/?p=1640">https://www.qcgzxw.cn/?p=1640</a></p>
+<p>开源免费PHP+MySQL图床程序：Lsky Pro - 逆念 | 人生逆溯，执之信念，终成无畏<br><a href="https://ycb.hk/archives/447.html">https://ycb.hk/archives/447.html</a></p>
+<p>Runine Blog<br><a href="https://runine.cn/?hao.su">https://runine.cn/?hao.su</a></p>
+<p>Linux实用脚本和工具汇总-性能测试,网站监控,服务器宕机,重装系统等工具脚本 - 挖站否-挖掘建站的乐趣<br><a href="https://wzfou.com/linux-jiaoben/?hao.su">https://wzfou.com/linux-jiaoben/?hao.su</a></p>
+<p>Chevereto图床如何修改文件上传大小<br><a href="https://baijiahao.baidu.com/s?id=1670903068427130362&amp;wfr=spider&amp;for=pc">https://baijiahao.baidu.com/s?id=1670903068427130362&amp;wfr=spider&amp;for=pc</a></p>
+<p>第2页 - 分类 资源分享 下的文章 - iKxin小站<br><a href="https://www.ikxin.com/share/2/">https://www.ikxin.com/share/2/</a></p>
+<p>Chevereto安装使用 – 技术宅<br><a href="https://jszbug.com/11054">https://jszbug.com/11054</a></p>
+<p>张戈博客使用CloudFlare CDN加速的经验技巧分享 | 张戈博客<br><a href="https://zhang.ge/5149.html">https://zhang.ge/5149.html</a></p>
+<p>截图快速上传到chev?ereto图床_Chengrui_404的博客-CSDN博客<br><a href="https://blog.csdn.net/Chengrui_404/article/details/107728834">https://blog.csdn.net/Chengrui_404/article/details/107728834</a></p>
+<p>自建RSS服务系列——Tiny Tiny RSS(TT-RSS) | Senraの小窝<br><a href="http://www.senra.me/self-hosted-rss-service-tinytinyrss/">http://www.senra.me/self-hosted-rss-service-tinytinyrss/</a></p>
+<p>如何用CDN加速你的网站 – Cloudflare免费版详细使用教程 - 简书<br><a href="https://www.jianshu.com/p/1e73c2d66ac8">https://www.jianshu.com/p/1e73c2d66ac8</a></p>
+<p>免费.edu邮箱获取方法-用教育邮箱获取免费VPS\域名\软件汇总列表 - 挖站否-挖掘建站的乐趣<br><a href="https://wzfou.com/edu-email/">https://wzfou.com/edu-email/</a></p>
+<p>Chevereto安装使用 – 技术宅<br><a href="https://jszbug.com/11054">https://jszbug.com/11054</a></p>
+<p>包含关键字 help 的文章 - Typecho爱好者博客<br><a href="https://qqdie.com/search/help/?type=post">https://qqdie.com/search/help/?type=post</a></p>
+<p>如何为typecho站点设置多个域名 - Typecho爱好者博客<br><a href="https://qqdie.com/archives/typecho_siteUrl-add.html">https://qqdie.com/archives/typecho_siteUrl-add.html</a></p>
+<h1 id="福利"><a href="#福利" class="headerlink" title="福利"></a>福利</h1><p>快讯 - ??SBKKO??<br><a href="https://www.sbkko.com/newsflashes">https://www.sbkko.com/newsflashes</a></p>
+<p>晓书包<br><a href="https://web.xiaoheiban.cn/#/account/package">https://web.xiaoheiban.cn/#/account/package</a></p>
+<p>阿里图床，免费高速图床 - 缙哥哥<br><a href="https://api.dujin.org/img/">https://api.dujin.org/img/</a></p>
+<p>小麦魔方 | 文件传输服务<br><a href="https://mofile.own-cloud.cn/#/home?path=%2F">https://mofile.own-cloud.cn/#/home?path=%2F</a></p>
+<p>迅雷云盘<br><a href="https://pan.xunlei.com/?path=/">https://pan.xunlei.com/?path=%2F</a></p>
+<p>Telegram注册及使用教程2020 - 杯子萌<br><a href="https://www.cupmoe.com/geek/telegram-register.html">https://www.cupmoe.com/geek/telegram-register.html</a></p>
+<p>Lsky Pro - Your photo album on the cloud.<br><a href="https://www.lsky.pro/">https://www.lsky.pro/</a></p>
+<p>Miaona!<br><a href="https://miaona.xyz/#/plan">https://miaona.xyz/#/plan</a></p>
+<p>挖站否美国1GB免费PHP空间-CN2线路速度快中文DirectAdmin面板 - 挖站否-挖掘建站的乐趣<br><a href="https://wzfou.com/mf-kongjian/">https://wzfou.com/mf-kongjian/</a></p>
+<p>车神会所 - Powered by Discuz!<br><a href="https://cshs2020.xyz/forum.php">https://cshs2020.xyz/forum.php</a></p>
+<p>v2.freeok.xyz<br><a href="https://v2.freeok.xyz/user">https://v2.freeok.xyz/user</a></p>
+<p>逗比云<br><a href="https://yun.doubibackup.com/">https://yun.doubibackup.com/</a></p>
+<p>主机酷 - 继续支付<br><a href="http://my.hostcool.cn/index.php/control/invoice/1231/">http://my.hostcool.cn/index.php/control/invoice/1231/</a></p>
+<p>Client Area - ProFreeHost<br><a href="https://profreehost.com/account/?view=manage&amp;account_id=662526">https://profreehost.com/account/?view=manage&amp;account_id=662526</a></p>
+<p>小白搭梯子教程_用VPS搭建SSR（更新版）_搬瓦工VPS_美国VPS<br><a href="https://www.wervps.com/we/1142.html">https://www.wervps.com/we/1142.html</a></p>
+<p>服务器安装shadowsocksR - 简书<br><a href="https://www.jianshu.com/p/a6e0fbf7761f">https://www.jianshu.com/p/a6e0fbf7761f</a></p>
+<p>Typecho主题 | MDr - 书写你的篇章 - FlyingSky’s Blog<br><a href="https://blog.fsky7.com/archives/60/">https://blog.fsky7.com/archives/60/</a></p>
+<p>1024导航<br><a href="http://1024zw.com/">http://1024zw.com/</a></p>
+<p>logo设计,免费logo在线制作,标识设计,微信头像,优改网,U钙网<br><a href="http://www.uugai.com/logoa/logo.php?page=2">http://www.uugai.com/logoa/logo.php?page=2</a></p>
+<p>chevereto图床的使用及与markdown关联_简单快乐-CSDN博客_typero chevereto<br><a href="https://blog.csdn.net/zhao_cq/article/details/85872121">https://blog.csdn.net/zhao_cq/article/details/85872121</a></p>
+<p>Chevereto安装使用 – 技术宅<br><a href="https://jszbug.com/11054">https://jszbug.com/11054</a></p>
+<p>Chevereto使用QQAPI登陆教程及Chevereto 漂亮邮件模板【转载】_资源_Chieng个人博客<br><a href="http://www.chieng.cn/post/156.html">http://www.chieng.cn/post/156.html</a></p>
+<p>chevereto设置上传文件的大小-一秒钟的梦<br><a href="http://yimiaozhongdemeng.com/chevereto-filesize.html">http://yimiaozhongdemeng.com/chevereto-filesize.html</a></p>
+<p>截图快速上传到chev?ereto图床_Chengrui_404的博客-CSDN博客_个人图床chevei<br><a href="https://blog.csdn.net/Chengrui_404/article/details/107728834">https://blog.csdn.net/Chengrui_404/article/details/107728834</a></p>
+<p>适合小白的个人网盘搭建（oneindex） - 知乎<br><a href="https://zhuanlan.zhihu.com/p/120332630">https://zhuanlan.zhihu.com/p/120332630</a></p>
+<p>OneDrive网盘站 | OneGO导航<br><a href="https://ionego.net/favorites/onedrivepan?hao.su">https://ionego.net/favorites/onedrivepan?hao.su</a></p>
+<p>Short URL &#x2F; Free &#x2F; Fast - DD.SB<br><a href="https://dd.sb/">https://dd.sb/</a></p>
+<p>Telegram 常见问题及解答 - 山葵酱 Wasabi<br><a href="https://wasabi.fun/449.html">https://wasabi.fun/449.html</a></p>
+<h1 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h1><p>鸡毛信<br><a href="https://cmd.im/">https://cmd.im/</a></p>
+<p>天翼云盘资源收集分享小站<br><a href="https://yun.hei521.cn/index.php/page/6/">https://yun.hei521.cn/index.php/page/6/</a></p>
+<p>食用夏冬主机免费搭建一个博客 - 某真鸽子的贝壳<br><a href="https://whatz2333.top/index.php/archives/82/?hao.su">https://whatz2333.top/index.php/archives/82/?hao.su</a></p>
+<p>MultCloud - Put multiple cloud drives into one.<br><a href="https://www.multcloud.com/index.jsp?rl=zh-CN#cloudType=mega&amp;tokenId=002bykE5XLU5yxc002bvkWc87y41coR0TeqE6TkKU1WdRe002fcxQpJCp1ZFw1ftquSi60cKB&amp;fileId=adkBQTQI">https://www.multcloud.com/index.jsp?rl=zh-CN#cloudType=mega&amp;tokenId=002bykE5XLU5yxc002bvkWc87y41coR0TeqE6TkKU1WdRe002fcxQpJCp1ZFw1ftquSi60cKB&amp;fileId=adkBQTQI</a></p>
+<p>全历史<br><a href="https://www.allhistory.com/">https://www.allhistory.com/</a></p>
+<p>最新可用的二维码生成 api - 不死鸟 - 分享为王<br><a href="https://hao.su/2225/">https://hao.su/2225/</a></p>
+<p>首页-书签地球-中国首家浏览器书签共享平台<br><a href="https://www.bookmarkearth.com/">https://www.bookmarkearth.com/</a></p>
+<p>喜马拉雅FM专辑解析下载 - 壹工具箱<br><a href="http://test2.onetool.vip/tool/parse/ximalaya.php">http://test2.onetool.vip/tool/parse/ximalaya.php</a></p>
+<p>百度网盘秒传链接转存<br><a href="https://rapid.acg.uy/?hao.su">https://rapid.acg.uy/?hao.su</a></p>
+<p>穷逼建站-综合讨论-屌丝论坛<br><a href="https://assbbs.com/thread-20340.htm">https://assbbs.com/thread-20340.htm</a></p>
+<p>音乐解锁 - By IXarea<br><a href="http://unlock.musictool.top/?hao.su">http://unlock.musictool.top/?hao.su</a></p>
+<p>飞鸟下载器<br><a href="http://web.feiniaobt.com/">http://web.feiniaobt.com/</a></p>
+<p>网盘永久外链地址生成工具 OneDrive,Google Drive, Dropbox直链在线生成 | Gimhoy Studio<br><a href="https://link.gimhoy.com/">https://link.gimhoy.com/</a></p>
+]]></content>
+      <categories>
+        <category>soft</category>
+      </categories>
+      <tags>
+        <tag>picgo</tag>
+        <tag>图床</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>免费图床</title>
+    <url>/posts/22424.html</url>
+    <content><![CDATA[<!--markdown-->![免费图床-涅槃茶馆](http://love2wind.cn/wp-content/uploads/2019/10/2019101922381676-1024x640.jpg)
+
+<p>图片外链（图床）可以用于论坛、网站、评论、聊天等；下面推荐一些免费稳定好用的永久图片外链图床。</p>
+<ul>
+<li>如果你知道更多免费图床网站，可以通过下方评论，我会添加到网页中以帮助更多人</li>
+<li>以下图片如果无法显示，说明图片外链失效，请使用能显示的图片外链图床网站</li>
+</ul>
+<blockquote>
+<p>图片前面加上下方网址可以解决网站防盗链以及 https 问题，如：新浪微博图片</p>
+</blockquote>
+<ol>
+<li><a href="https://image.baidu.com/search/down?tn=download&amp;url=">https://image.baidu.com/search/down?tn=download&amp;url=</a></li>
+<li><a href="https://imageproxy.pimg.tw/resize?url=">https://imageproxy.pimg.tw/resize?url=</a></li>
+<li><a href="https://i0.wp.com/">https://i0.wp.com/</a></li>
+<li><a href="https://images.weserv.nl/?url=">https://images.weserv.nl/?url=</a></li>
+<li><a href="https://pic1.xuehuaimg.com/proxy/">https://pic1.xuehuaimg.com/proxy/</a></li>
+</ol>
+<h2 id="聚合图床"><a href="#聚合图床" class="headerlink" title="聚合图床"></a>聚合图床</h2><p>支持大量免费图床分发，网站稳定性未知</p>
+<p><a href="http://love2wind.cn/go/?url=https://www.superbed.cn">https://www.superbed.cn</a></p>
+<p>速度：动态 ☆ ☆ ☆ ☆ ☆</p>
+<blockquote>
+<p>图片外链展示 图片上传日期：2018 年 9 月 2 日</p>
+</blockquote>
+<p><img src="https://pic1.superbed.cn/item/5cc829c83a213b04175f0fd4" alt="免费图床-涅槃茶馆"></p>
+<h2 id="路过图床"><a href="#路过图床" class="headerlink" title="路过图床"></a>路过图床</h2><p>成立于2011年，曾使用域名lgo.me，比较稳定性</p>
+<p><a href="http://love2wind.cn/go/?url=https://imgchr.com/">https://imgchr.com/</a></p>
+<p>速度：动态 ☆ ☆ ☆ ☆ ☆</p>
+<blockquote>
+<p>图片外链展示 图片上传日期：2019 年 2 月 25 日</p>
+<p><img src="https://s2.ax1x.com/2019/11/07/MEkf6f.jpg" alt="img"></p>
+</blockquote>
+<h2 id="阿里图床"><a href="#阿里图床" class="headerlink" title="阿里图床"></a>阿里图床</h2><p>阿里巴巴服务器，稳定性未知</p>
+<p>速度：超快</p>
+<blockquote>
+<p>图片外链展示 图片上传日期：2019 年 5 月 5 日</p>
+</blockquote>
+<p><img src="https://ae01.alicdn.com/kf/HTB1JKaHUXzqK1RjSZFo762fcXXa2.png" alt="免费图床-涅槃茶馆"></p>
+<h2 id="新浪微博"><a href="#新浪微博" class="headerlink" title="新浪微博"></a>新浪微博</h2><blockquote>
+<p>新浪图床</p>
+</blockquote>
+<p>新浪微博相册，微博不倒 图片永久存储并支持外链。</p>
+<p>需要注册新浪微博账户，可保持原图上传，默认压缩</p>
+<p>速度：超快 ☆ ☆ ☆ ☆ ☆</p>
+<p><a href="http://love2wind.cn/go/?url=http://photo.weibo.com/">photo.weibo.com</a></p>
+<blockquote>
+<p>图片外链展示 图片上传日期：2015 年 3 月 13 日</p>
+</blockquote>
+<p><img src="https://imageproxy.pimg.tw/resize?url=https://tva1.sinaimg.com/large/8f1bd2b1jw1eox8yv9wg9j21kw11u1kx.jpg" alt="免费图床-涅槃茶馆"></p>
+<h2 id="腾讯微博"><a href="#腾讯微博" class="headerlink" title="腾讯微博"></a>腾讯微博</h2><p>腾讯微博，腾讯不死 图片永久存储并支持外链。</p>
+<p>需要拥有腾讯微博账号，上传简单，快速。默认压缩</p>
+<p>速度：超快 ☆ ☆ ☆ ☆ ☆</p>
+<p><a href="http://love2wind.cn/go/?url=http://t.qq.com/">t.qq.com</a></p>
+<blockquote>
+<p>图片外链展示 图片上传日期：2011 年 8 月 9 日</p>
+</blockquote>
+<p><img src="https://imageproxy.pimg.tw/resize?url=http://t2.qpic.cn/mblogpic/d8df043082eab3c30ed0/2000" alt="免费图床-涅槃茶馆"></p>
+<h2 id="sm-ms"><a href="#sm-ms" class="headerlink" title="sm.ms"></a>sm.ms</h2><p>15 年成立的免费图片外链网站。上传下载速度快。</p>
+<p>无需注册，默认原图上传，支持 https</p>
+<p>速度：高速服务器 ☆ ☆ ☆ ☆ ☆</p>
+<p><a href="http://love2wind.cn/go/?url=https://sm.ms/">sm.ms</a></p>
+<p>支持的图片格式包括 JPG、JPEG、GIF、PNG 及 BMP，单档不超过 5 MB，单次可上传图片最大 10 张。图片永久保存，请勿上传政治相关图片</p>
+<blockquote>
+<p>图片外链展示 图片上传日期：2017 年 2 月 13 日</p>
+</blockquote>
+<p><img src="https://ooo.0o0.ooo/2017/02/13/58a1ad6ac4363.jpg" alt="免费图床-涅槃茶馆"></p>
+<h2 id="方片收集"><a href="#方片收集" class="headerlink" title="方片收集"></a>方片收集</h2><p>方片收集 将网络上任何文字与图片收集并支持分享。</p>
+<ul>
+<li>分享网址如：<ul>
+<li><a href="http://love2wind.cn/go/?url=http://funp.in/paper/1u3d8af6b1649fdbfa74ecee2630665117?u=1633068">http://funp.in/paper/1u3d8af6b1649fdbfa74ecee2630665117?u=1633068</a></li>
+</ul>
+</li>
+</ul>
+<p>里面所上传以及收集的图片可以外链，但不知道是否一直稳定。如果你能看到图片说明一直没有失效</p>
+<p>速度：高速服务器 ☆ ☆ ☆ ☆ ☆</p>
+<p><a href="http://love2wind.cn/go/?url=http://funp.in/">funp.in</a></p>
+<p>速度很快，稳定性未知。</p>
+<blockquote>
+<p>图片外链展示 图片上传日期：2017 年 2 月 26 日</p>
+</blockquote>
+<p><img src="https://img.okay.do/2af7c45d56f8a9988509cbfd7ac21c39_W1200_H800_G0" alt="免费图床-涅槃茶馆"></p>
+<h2 id="牛图网"><a href="#牛图网" class="headerlink" title="牛图网"></a>牛图网</h2><p>2010 年提供的免费图床，免注册，支持 HTTPS 速度可以</p>
+<p>速度：日本服务器 ☆ ☆ ☆ ☆</p>
+<p><a href="http://love2wind.cn/go/?url=https://niupic.com/">niupic.com</a></p>
+<p>稳定性不错，不要上传违法图片</p>
+<blockquote>
+<p>图片外链展示 图片上传日期：2017 年 4 月 2 日</p>
+</blockquote>
+<p><img src="https://i.niupic.com/images/2017/05/18/eHuYSU.jpg" alt="免费图床-涅槃茶馆"></p>
+<h2 id="vim-cn"><a href="#vim-cn" class="headerlink" title="vim-cn"></a>vim-cn</h2><p>上传界面十分简单，但十分稳定。 服务 12 年稳定至今</p>
+<p>无需注册，稳如狗 支持 https</p>
+<p>服务器：日本、新加坡、香港、台湾、澳大利亚、新西兰、法国、德国、英国、南非、巴西、智利、印度等国家<br>支持 HTTP&#x2F;2、TLS 1.3、IPv6 等多种新技术哦</p>
+<p>速度： ☆ ☆ ☆</p>
+<p><a href="http://love2wind.cn/go/?url=https://img.vim-cn.com/">img.vim-cn.com</a></p>
+<p>稳定性很好，但最好不要上传违法图片</p>
+<blockquote>
+<p>图片外链展示 图片上传日期：2017 年 3 月 4 日</p>
+</blockquote>
+<p><img src="https://img.vim-cn.com/19/af3273bc01fbb2f66550403a6f3725d951b0cb.jpg" alt="免费图床-涅槃茶馆"></p>
+<h2 id="imgbb"><a href="#imgbb" class="headerlink" title="imgbb"></a>imgbb</h2><p>无需注册，支持最大 16M 图片上传，支持 https，速度不错</p>
+<p>速度：亚太服务器 ☆ ☆ ☆ ☆</p>
+<p><a href="http://love2wind.cn/go/?url=https://imgbb.com/">imgbb.com</a></p>
+<blockquote>
+<p>图片外链展示 图片上传日期：2017 年 9 月 25 日</p>
+</blockquote>
+<p><img src="https://image.ibb.co/cc42M7/wallhaven_480764.jpg" alt="免费图床-涅槃茶馆"></p>
+<h2 id="meotu"><a href="#meotu" class="headerlink" title="meotu"></a>meotu</h2><p>16 年成立的免费图片外链网站。上传下载速度快。</p>
+<p>需要注册，默认原图上传，支持 https</p>
+<p>速度：高速服务器 ☆ ☆ ☆ ☆ ☆</p>
+<p><a href="http://love2wind.cn/go/?url=https://moetu.org/">meotu.org</a></p>
+<p>由于成立时间较短，稳定性未知。</p>
+<blockquote>
+<p>图片外链展示 图片上传日期：2017 年 2 月 26 日</p>
+</blockquote>
+<p><img src="https://moetu.org/images/2016/09/27/crysis2_wip_screen_1595f49.jpg" alt="免费图床-涅槃茶馆"></p>
+<h2 id="遇见图床（不稳定，半挂）"><a href="#遇见图床（不稳定，半挂）" class="headerlink" title="遇见图床（不稳定，半挂）"></a><strong>遇见图床（不稳定，半挂）</strong></h2><p>18 年成立的免费图片外链网站。上传下载速度快。</p>
+<p>需要注册，默认原图上传，支持最大 10M，支持 https</p>
+<p>速度：高速服务器 ☆ ☆ ☆ ☆ ☆</p>
+<p><a href="http://love2wind.cn/go/?url=https://www.hualigs.cn/">遇见图床</a></p>
+<p>由于成立时间较短，稳定性未知。</p>
+<blockquote>
+<p>图片外链展示 图片上传日期：2019 年 10 月 10 日</p>
+</blockquote>
+<p><img src="https://ww1.yunjiexi.club/2019/11/17/3U6P3.jpg" alt="免费图床-涅槃茶馆"></p>
+<h2 id="z4a-图床"><a href="#z4a-图床" class="headerlink" title="z4a 图床"></a>z4a 图床</h2><p>需要注册，支持 HTTPS 速度块</p>
+<p>速度：高速服务器 ☆ ☆ ☆ ☆ ☆</p>
+<p><a href="http://love2wind.cn/go/?url=https://www.z4a.net/image/L6E6I">z4a.net</a></p>
+<p>由于成立时间较短，稳定性未知。</p>
+<blockquote>
+<p>图片外链展示 图片上传日期：2017 年 7 月 02 日</p>
+</blockquote>
+<p><img src="https://www.z4a.net/images/2017/07/20/myles-tan-91630.jpg" alt="免费图床-涅槃茶馆"></p>
+<h2 id="upload"><a href="#upload" class="headerlink" title="upload"></a>upload</h2><p>2012 年成立的免费图片上传外链网站，至今依然稳定</p>
+<p>无需注册，默认原图上传，支持 https</p>
+<p>速度：亚太服务器 ☆ ☆ ☆</p>
+<p><a href="http://love2wind.cn/go/?url=https://upload.cc/">Upload.cc</a></p>
+<p>支持的图片格式包括 JPG、JPEG、GIF、PNG 及 BMP，单档不超过 5 MB，网站没有明确指出图片保存时间及流量限制，但只要不违反使用规则应该都没问题。</p>
+<blockquote>
+<p>图片外链展示 图片上传日期：2017 年 2 月 13 日</p>
+</blockquote>
+<p><img src="https://upload.cc/i1/2019/11/17/lf7xOZ.jpg" alt="免费图床-涅槃茶馆"></p>
+<h2 id="kn3-net"><a href="#kn3-net" class="headerlink" title="kn3.net"></a>kn3.net</h2><p>老牌免费图片上传外链网站，禁止上传血腥暴力及 18 + 图片</p>
+<p>速度：欧洲服务器 ☆ ☆ ☆</p>
+<p><a href="http://love2wind.cn/go/?url=https://kn3.net/">kn3.net</a></p>
+<blockquote>
+<p>图片外链展示 图片上传日期：2018 年 4 月 13 日</p>
+</blockquote>
+<p><a href="https://k62.kn3.net/15E2ECD1F.jpg"><img src="https://k62.kn3.net/15E2ECD1F.jpg" alt="免费图床-涅槃茶馆"></a></p>
+<h2 id="image-frl（目前已挂）"><a href="#image-frl（目前已挂）" class="headerlink" title="image.frl（目前已挂）"></a><del>image.frl（目前已挂）</del></h2><p><del><a href="http://love2wind.cn/go/?url=https://image.frl/">image.frl</a></del></p>
+<p><del>是一个老牌荷兰图片托管网站，最大支持 5M 图片</del></p>
+<p><del>上传简单， 支持 https</del></p>
+<p><del>速度：荷兰服务器 ☆ ☆ ☆</del></p>
+<blockquote>
+<p><del>图片外链展示 图片上传日期：2017 年 8 月 20 日</del></p>
+</blockquote>
+<p><img src="https://images.weserv.nl/?url=https://image.frl/i/1runn63o5b108liy.jpg" alt="免费图床-涅槃茶馆"></p>
+<h2 id="imgur"><a href="#imgur" class="headerlink" title="imgur"></a>imgur</h2><p>老牌服务，值得信赖</p>
+<p>无需注册，支持 https</p>
+<p>速度：海外服务器 ☆ ☆ ☆</p>
+<p><a href="http://love2wind.cn/go/?url=https://imgur.com/">imgur.com</a></p>
+<p>稳定性 666，老牌图片分享外链网站</p>
+<blockquote>
+<p>图片外链展示 图片上传日期：2017 年 2 月 22 日</p>
+</blockquote>
+<p><img src="https://imageproxy.pimg.tw/resize?url=https://i.imgur.com/hWghm6oh.jpg" alt="免费图床-涅槃茶馆"></p>
+<h2 id="catbox"><a href="#catbox" class="headerlink" title="catbox"></a>catbox</h2><p>无需注册，支持 https</p>
+<p>速度：海外服务器 ☆ ☆ ☆</p>
+<p><a href="http://love2wind.cn/go/?url=https://catbox.moe/">catbox.moe</a></p>
+<p>支持 200m 主流格式文件外链网站。</p>
+<blockquote>
+<p>图片外链展示 图片上传日期：2018 年 12 月 30 日</p>
+</blockquote>
+<p><img src="https://images.weserv.nl/?url=https://files.catbox.moe/zi5rrs.jpg" alt="免费图床-涅槃茶馆"></p>
+<p>怎么找到本页？如果你不幸丢失了本页，那么可以在谷歌中搜索：<code>免费图片外链</code>，<code>免费图床</code>，<code>免费外链</code></p>
+<p>本文转载自不死鸟：<a href="https://hao.su/pic.html">https://hao.su/pic.html</a></p>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+      <tags>
+        <tag>图床</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>利用腾讯云函数自动续期freenom的免费域名</title>
+    <url>/posts/64982.html</url>
+    <content><![CDATA[<!--markdown-->众所周知，Freenom是地球上唯一一个提供免费顶级域名的商家，不过需要每年续期，每次续期最多一年。由于我申请了一堆域名，而且不是同一时段申请的， 所以每次续期都觉得折腾，于是就写了这个自动续期的脚本。
+
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p><img src="https://camo.githubusercontent.com/6fc6d19ebf59fcc4f7c598ee10239cf08ff1ab7c99c485d04400102af05e5031/68747470733a2f2f73322e617831782e636f6d2f323032302f30312f33312f3133395272642e706e67" alt="邮件示例"></p>
+<p>无论是续期成败或者脚本执行出错，都会收到的程序发出的邮件。如果是续期成败相关的邮件，邮件会包括未续期域名的到期天数等内容。 邮件参考了微信发送的注销公众号的邮件样式。</p>
+<h2 id="事前准备"><a href="#事前准备" class="headerlink" title="事前准备"></a>事前准备</h2><ul>
+<li>发信邮箱：为了方便理解又称机器人邮箱，用于发送通知邮件。目前支持<code>Gmail</code>、<code>QQ邮箱</code>以及<code>163邮箱</code>，程序会自动判断发信邮箱类型并使用合适的配置。</li>
+<li>收信邮箱：用于接收机器人发出的通知邮件。推荐使用<code>QQ邮箱</code>，<code>QQ邮箱</code>唯一的好处只是收到邮件会在<code>QQ</code>弹出消息。</li>
+<li>VPS：随便一台服务器都行，系统推荐<code>Centos7</code>，另外PHP版本需在<code>php7.2</code>及以上。</li>
+<li>没有了</li>
+</ul>
+<h2 id="配置发信邮箱"><a href="#配置发信邮箱" class="headerlink" title="配置发信邮箱"></a>配置发信邮箱</h2><p>下面分别介绍<code>Gmail</code>、<code>QQ邮箱</code>以及<code>163邮箱</code>的设置，你只用看自己需要的部分。注意，<code>QQ邮箱</code>与<code>163邮箱</code>均使用账户加授权码的方式登录， <code>谷歌邮箱</code>使用账户加密码的方式登录，请知悉。另外还想吐槽一下，国产邮箱你得花一毛钱给邮箱提供方发一条短信才能拿到授权码。</p>
+<h4 id="设置Gmail"><a href="#设置Gmail" class="headerlink" title="设置Gmail"></a>设置Gmail</h4><p>1、在<code>设置&gt;转发和POP/IMAP</code>中，勾选</p>
+<ul>
+<li>对所有邮件启用 POP</li>
+<li>启用 IMAP</li>
+</ul>
+<p><img src="https://camo.githubusercontent.com/9dd9133768961d8588901418e90d6ad1db8d78337777d5b87c17d2e28b157c28/68747470733a2f2f73322e617831782e636f6d2f323032302f30312f33312f3133744b73672e706e67" alt="gmail配置01"></p>
+<p>然后保存更改。</p>
+<p>2、允许不够安全的应用</p>
+<p>登录谷歌邮箱后，访问 <a href="https://myaccount.google.com/u/0/lesssecureapps?pli=1&pageId=none">谷歌权限设置界面</a> ，启用允许不够安全的应用。</p>
+<p><img src="https://camo.githubusercontent.com/1ec85c95621bfc1683b4b6d290a37a1ae09ee7d6e6884983742934dff15c137f/68747470733a2f2f73322e617831782e636f6d2f323032302f30312f33312f313339324b482e706e67" alt="gmail配置02"></p>
+<p>另外，若遇到提示</p>
+<blockquote>
+<p>不允许访问账户</p>
+</blockquote>
+<p>登录谷歌邮箱后，去 <a href="https://accounts.google.com/b/0/DisplayUnlockCaptcha">gmail的这个界面</a> 点击允许。这种情况较为少见。</p>
+<h4 id="设置QQ邮箱"><a href="#设置QQ邮箱" class="headerlink" title="设置QQ邮箱"></a>设置QQ邮箱</h4><p>在<code>设置&gt;账户&gt;POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV服务</code>下，开启<code>POP3/SMTP服务</code></p>
+<p><img src="https://camo.githubusercontent.com/d919fed60cb19ef83a4d12108aaa9c4224431b54393f5d7e2a543ce6ec477755/68747470733a2f2f73322e617831782e636f6d2f323032302f30312f33312f313363494b412e706e67" alt="qq邮箱配置01"></p>
+<p>此时坑爹的QQ邮箱会要求你用手机发送一条短信给腾讯，发送完了点一下<code>我已发送</code></p>
+<p><img src="https://camo.githubusercontent.com/f2875b489cef9c91cea4dad6fc2c54a3e9e5d1a68ffde368fe8ae2f009e179c8/68747470733a2f2f73322e617831782e636f6d2f323032302f30312f33312f3133633476642e706e67" alt="qq邮箱配置02"></p>
+<p>然后你就能看到你的邮箱授权码了，使用邮箱账户加授权码即可登录，记下授权码</p>
+<p><img src="https://camo.githubusercontent.com/ed25fdf0dfda956cc8c23b50214c162cc648a45563c1cd66fa97b5b73ef34399/68747470733a2f2f73322e617831782e636f6d2f323032302f30312f33312f3133635462742e706e67" alt="qq邮箱配置03"></p>
+<p><img src="https://camo.githubusercontent.com/be02667e951699cc8a13841ce664d385dd67f20de46eb69d5b0b777b0d7a78d0/68747470733a2f2f73322e617831782e636f6d2f323032302f30312f33312f3133636f44492e706e67" alt="qq邮箱配置04"></p>
+<h4 id="设置163邮箱"><a href="#设置163邮箱" class="headerlink" title="设置163邮箱"></a>设置163邮箱</h4><p>在<code>设置&gt;POP3/SMTP/IMAP</code>下，开启<code>POP3/SMTP服务</code>和<code>IMAP/SMTP服务</code>并保存</p>
+<p><img src="https://camo.githubusercontent.com/41ffb7ab319d5ec7ab64c0679eed59500f5ceb4f95e933ca74afe671b58abb9a/68747470733a2f2f73322e617831782e636f6d2f323032302f30312f33312f3133574b5a6e2e706e67" alt="163邮箱配置01"></p>
+<p><img src="https://camo.githubusercontent.com/79dab5c92eecb2f0b5926a52a6b15d7164d4bf4bd93eeaacfc3d4378d48d774c/68747470733a2f2f73322e617831782e636f6d2f323032302f30312f33312f3133575149302e706e67" alt="163邮箱配置02"></p>
+<p>现在点击侧边栏的<code>客户端授权密码</code>，并获取授权码，你看到画面可能和我不一样，因为我已经获取了授权码，所以只有<code>重置授权码</code>按钮，这里自己根据网站提示申请获取授权码，网易和腾讯一样恶心，需要你用手机给它发一条短信才能拿到授权码</p>
+<p><img src="https://camo.githubusercontent.com/185fe465f20f4f41a4b38cce017c381cade18b2a912908551a75b13d654abd32/68747470733a2f2f73322e617831782e636f6d2f323032302f30312f33312f3133574d61712e706e67" alt="163邮箱配置03"></p>
+<p>163 邮箱送信后，接收方如果没收到可以在垃圾邮件里面找一下。</p>
+<h4 id="Telegram-bot"><a href="#Telegram-bot" class="headerlink" title="Telegram bot"></a>Telegram bot</h4><p>上面介绍了三种邮箱的设置方法，如果你不想使用邮件推送，也可以使用 Telegram bot，灵活配置。在<code>.env</code>文件中， 将<code>TELEGRAM_BOT_ENABLE</code>的值改为<code>true</code>，即可启用 Telegram bot，同样的，将<code>MAIL_ENABLE</code>的值改为<code>false</code>即可关闭邮件推送方式。 Telegram bot 有两个配置项，一个是<code>chatID</code>（对应<code>.env</code>文件中的<code>TELEGRAM_CHAT_ID</code>）， 通过使用你的 Telegram 账户发送<code>/start</code>给<code>@userinfobot</code>即可以获取自己的id， 另一个是<code>token</code>（对应<code>.env</code>文件中的<code>TELEGRAM_BOT_TOKEN</code>），你的 Telegram bot 令牌，你会创建 Telegram bot 就知道怎么获取， 不多赘述。如何创建一个 Telegram bot 请参考：<a href="https://core.telegram.org/bots#6-botfather">官方文档</a></p>
+<h2 id="通过腾讯云函数（SCF）部署"><a href="#通过腾讯云函数（SCF）部署" class="headerlink" title="通过腾讯云函数（SCF）部署"></a>通过腾讯云函数（SCF）部署</h2><hr>
+<h3 id="1、下载-SCF-版本的压缩包"><a href="#1、下载-SCF-版本的压缩包" class="headerlink" title="1、下载 SCF 版本的压缩包"></a>1、下载 SCF 版本的压缩包</h3><p>此版本为特别版，支持通过腾讯云函数部署，与主分支版本不兼容，版本号为<code>v0.3_scf</code>，下载地址： <a href="https://github.com/luolongfei/freenom/archive/refs/tags/v0.3_scf.zip">https://github.com/luolongfei/freenom/archive/refs/tags/v0.3_scf.zip</a></p>
+<p>下载后解压到你能找到的任意目录，你将得到一个文件夹，后期将通过文件夹的形式上传到腾讯云函数。</p>
+<h3 id="2、创建腾讯云函数"><a href="#2、创建腾讯云函数" class="headerlink" title="2、创建腾讯云函数"></a>2、创建腾讯云函数</h3><p>直接访问腾讯云函数控制台创建云函数： <a href="https://console.cloud.tencent.com/scf/list-create">https://console.cloud.tencent.com/scf/list-create</a> ， 按照下图所示的说明进行创建。</p>
+<p><img src="https://camo.githubusercontent.com/4bd08db7e038f9f968a5be3025dceca064e6007e15cf8d22c92d39fd28d6c208/68747470733a2f2f7a332e617831782e636f6d2f323032312f30362f30312f326e4b4346302e706e67" alt="scf01"></p>
+<p>按照上图所示部署完成后，可以点击云函数的名称进入云函数管理画面，管理画面往下翻可看到<code>部署</code>与<code>测试</code>按钮，点击<code>测试</code>，稍等几秒钟，即可看到输出日志， 根据输出日志判断配置以及部署是否正确。</p>
+<p><img src="https://camo.githubusercontent.com/dafab5ddf63b4eae8ab49430183505a2a4c312be0642f9ec97074a2a8f5fc99d/68747470733a2f2f7a332e617831782e636f6d2f323032312f30362f30312f326e475a33712e706e67" alt="scf02"></p>
+<p><em>有关腾讯云函数部署的内容结束。</em></p>
+<p>只要你完全按照上述教程走下来，应该就OK了，妈妈再也不会担心我的Freenom域名过期了。</p>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+      <tags>
+        <tag>freenom</tag>
+        <tag>免费域名</tag>
+        <tag>腾讯云函数</tag>
+        <tag>自动续期</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>国内加速访问Github的方法</title>
+    <url>/posts/20241.html</url>
+    <content><![CDATA[<!--markdown-->#导语
+<blockquote>
+<p>自从GitHub私有库免费后，又涌入了一大批开发爱好者。但国内访问GitHub的速度实在是慢得一匹，在clone仓库时甚至只有10k以下的速度，大大影响了程序员的交友效率。<br>GitHub在国内访问速度慢的问题原因有很多，但最直接和最主要的原因是GitHub的分发加速网络的域名遭到dns污染。<br>今天我们就介绍通过修改系统hosts文件的办法，绕过国内dns解析，直接访问GitHub的CDN节点，从而达到加速的目的。<br>不需要科学上网，也不需要开代理加速器。不需要科学上网，也不需要开代理加速器。</p>
+</blockquote>
+<p>#方法<br>##一、查找Github正确IP地址<br>打开<a href="http://ipaddress.com/" title="IPAddress.com">IPAddress.com</a>网站，查询下面3个网址对应的IP地址：</p>
+<blockquote>
+<ul>
+<li>github.com</li>
+</ul>
+</blockquote>
+<ul>
+<li>assets-cdn.github.com</li>
+<li>github.global.ssl.fastly.net</li>
+</ul>
+<p>##二、修改hosts文件<br>hosts文件路径：<br><code>C:\Windows\System32\drivers\etc</code><br>直接在最后加入以下代码（此时可能需要管理员权限,可以将hosts复制到桌面，修改好了再复制回去覆盖原先的）：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">192.30.253.112 github.com</span><br><span class="line">151.101.184.133 assets-cdn.github.com</span><br><span class="line">151.101.185.194 github.global.ssl.fastly.net</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2019/11/24/beA1qIVD6i47M95.png"></p>
+<p>其中192.30.253.112修改为你查询到的github.com的最新IP地址，下面的同理。<br>修改完成，保存文件。<br>##三、刷新系统dns缓存</p>
+<p>用WIN+R快捷键打开运行窗口，输入命令：<code>cmd</code>并回车进入命令行窗口。</p>
+<p>接着输入命令：<code>ipconfig /flushdns</code> 回车后执行刷新本地dns缓存数据即可。<br>有时候刷新dns并不能够马上生效，重启电脑即可。</p>
+<p>**这样你就可以告诉访问Github了，下载速度也是美美哒。</p>
+]]></content>
+      <categories>
+        <category>wall</category>
+      </categories>
+      <tags>
+        <tag>github</tag>
+        <tag>dns</tag>
+        <tag>hosts</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>宝塔面板+OCI自动开通Oracle甲骨文ARM VPS</title>
+    <url>/posts/33977.html</url>
+    <content><![CDATA[<!--markdown-->
+<h2 id="一、生成main-tf文件"><a href="#一、生成main-tf文件" class="headerlink" title="一、生成main.tf文件"></a>一、生成main.tf文件</h2><ul>
+<li>创建实例</li>
+<li>另存堆栈</li>
+<li>下载Terraform配置</li>
+</ul>
+<h2 id="二、安装配置OCI"><a href="#二、安装配置OCI" class="headerlink" title="二、安装配置OCI"></a>二、安装配置OCI</h2><h3 id="1-安装oci"><a href="#1-安装oci" class="headerlink" title="1.安装oci"></a>1.安装oci</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash -c &quot;$(curl –L https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh)&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="2-查看版本"><a href="#2-查看版本" class="headerlink" title="2.查看版本"></a>2.查看版本</h3><p><code>oci -v</code></p>
+<h3 id="3-配置oci"><a href="#3-配置oci" class="headerlink" title="3.配置oci"></a>3.配置oci</h3><p><code>oci setup config</code></p>
+<h3 id="4-查看密钥"><a href="#4-查看密钥" class="headerlink" title="4.查看密钥"></a>4.查看密钥</h3><p><code>cat /root/.oci/oci_api_key_public.pem</code></p>
+<h3 id="5-后台添加密钥"><a href="#5-后台添加密钥" class="headerlink" title="5.后台添加密钥"></a>5.后台添加密钥</h3><blockquote>
+<p>用户设置-用户详细信息-API密钥-添加密钥</p>
+</blockquote>
+<h3 id="6-验证配置"><a href="#6-验证配置" class="headerlink" title="6.验证配置"></a>6.验证配置</h3><p><code>oci iam availability-domain list</code></p>
+<h2 id="三、运行命令开ARM主机"><a href="#三、运行命令开ARM主机" class="headerlink" title="三、运行命令开ARM主机"></a>三、运行命令开ARM主机</h2><h3 id="1-编辑并下面命令执行"><a href="#1-编辑并下面命令执行" class="headerlink" title="1.编辑并下面命令执行"></a>1.编辑并下面命令执行</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">oci compute instance launch --availability-domain yxrF:AP-TOKYO-1-AD-1 --image-id ocid1.image.oc1.ap-seoul-1.aaaaaaaa..... --subnet-id ocid1.subnet.oc1.ap-seoul-1.aaaaaaaa..... --shape VM.Standard.A1.Flex --assign-public-ip true --metadata &#x27;&#123;&quot;ssh_authorized_keys&quot;: &quot;ssh-rsa xxxxxxxxxxxxxxxxx填你自己的&quot;&#125;&#x27; --compartment-id ocid1.tenancy.oc1..aaaaaaaa...... --shape-config &#x27;&#123;&quot;ocpus&quot;:4,&quot;memory_in_gbs&quot;:24,&quot;boot_volume_size_in_gbs&quot;:100&#125;&#x27;</span><br></pre></td></tr></table></figure>
+<h3 id="2-命令参数"><a href="#2-命令参数" class="headerlink" title="2.命令参数"></a>2.命令参数</h3><blockquote>
+<ul>
+<li>availabilityDomain：可用性域 我的是日本(yxrF:AP-TOKYO-1-AD-1)</li>
+<li>compartmentId：tenancyOCID</li>
+<li>assignPublicIp：公网IP true</li>
+<li>subnetId：子网</li>
+<li>displayName：实例名，根据自己的main.tf里面的信息填写。</li>
+<li>ssh_authorized_keys ：秘钥，需要填写你自己的</li>
+<li>shape 实例配置 ARM：”VM.Standard.A1.Flex”</li>
+<li>shape-config：机器配置</li>
+<li>imageId： “ocid1.iAP-TOKYO-1-AD-11.aaaaaaaar……….”</li>
+</ul>
+<p><strong>以上参数都可以在main.tf文件里找到</strong></p>
+</blockquote>
+<h3 id="3-宝塔面板计划任务"><a href="#3-宝塔面板计划任务" class="headerlink" title="3.宝塔面板计划任务"></a>3.宝塔面板计划任务</h3><p>将上面的运行命令另存为&#x2F;root&#x2F;自己命名.sh文件，在宝塔面板新建shell脚本计划任务，自定义运行时间，执行脚本<br><code>bash /root/你自己命名.sh</code></p>
+<h3 id="4-非宝塔面板"><a href="#4-非宝塔面板" class="headerlink" title="4.非宝塔面板"></a>4.非宝塔面板</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">crontab -e</span><br><span class="line">*/2 * * * *  /bin/bash /root/oracle.sh  &gt;&gt; /root/oracle.log   2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+<p>要实时显示刷机器的信息，可以使用下面命令查看！！</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tail -F /root/oracle.log</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+      <tags>
+        <tag>甲骨文</tag>
+        <tag>ARM</tag>
+        <tag>VPS</tag>
+        <tag>OCI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>宝塔面板安装v2-ui全攻略</title>
+    <url>/posts/52703.html</url>
+    <content><![CDATA[<!--markdown-->##  准备工作
+
+<ol>
+<li>VPS 一台，提前重置好主流的操作系统（生产环境请别随意折腾），推荐 CentOS ≥ 7，这样宝塔插件安装更快。</li>
+<li>域名一个（最好托管在 Cloudflare ）做好解析，不会托管 <a href="https://www.v2rayssr.com/cloudflaretg.html">点击这里</a>，若是没有域名，<a href="https://www.v2rayssr.com/yumingreg.html">点击这里申请有 whois 隐私保护的域名</a></li>
+<li>自行安装 BBR 加速之类的软件，脚本 <a href="https://www.v2rayssr.com/bbr.html">请点击</a></li>
+</ol>
+<h2 id="安装宝塔面板"><a href="#安装宝塔面板" class="headerlink" title="安装宝塔面板"></a>安装宝塔面板</h2><h3 id="更新系统并重启"><a href="#更新系统并重启" class="headerlink" title="更新系统并重启"></a>更新系统并重启</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum update -yreboot</span><br></pre></td></tr></table></figure>
+
+<p>(PS：推荐大家重启的时候 ping 一下自己的 VPS IP，看看VPS是否真的重启，有部分 VPS 提示更新完成，但是后台有部分内容导致 VPS 不能软重启，这会导致下面的搭建方式出现各种问题。一定记得！一定记得！作者是搬瓦工，必须手动进入后台硬重启)</p>
+<h3 id="安装宝塔面板-1"><a href="#安装宝塔面板-1" class="headerlink" title="安装宝塔面板"></a>安装宝塔面板</h3><p>(PS:强烈推荐大家使用 CentOS 系统安装宝塔面板，其他系统也可以，相关安装命令请访问 <a href="https://www.v2rayssr.com/go?url=https://www.bt.cn">宝塔官网</a>)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install -y wget &amp;&amp; wget -O install.sh http://download.bt.cn/install/install_6.0.sh &amp;&amp; sh install.sh</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/yqqANFX.png#vwid=503&vhei=264" alt="img"></p>
+<p>宝塔安装完毕以后，根据自己的需求安装所需的环境插件。</p>
+<p><img src="https://i.imgur.com/dtrhOJD.png#vwid=670&vhei=485" alt="img"></p>
+<p>运行以下代码可以解除宝塔面板的强制绑定手机</p>
+<p>（运行完毕以后，请 <strong>清除浏览器缓存</strong> 并刷新宝塔面板！）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sed -i &quot;s|bind_user == &#x27;True&#x27;|bind_user == &#x27;XXXX&#x27;|&quot; /www/server/panel/BTPanel/static/js/index.js</span><br></pre></td></tr></table></figure>
+
+<h3 id="部署网站"><a href="#部署网站" class="headerlink" title="部署网站"></a>部署网站</h3><p>根据自己的需求，我们这边选择用WP建站。</p>
+<p>找到软件商店——一键部署——一键部署 WordPress</p>
+<p><img src="https://i.imgur.com/q8qwIeM.png#vwid=500&vhei=415" alt="img"></p>
+<p>找到 <code>站点设置</code>，找到 <code>伪静态</code> ，在复选框中选择适合 WordPress 的伪静态样式，确保站点一切正常。</p>
+<p><img src="https://i.imgur.com/yV7Ak2K.png#vwid=780&vhei=325" alt="img"></p>
+<p>部署完成以后，请自行的完成网站数据库、站点名、用户名和密码等相关的设置。</p>
+<p><img src="https://i.imgur.com/7nyD8pF.png#vwid=745&vhei=543" alt="img"></p>
+<h3 id="为域名申请证书"><a href="#为域名申请证书" class="headerlink" title="为域名申请证书"></a>为域名申请证书</h3><p>找到网站设置界面，点击SSL为网站申请证书，强制开启 HTTPS。</p>
+<p><img src="https://i.imgur.com/0ne8aY8.png#vwid=775&vhei=485" alt="img"></p>
+<h3 id="记录证书路径"><a href="#记录证书路径" class="headerlink" title="记录证书路径"></a>记录证书路径</h3><p>证书可以直接在宝塔面板进行更新，或是设置定时任务自动更新。</p>
+<p>宝塔面板申请的证书在如下目录：<code>/www/server/panel/vhost/cert/你的域名/</code> 目录之下</p>
+<p>至此，网站已经可以使用 <code>https</code> 访问了，如下图</p>
+<p><img src="https://i.imgur.com/EpA90MQ.png#vwid=808&vhei=683" alt="img"></p>
+<h2 id="安装-Xray-可视化面板"><a href="#安装-Xray-可视化面板" class="headerlink" title="安装 Xray 可视化面板"></a>安装 Xray 可视化面板</h2><h3 id="一键安装或升级脚本"><a href="#一键安装或升级脚本" class="headerlink" title="一键安装或升级脚本"></a>一键安装或升级脚本</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash &lt;(curl -Ls https://blog.sprov.xyz/v2-ui.sh)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/dvuYTRh.png#vwid=638&vhei=469" alt="img"></p>
+<h3 id="面板常用命令"><a href="#面板常用命令" class="headerlink" title="面板常用命令"></a>面板常用命令</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">v2-ui              - 显示管理菜单 (功能更多)</span><br><span class="line">v2-ui start        - 启动 v2-ui 面板</span><br><span class="line">v2-ui stop         - 停止 v2-ui 面板</span><br><span class="line">v2-ui restart      - 重启 v2-ui 面板</span><br><span class="line">v2-ui status       - 查看 v2-ui 状态</span><br><span class="line">v2-ui enable       - 设置 v2-ui 开机自启</span><br><span class="line">v2-ui disable      - 取消 v2-ui 开机自启</span><br><span class="line">v2-ui log          - 查看 v2-ui 日志</span><br><span class="line">v2-ui update       - 更新 v2-ui 面板</span><br><span class="line">v2-ui install      - 安装 v2-ui 面板</span><br><span class="line">v2-ui uninstall    - 卸载 v2-ui 面板</span><br></pre></td></tr></table></figure>
+
+<h3 id="放行宝塔面板的相关端口"><a href="#放行宝塔面板的相关端口" class="headerlink" title="放行宝塔面板的相关端口"></a>放行宝塔面板的相关端口</h3><p>找到宝塔面板 —— 安全 —— 防火墙，放行面板的默认端口 <code>65432</code></p>
+<p><img src="https://i.imgur.com/uhYt6Zv.png#vwid=870&vhei=351" alt="img"></p>
+<h3 id="访问并设置-Xray-管理面板"><a href="#访问并设置-Xray-管理面板" class="headerlink" title="访问并设置 Xray 管理面板"></a>访问并设置 Xray 管理面板</h3><p>在浏览器中输入刚才解析的域名 <code>bt.bozai1.xyz:65432</code> ，用户名 <code>admin</code> ，密码 <code>admin</code></p>
+<p><img src="https://i.imgur.com/qytDh2U.png#vwid=823&vhei=584" alt="img"></p>
+<p>修改必要的面板参数 <code>面板端口</code>、<code>登录标题</code> <code>网页根路径</code>（路径前面必须有一个 <code>/</code> ，然而后面不要 <code>/</code> ）等，其他若是你不清楚，请严格看下图</p>
+<p><img src="https://i.imgur.com/EtT2zyg.png#vwid=701&vhei=575" alt="img"></p>
+<p><strong>PS：更改端口以后，一定记得去 宝塔面板 —— 安全 —— 防火墙 里面去放行相关的端口。</strong></p>
+<h3 id="重启-Xray-面板"><a href="#重启-Xray-面板" class="headerlink" title="重启 Xray 面板"></a>重启 Xray 面板</h3><p>在 VPS 输入 <code>v2-ui restart</code> 对面板和 Xray 进行重启，使得配置生效</p>
+<h3 id="增加科学上网节点"><a href="#增加科学上网节点" class="headerlink" title="增加科学上网节点"></a>增加科学上网节点</h3><p>在面板里面找到 —— 账号列表 —— 点击 + 添加一个账号，具体设置如下图。</p>
+<blockquote>
+<p>对于 <code>fallbacks</code> ，我们还没有展开系统的讲解，而且 V2-UI 的回落设置也有一定的 BUG。</p>
+<p>所以，这次仅仅只是对于宝塔里面有一个站点的情况进行演示，最后我们会使用最简单的 Nginx 反代来使 443 共存。</p>
+</blockquote>
+<p><img src="https://i.imgur.com/CVaExIT.png#vwid=518&vhei=544" alt="img"></p>
+<p>添加一个支持 CDN 的节点，不要开启 TLS，记住 端口号、路径。</p>
+<h2 id="配置-Nginx-反向代理"><a href="#配置-Nginx-反向代理" class="headerlink" title="配置 Nginx 反向代理"></a>配置 Nginx 反向代理</h2><p>找到 网站设置 界面，找到 <code>配置文件</code>，在最后一行的 <code>&#125;</code> 符号前面，新起几行，插入以下反代代码，可以对比下图。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">location ^~ /lulu &#123;</span><br><span class="line">    proxy_pass http://127.0.0.1:9527/lulu;</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">&#125;</span><br><span class="line">location /lualu &#123;</span><br><span class="line">        proxy_redirect off;</span><br><span class="line">        proxy_pass http://127.0.0.1:56270;</span><br><span class="line">        proxy_http_version 1.1;</span><br><span class="line">        proxy_set_header Upgrade $http_upgrade;</span><br><span class="line">        proxy_set_header Connection &quot;upgrade&quot;;</span><br><span class="line">        proxy_set_header Host $http_host;</span><br><span class="line">        proxy_read_timeout 300s;</span><br><span class="line">        # Show realip in v2ray access.log</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/lFiph3c.png#vwid=783&vhei=524" alt="img"></p>
+<p>设置完毕以后，在宝塔面板里面重新启动 Nginx，是的配置生效。</p>
+<p>至此，你可以使用 <code>https://bt.bozai1.xyz/bobo</code> 来访问你的 Xray 管理面板了。</p>
+<h2 id="最重要的在后面"><a href="#最重要的在后面" class="headerlink" title="最重要的在后面"></a>最重要的在后面</h2><p>注意事项：</p>
+<p>使用这种反代以后，在客户端使用的时候，<code>二维码分享</code> 以及 <code>链接分享</code> 会出问题。大家在客户端导入分享的链接以后，需要自行更改三个地方：</p>
+<p>端口号： <code>443</code> 、 路径：前面的 <code>%2F</code> 换为 <code>/</code> 、TLS 设置 ：<code>开启</code></p>
+<p>到这里，就完毕了。大家可以选择是否开启CDN。具体设置可以 <a href="https://www.v2rayssr.com/go?url=https://youtu.be/JakjD0vMdKY">查看视频教程</a></p>
+]]></content>
+      <categories>
+        <category>wall</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+        <tag>宝塔面板</tag>
+        <tag>v2-ui</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>常用脚本收集</title>
+    <url>/posts/46926.html</url>
+    <content><![CDATA[<!--markdown--># 常用脚本及用法收集
+
+<h2 id="WARP"><a href="#WARP" class="headerlink" title="WARP"></a>WARP</h2><p><strong>查看WARP当前统计状态：<code>wg</code></strong></p>
+<p><strong>查看当前IPV4 IP：<code>curl -4 ip.p3terx.com</code></strong></p>
+<p><strong>查看当前IPV6 IP：<code>curl -6 ip.p3terx.com</code></strong></p>
+<p><strong>手动临时关闭WARP网络接口</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wg-quick down wgcf</span><br></pre></td></tr></table></figure>
+
+<p><strong>手动开启WARP网络接口</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wg-quick up wgcf</span><br></pre></td></tr></table></figure>
+
+<p><strong>启动<code>systemctl enable wg-quick@wgcf</code></strong></p>
+<p><strong>开始<code>systemctl start wg-quick@wgcf</code></strong></p>
+<p><strong>重启<code>systemctl restart wg-quick@wgcf</code></strong></p>
+<p><strong>停止<code>systemctl stop wg-quick@wgcf</code></strong></p>
+<p><strong>关闭<code>systemctl disable wg-quick@wgcf</code></strong></p>
+<h2 id="①EUserv"><a href="#①EUserv" class="headerlink" title="①EUserv"></a><a href="https://github.com/YG-tsj/EUserv-warp">①EUserv</a></h2><h5 id="恢复EUserv官方DNS64（重装系统者，可直接跳到第二步脚本安装）"><a href="#恢复EUserv官方DNS64（重装系统者，可直接跳到第二步脚本安装）" class="headerlink" title="恢复EUserv官方DNS64（重装系统者，可直接跳到第二步脚本安装）"></a><strong>恢复EUserv官方DNS64（重装系统者，可直接跳到第二步脚本安装）</strong></h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo -e &quot;search blue.kundencontroller.de\noptions rotate\nnameserver 2a02:180:6:5::1c\nnameserver 2a02:180:6:5::4\nnameserver 2a02:180:6:5::1e\nnameserver 2a02:180:6:5::1d&quot; &gt; /etc/resolv.conf</span><br></pre></td></tr></table></figure>
+
+<p><strong>仅支持Debian 10&#x2F;Ubuntu 20.04系统，根据自己需求选择以下脚本1或者脚本2</strong></p>
+<h5 id="脚本1：IPV4是WARP分配的IP，IPV6是VPS本地IP"><a href="#脚本1：IPV4是WARP分配的IP，IPV6是VPS本地IP" class="headerlink" title="脚本1：IPV4是WARP分配的IP，IPV6是VPS本地IP"></a><strong>脚本1：IPV4是WARP分配的IP，IPV6是VPS本地IP</strong></h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget -qO- https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/warp4.sh|bash</span><br></pre></td></tr></table></figure>
+
+<h5 id="脚本2：IPV4与IPV6都是WARP分配的IP"><a href="#脚本2：IPV4与IPV6都是WARP分配的IP" class="headerlink" title="脚本2：IPV4与IPV6都是WARP分配的IP"></a><strong>脚本2：IPV4与IPV6都是WARP分配的IP</strong></h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget -qO- https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/warp64.sh|bash</span><br></pre></td></tr></table></figure>
+
+<h5 id="IPV6-VPS专用分流配置文件-以下默认全局IPV4优先，IP、域名自定义，详情见视频教程"><a href="#IPV6-VPS专用分流配置文件-以下默认全局IPV4优先，IP、域名自定义，详情见视频教程" class="headerlink" title="IPV6 VPS专用分流配置文件(以下默认全局IPV4优先，IP、域名自定义，详情见视频教程)"></a><strong>IPV6 VPS专用分流配置文件(以下默认全局IPV4优先，IP、域名自定义，详情见视频教程)</strong></h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123; </span><br><span class="line">&quot;outbounds&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;tag&quot;:&quot;IP6-out&quot;,</span><br><span class="line">      &quot;protocol&quot;: &quot;freedom&quot;,</span><br><span class="line">      &quot;settings&quot;: &#123;&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;tag&quot;:&quot;IP4-out&quot;,</span><br><span class="line">      &quot;protocol&quot;: &quot;freedom&quot;,</span><br><span class="line">      &quot;settings&quot;: &#123;</span><br><span class="line">        &quot;domainStrategy&quot;: &quot;UseIPv4&quot; </span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  &quot;routing&quot;: &#123;</span><br><span class="line">    &quot;rules&quot;: [</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;type&quot;: &quot;field&quot;,</span><br><span class="line">        &quot;outboundTag&quot;: &quot;IP4-out&quot;,</span><br><span class="line">        &quot;domain&quot;: [&quot;&quot;] </span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;type&quot;: &quot;field&quot;,</span><br><span class="line">        &quot;outboundTag&quot;: &quot;IP6-out&quot;,</span><br><span class="line">        &quot;network&quot;: &quot;udp,tcp&quot; </span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="②Oracle甲骨文脚本集合，针对KVM-X86架构-x2F-ARM架构"><a href="#②Oracle甲骨文脚本集合，针对KVM-X86架构-x2F-ARM架构" class="headerlink" title="②Oracle甲骨文脚本集合，针对KVM X86架构&#x2F;ARM架构"></a><a href="https://github.com/YG-tsj/Oracle-warp">②Oracle甲骨文脚本集合，针对KVM X86架构&#x2F;ARM架构</a></h2><h4 id="1、root一键脚本"><a href="#1、root一键脚本" class="headerlink" title="1、root一键脚本"></a>1、root一键脚本</h4><p>用户名：root，密码自定义。方便登录与编辑文件！！后续再次执行脚本意味着更改root密码！！</p>
+<p>提示：密码不要设置得过于简单，容易被破解。密钥文件要保存好，以防万一！</p>
+<p><strong>统一适用于纯IPV4、纯IPV6、双栈IPV4+IPV6，非root状态下直接输入以下脚本（已测试支持甲骨文与谷歌云）</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash &lt;(curl -sSL https://cdn.jsdelivr.net/gh/YG-tsj/CFWarp-Pro/root.sh)</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、warp多功能一键脚本"><a href="#2、warp多功能一键脚本" class="headerlink" title="2、warp多功能一键脚本"></a>2、warp多功能一键脚本</h4><p><strong>支持X86&#x2F;ARM架构的纯IPV4、纯IPV6、双栈IPV4+IPV6 VPS脚本</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget -N --no-check-certificate https://cdn.jsdelivr.net/gh/YG-tsj/CFWarp-Pro/multi.sh &amp;&amp; chmod +x multi.sh &amp;&amp; ./multi.sh</span><br></pre></td></tr></table></figure>
+
+<p>进入脚本快捷方式 <code>bash multi.sh</code></p>
+<h4 id="3、其他KVM架构VPS查看专用ip方式（待更新）"><a href="#3、其他KVM架构VPS查看专用ip方式（待更新）" class="headerlink" title="3、其他KVM架构VPS查看专用ip方式（待更新）"></a>3、其他KVM架构VPS查看专用ip方式（待更新）</h4><p>脚本5不用输入专用IP。其他脚本需要输入专用IP（防止VPS本地IP套WARP后失联），根据不同的VPS，专用IP可能是IP，也可能是IP段。</p>
+<p><strong>进入</strong>SSH查看专用IP命令：</p>
+<p><code>ip -4 route</code>或者<code>ip addr</code></p>
+<p>结果会显示IP或者IP段，IP段用 &#x2F;数字 表示！</p>
+<p>例：有的VPS公网IP为123.456.2.3，而专用IP段可能就是123.456.0.1&#x2F;16，此时，要输入的专用IP就是123.456.0.1&#x2F;16，别忘记输入后面的&#x2F;16哦！</p>
+<h4 id="4、如果Mark-a脚本安装错误执行下方操作即可"><a href="#4、如果Mark-a脚本安装错误执行下方操作即可" class="headerlink" title="4、如果Mark-a脚本安装错误执行下方操作即可"></a>4、如果Mark-a脚本安装错误执行下方操作即可</h4><p>一键V2:<br><code>bash &lt;(curl -s -L https://git.io/v2ray-setup.sh)</code></p>
+<p>一键XV2:<br><code>bash &lt;(curl -sL https://s.hijk.art/xray.sh)</code></p>
+<p><strong>先装第一个脚本 ，卸载后再装第二个脚本卸载在装8合一就能解决</strong></p>
+<h2 id="③mack-a"><a href="#③mack-a" class="headerlink" title="③mack-a"></a><a href="https://github.com/mack-a/v2ray-agent">③mack-a</a></h2><ul>
+<li>支持快捷方式启动，安装完毕后，shell输入**<code>vasma</code><strong>即可打开脚本，脚本执行路径</strong><code>/etc/v2ray-agent/install.sh</code>**</li>
+<li><strong>Latest Version【推荐】</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget -P /root -N --no-check-certificate &quot;https://raw.githubusercontent.com/mack-a/v2ray-agent/master/install.sh&quot; &amp;&amp; chmod 700 /root/install.sh &amp;&amp; /root/install.sh</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Stable-v2.4.32</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget -P /root -N --no-check-certificate &quot;https://raw.githubusercontent.com/mack-a/v2ray-agent/fd4daa2cc88dc687b4a7d0a64c4ea7d984290938/install.sh&quot; &amp;&amp; chmod 700 /root/install.sh &amp;&amp; /root/install.sh</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Stable-v2.2.24</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget -P /root -N --no-check-certificate &quot;https://raw.githubusercontent.com/mack-a/v2ray-agent/9ae23c13a56460d8c14f27c8eb65efc73b173f46/install.sh&quot; &amp;&amp; chmod 700 /root/install.sh &amp;&amp; /root/install.sh</span><br></pre></td></tr></table></figure>
+
+<h2 id="④SKY-BOX"><a href="#④SKY-BOX" class="headerlink" title="④SKY-BOX"></a><a href="https://github.com/BlueSkyXN/SKY-BOX">④SKY-BOX</a></h2><h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>wget -O box.sh <a href="https://raw.githubusercontent.com/BlueSkyXN/SKY-BOX/main/box.sh">https://raw.githubusercontent.com/BlueSkyXN/SKY-BOX/main/box.sh</a> &amp;&amp; chmod +x box.sh &amp;&amp; clear &amp;&amp; .&#x2F;box.sh</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget -O box.sh https://raw.githubusercontent.com/BlueSkyXN/SKY-BOX/main/box.sh &amp;&amp; chmod +x box.sh &amp;&amp; clear &amp;&amp; ./box.sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="ARM-beta使用方法"><a href="#ARM-beta使用方法" class="headerlink" title="ARM beta使用方法"></a>ARM beta使用方法</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget -O box.sh https://raw.githubusercontent.com/BlueSkyXN/SKY-BOX/main/armbox.sh &amp;&amp; chmod +x box.sh &amp;&amp; clear &amp;&amp; ./box.sh</span><br></pre></td></tr></table></figure>
+
+<h2 id="⑤NEZHA"><a href="#⑤NEZHA" class="headerlink" title="⑤NEZHA"></a><a href="https://github.com/naiba/nezha">⑤NEZHA</a></h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -L https://raw.githubusercontent.com/naiba/nezha/master/script/install.sh  -o nezha.sh &amp;&amp; chmod +x nezha.sh</span><br><span class="line">sudo ./nezha.sh</span><br></pre></td></tr></table></figure>
+
+<p><strong>国内镜像加速：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -L https://cdn.jsdelivr.net/gh/naiba/nezha@master/script/install.sh -o nezha.sh &amp;&amp; chmod +x nezha.sh</span><br><span class="line">CN=true sudo ./nezha.sh</span><br></pre></td></tr></table></figure>
+
+<h2 id="⑥MTPROTO"><a href="#⑥MTPROTO" class="headerlink" title="⑥MTPROTO"></a>⑥MTPROTO</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubiBackup/doubi/master/mtproxy.sh &amp;&amp; chmod +x mtproxy.sh &amp;&amp; bash mtproxy.sh</span><br></pre></td></tr></table></figure>
+
+<h2 id="⑦其他"><a href="#⑦其他" class="headerlink" title="⑦其他"></a>⑦其他</h2><p><strong>工具箱：</strong></p>
+<p><code>bash &lt;(curl -s -L http://file.twovps.co/cs)</code></p>
+<p><strong>配置一览：</strong></p>
+<p><code>bash &lt;(wget -qO- git.io/ceshi)</code></p>
+<p><strong>流媒体解锁：</strong></p>
+<p><code>bash &lt;(curl -sSL &quot;https://github.com/CoiaPrant/MediaUnlock_Test/raw/main/check.sh&quot;)</code></p>
+<p><strong>YABS：</strong></p>
+<p><code>curl -sL yabs.sh | bash</code></p>
+<p><strong>LemonBenchIntl：</strong></p>
+<p><code>wget -O- https://ilemonra.in/LemonBenchIntl | bash -s full</code></p>
+<h2 id="⑧系统命令"><a href="#⑧系统命令" class="headerlink" title="⑧系统命令"></a>⑧系统命令</h2><p><code>apt-get update</code><br>升级安装包相关的命令,刷新可安装的软件列表(但是不做任何实际的安装动作)</p>
+<p><code>apt-get upgrade</code><br>进行安装包的更新(软件版本的升级)</p>
+<p><code>apt-get dist-upgrade</code><br>进行系统版本的升级(Ubuntu版本的升级)</p>
+<p><code>do-release-upgrade</code><br>Ubuntu官方推荐的系统升级方式,若加参数-d还可以升级到开发版本,但会不稳定</p>
+<p>⑨⑩</p>
+]]></content>
+      <categories>
+        <category>wall</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>最新取消宝塔面板强制绑定帐号的方法</title>
+    <url>/posts/64741.html</url>
+    <content><![CDATA[<!--markdown-->### 1、安装aapanel
+
+<p>我们可以安装宝塔国际版aapanel，和宝塔面板使用起来没有任何区别，只不过aapanel是英文版本。</p>
+<p><a href="https://www.aapanel.com/reference.html">https://www.aapanel.com/reference.html</a></p>
+<h4 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h4><p>Centos Installation</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install -y wget &amp;&amp; wget -O install.sh http://www.aapanel.com/script/install_6.0_en.sh &amp;&amp; bash install.sh</span><br></pre></td></tr></table></figure>
+
+<p>Ubuntu&#x2F;Deepin Installation</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget -O install.sh http://www.aapanel.com/script/install-ubuntu_6.0_en.sh &amp;&amp; sudo bash install.sh</span><br></pre></td></tr></table></figure>
+
+<p>Debian Installation</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget -O install.sh http://www.aapanel.com/script/install-ubuntu_6.0_en.sh &amp;&amp; bash install.sh</span><br></pre></td></tr></table></figure>
+
+<p>Fedora Installation</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install -y wget &amp;&amp; wget -O install.sh http://www.aapanel.com/script/install_6.0_en.sh &amp;&amp; bash install.sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、安装宝塔旧版本"><a href="#2、安装宝塔旧版本" class="headerlink" title="2、安装宝塔旧版本"></a>2、安装宝塔旧版本</h3><p><strong>1）可以使用宝塔5.9</strong></p>
+<p>官网的安装命令：<a href="https://www.bt.cn/bbs/thread-1186-1-1.html">https://www.bt.cn/bbs/thread-1186-1-1.html</a></p>
+<p><strong>2）安装宝塔历史版本：</strong></p>
+<p>目前最新版本是7.6</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://download.bt.cn/install/update/LinuxPanel-5.9.1.zip（目前仍然很多人在用的版本）http://download.bt.cn/install/update/LinuxPanel-7.0.1.zip</span><br><span class="line">http://download.bt.cn/install/update/LinuxPanel-7.0.2.zip</span><br><span class="line">http://download.bt.cn/install/update/LinuxPanel-7.0.3.zip</span><br><span class="line">http://download.bt.cn/install/update/LinuxPanel-7.1.0.zip</span><br><span class="line">http://download.bt.cn/install/update/LinuxPanel-7.1.1.zip</span><br><span class="line">http://download.bt.cn/install/update/LinuxPanel-7.2.0.zip</span><br><span class="line">http://download.bt.cn/install/update/LinuxPanel-7.3.0.zip</span><br><span class="line">http://download.bt.cn/install/update/LinuxPanel-7.4.0.zip</span><br><span class="line">http://download.bt.cn/install/update/LinuxPanel-7.4.2.zip （有pma漏洞）http://download.bt.cn/install/update/LinuxPanel-7.4.3.zip</span><br><span class="line">http://download.bt.cn/install/update/LinuxPanel-7.4.5.zip（会有绑定提醒）http://download.bt.cn/install/update/LinuxPanel-7.4.6.zip</span><br></pre></td></tr></table></figure>
+
+<p><strong>3）百度网盘收藏了。如果上面失效，可以来这里下载</strong></p>
+<p>链接: <a href="https://pan.baidu.com/s/1a2b9Bt9_j9sm6DCUESpycw">https://pan.baidu.com/s/1a2b9Bt9_j9sm6DCUESpycw</a> 提取码: dkcm</p>
+<p><strong>4)  官方给出的手动升级方法</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、下载离线升级包</span><br><span class="line">2、将升级包上传到服务器中的/root目录</span><br><span class="line">3、解压文件：unzip LinuxPanel-*</span><br><span class="line">4、切换到升级包目录： cd panel</span><br><span class="line">5、执行升级脚本：bash update.sh</span><br><span class="line">6、删除升级包：cd .. &amp;&amp; rm -f LinuxPanel-*.zip &amp;&amp; rm -rf panel</span><br></pre></td></tr></table></figure>
+
+<p><strong>5)  简单设置下</strong></p>
+<p>为了更安全，你可以执行以下内容，避免一些问题~~</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo &#x27;127.0.0.1 bt.cn&#x27; &gt;&gt;/etc/hosts</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、取消强制登录"><a href="#3、取消强制登录" class="headerlink" title="3、取消强制登录"></a>3、取消强制登录</h3><p>上面的方法可能都不是你喜欢的，这里介绍写其他的。如果以后遇到问题会更新在这里。</p>
+<p><strong>1）目前还能用的方法删除</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp /www/server/panel/data/bind.pl /www/server/panel/data/binds.pl  #防止出问题先备份这个文件</span><br><span class="line">rm -f /www/server/panel/data/bind.pl   #接着删除文件</span><br></pre></td></tr></table></figure>
+
+<p>删除后，刷新浏览器问题解决。</p>
+<p><strong>2）如果你的出问题了，那么只需要恢复即可。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp /www/server/panel/data/binds.pl /www/server/panel/data/bind.pl  #恢复文件</span><br></pre></td></tr></table></figure>
+
+<p><strong>3）脚本，直接运行即可。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo &quot;&#123;\&quot;uid\&quot;:1000,\&quot;username\&quot;:\&quot;admin\&quot;,\&quot;serverid\&quot;:1&#125;&quot; &gt; /www/server/panel/data/userInfo.json</span><br></pre></td></tr></table></figure>
+
+<p>运行后，刷新浏览器问题解决。</p>
+<h3 id="5、修改-init-py"><a href="#5、修改-init-py" class="headerlink" title="5、修改__init__.py"></a>5、修改__init__.py</h3><p>通过禁用&#x2F;www&#x2F;server&#x2F;panel&#x2F;BTPanel&#x2F;<strong>init</strong>.py文件的某些代码来禁止绑定。我们通过路径找到__init__.py文件，这个如何找这个文件，可以用SFTP来连接到服务器，然后通过路径找到这个文件。拖到桌面用编辑器打开，比如说，sublime，editplus等等。</p>
+<p><strong>1）181-182行的代码注释掉，前面加#即可，如下。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#if not public.is_bind():#return redirect(&#x27;/bind&#x27;,302)</span><br></pre></td></tr></table></figure>
+
+<p><strong>2）230-231行注释掉，如下：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#if not os.path.exists(&#x27;data/userInfo.json&#x27;):#data[&#x27;bind&#x27;] = os.path.exists(&#x27;data/bind.pl&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>3）ssh连接到服务器，输入bt命令，接着输入9，清除面板缓存即可。</strong></p>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+        <tag>宝塔面板</tag>
+        <tag>强制绑定</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>本站最新logo</title>
+    <url>/posts/4531.html</url>
+    <content><![CDATA[<!--markdown-->![](https://i.loli.net/2019/11/24/DhHx4r1qAjXNdRE.png)
+
+<pre><code>
+</code></pre>
+]]></content>
+      <categories>
+        <category>wall</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>流氓软件网站植入主页一览</title>
+    <url>/posts/33831.html</url>
+    <content><![CDATA[<!--markdown-->> 下面是整理的名单：
+
+<p>360安全卫士，解除锁定：上网首页防护-锁定浏览器主页，选择取消锁定</p>
+<p><a href="https://www.hao123.com/?tn=96127289_hao_pg">https://www.hao123.com/?tn=96127289_hao_pg</a><br><a href="https://www.hao123.com/?tn=93300059_hao_pg">https://www.hao123.com/?tn=93300059_hao_pg</a><br><a href="https://www.duba.com/?f=68_3_se&amp;t=--type&amp;--type=0">https://www.duba.com/?f=68_3_se&amp;t=--type&amp;--type=0</a><br><a href="https://www.duba.com/?f=numswdh&amp;t=--type&amp;ft=gjlock&amp;--type=0&amp;hid=100_50_&amp;ty22=0&amp;tryno=1335&amp;pru=1">https://www.duba.com/?f=numswdh&amp;t=--type&amp;ft=gjlock&amp;--type=0&amp;hid=100_50_&amp;ty22=0&amp;tryno=1335&amp;pru=1</a><br>金山毒霸导致，解除锁定：浏览器保护-锁定其他浏览器默认主页，选择取消锁定<br>金山类有主页锁定功能的软件：驱动精灵、金山词霸、安全助手<br>WPS：在配置工具-网址大全-解除锁定网址大全</p>
+<p><a href="https://hao.360.cn/?src=lm&amp;ls=n6d33fbb795">https://hao.360.cn/?src=lm&amp;ls=n6d33fbb795</a><br><a href="http://hao.360.cn/?src=lm&amp;ls=n137b673f91">http://hao.360.cn/?src=lm&amp;ls=n137b673f91</a><br>hao.360.cn&#x2F;?src&#x3D;lm&amp;ls&#x3D;n36bb4e7793<br>hao.360.cn&#x2F;?src&#x3D;lm&amp;ls&#x3D;n6ffbfc2892鲁大师锁定导致，打开鲁大师-设置中心-主页防护-选择关闭主页防护功能</p>
+<p><a href="https://hao.360.cn/?src=lm&amp;ls=n6807d57c95">https://hao.360.cn/?src=lm&amp;ls=n6807d57c95</a><br>净网大师锁定主页导致，取消锁定</p>
+<p><a href="https://www.hao123.com/?tn=99682755_hao_pg">https://www.hao123.com/?tn=99682755_hao_pg</a><br><a href="https://www.hao123.com/?tn=98012088_hao_pg">https://www.hao123.com/?tn=98012088_hao_pg</a><br>qq电脑管家锁定主页导致，浏览器保护-取消锁定主页</p>
+<p><a href="https://www.hao123.com/?tn=91233758_hao_pg">https://www.hao123.com/?tn=91233758_hao_pg</a><br><a href="https://www.hao123.com/?tn=96184009_hao_pg">https://www.hao123.com/?tn=96184009_hao_pg</a><br><a href="https://www.hao123.com/?tn=91233758_hao_pg">https://www.hao123.com/?tn=91233758_hao_pg</a><br><a href="https://www.hao123.com/?tn=94764967_hao_pg">https://www.hao123.com/?tn=94764967_hao_pg</a><br>打开浏览器，脚本错误，99宿舍软件的C:\Program Files (x86)\Common Files\System\ssespi\lsp\sse4.0.0.dll导致，用360卫士-功能大全中的lsp修复下</p>
+<p><a href="http://hao.qquu8.com/?m=yx&amp;r=j&amp;s=3%E7%BD%91%E5%9D%80;%E7%84%B6%E5%90%8E%E7%B4%A7%E6%8E%A5%E7%9D%80%E5%B0%B1%E5%8F%98%E6%88%90http://www.hao123.com/?tn=94190515_s_hao_pg">http://hao.qquu8.com/?m=yx&amp;r=j&amp;s=3网址;然后紧接着就变成http://www.hao123.com/?tn=94190515_s_hao_pg</a><br>hao.qquu8.com跳转到<a href="https://www.hao123.com/?tn=95244201_hao_pg">https://www.hao123.com/?tn=95244201_hao_pg</a><br>修改快捷方式参数导致，激活类软件，删掉了这个文件夹试试C:\Windows\KMS10</p>
+<p><a href="https://hao.360.cn/?src=lm&amp;ls=n2537f7e896">https://hao.360.cn/?src=lm&amp;ls=n2537f7e896</a><br><a href="http://hao.360.cn/?src=lm&amp;ls=n5bafdd0f8a">http://hao.360.cn/?src=lm&amp;ls=n5bafdd0f8a</a><br>主页卫士HomeSafe导致，<br>32位系统，找到C:\Program Files\HomeSafe\，双击uninst.exe卸载<br>64位系统，找到C:\Program Files (x86)\HomeSafe，双击uninst.exe卸载</p>
+<p><a href="http://www.hao123.com/?tn=39015028_152_hao_pg">http://www.hao123.com/?tn=39015028_152_hao_pg</a><br>浏览器修复大师导致，在安装目录C:\Program Files\Brmas\bin双击运行Uninstall.exe卸载，文件夹设置下显示系统隐藏文件才能看见</p>
+<p><a href="http://www.hao123.com/?tn=99182691_hao_pg">http://www.hao123.com/?tn=99182691_hao_pg</a><br>CAD病毒，用360杀毒更新后，全盘查杀</p>
+<p>HTTP&#x2F;1.1 302 Location: <a href="http://www.2345.com/?k39507518">http://www.2345.com/?k39507518</a><br>HTTP&#x2F;1.1 307 Temporary Redirect Location: <a href="http://www.2345.com/?k588298">http://www.2345.com/?k588298</a><br>302、307跳转导致，修改dns后清理下浏览器缓存</p>
+<p><a href="http://ep.rising.cn/cg.asp">http://ep.rising.cn/cg.asp</a><br>网络劫持导致，302重定向，修改dns后清理下浏览器缓存</p>
+<p><a href="http://www.hao123.com/?tn=90038330_hao_pg">http://www.hao123.com/?tn=90038330_hao_pg</a><br><a href="http://www.hao123.com/?tn=90259734_hao_pg">http://www.hao123.com/?tn=90259734_hao_pg</a><br><a href="http://www.hao123.com/?tn=95340694_hao_pg">http://www.hao123.com/?tn=95340694_hao_pg</a><br>网络劫持，3022重定向，用<a href="https://www.hao123.com/">https://www.hao123.com</a></p>
+<p><a href="http://www.mq668.com/">http://www.mq668.com</a><br><a href="https://www.2345.com/?23024-0051">https://www.2345.com/?23024-0051</a><br><a href="http://808010.com/">http://808010.com/</a><br><a href="https://www.2345.com/?23024-0010">https://www.2345.com/?23024-0010</a><br>IElock.dll导致，用系统急救箱-勾选强力模式</p>
+<p><a href="http://v.2345.com/?lm001332">http://v.2345.com/?lm001332</a><br><a href="http://www.2345.com/?30778-0083">http://www.2345.com/?30778-0083</a><br><a href="http://www.2345.com/?34038">http://www.2345.com/?34038</a><br>上海宁乐科技导致，系统急救箱-再重装浏览器</p>
+<p><a href="http://www.2345.com/?34294-0026">www.2345.com/?34294-0026</a><br><a href="http://www.2345.com/?2698">www.2345.com/?2698</a><br><a href="http://www.2345.com/?23523">www.2345.com/?23523</a><br><a href="http://www.2345.com/?34294">www.2345.com/?34294</a><br><a href="http://www.2345.com/?23523">www.2345.com/?23523</a><br><a href="http://www.2345.com/?23523-0046">www.2345.com/?23523-0046</a><br><a href="http://www.2345.com/?23523-0045">www.2345.com/?23523-0045</a><br><a href="http://www.2345.com/?34294-0026">www.2345.com/?34294-0026</a><br><a href="http://www.2345.com/?23523-0005">www.2345.com/?23523-0005</a><br>轻松一刻软件导致，系统急救箱-再卫士修改主页</p>
+<p>cnnhao123.com&#x2F;<br><a href="http://www.hao123.com/?tn=94764967_hao_pg">www.hao123.com/?tn=94764967_hao_pg</a><br>aq.ss998998.com&#x2F; ap.ss889889.com<br><a href="http://www.hao123.com/?tn=92924713_hao_pg">www.hao123.com/?tn=92924713_hao_pg</a><br>中毒了LokExtOverlayIcon c:\windows\system32\drivers\umdf\ielock64.dll，360安全卫士修复下，来源：无忧系统助手_y.exe，在线下载镜像安装导致</p>
+<p><a href="https://www.2345.com/?36129">https://www.2345.com/?36129</a><br>uiprotect.sys导致，它会删掉系统急救箱主程序，需要下载急救箱，在压缩文件中把SuperKiller.exe重命名123.exe,解压出来后-强力模式修复</p>
+<p><a href="http://www.2345.com/tg33091">www.2345.com/tg33091</a><br>预装系统导致，系统急救箱-再卫士主页修改下</p>
+<p><a href="http://www.2345.com/?11319">http://www.2345.com/?11319</a><br>软媒魔方锁定主页导致，取消主页锁定</p>
+<p><a href="http://www.2345.com/?25605">http://www.2345.com/?25605</a><br>蜂鸟加速器锁定主页导致，取消主页锁定</p>
+<p><a href="http://www.2345.com/?23502%E3%80%81http://www.2345.com/?24170-0019">http://www.2345.com/?23502、http://www.2345.com/?24170-0019</a><br>dump_xxx驱动导致 ,R3叫Msxxx，系统急救箱-强力模式修复</p>
+<p><a href="https://hao.360.cn/?src=lm&amp;ls=n14fba8dd89">https://hao.360.cn/?src=lm&amp;ls=n14fba8dd89</a><br><a href="http://www.2345.com/?23024-0102">http://www.2345.com/?23024-0102</a><br>kesvc.sys驱动导致，系统急救箱-强力模式修复</p>
+<p><a href="http://www.2345.com/tg27928.htm">http://www.2345.com/tg27928.htm</a> <a href="http://www.360.560la.com/">www.360.560la.com</a> <a href="http://www.2345.com/tg27928.htm">http://www.2345.com/tg27928.htm</a> <a href="http://www.114la.cn/m131.html">http://www.114la.cn/m131.html</a> <a href="http://www.114la.cn/qudaolij6.html">http://www.114la.cn/qudaolij6.html</a><br>tdgfgt.sys、tefheu.sys木马导致，系统急救箱-强力模式修复</p>
+<p><a href="http://www.ie890.com/">http://www.ie890.com</a> 跳转 <a href="http://www.2345.com/tg35035.htm">http://www.2345.com/tg35035.htm</a>   xuexuejia.com、goingbuying.com<br>预装系统导致，系统急救箱-强力模式修复</p>
+<p><a href="http://2345.114la6.com/">http://2345.114la6.com/</a> 跳转 <a href="http://www.2345.com/?35592">http://www.2345.com/?35592</a><br>amdbh.sys、amdjc.sys木马导致，系统急救箱-强力模式修复</p>
+<p><a href="http://www.huibopeixun.com/">http://www.huibopeixun.com</a> 跳转 <a href="http://www.2345.com/?23024-0088">http://www.2345.com/?23024-0088</a><br>预装系统导致，系统急救箱-强力模式修复</p>
+<p><a href="http://www.2345.com/?k2032301">http://www.2345.com/?k2032301</a><br><a href="http://www.2345.com/?k39507518">http://www.2345.com/?k39507518</a><br><a href="http://www.2345.com/?k588298">http://www.2345.com/?k588298</a><br><a href="http://www.2345.com/?klxe">http://www.2345.com/?klxe</a><br>网页重定向导致，用https网址</p>
+<p><a href="http://www.2345.com/?33557-0001">http://www.2345.com/?33557-0001</a><br>预装系统用qq电脑管家锁定主页导致，取消锁定。</p>
+<p><a href="http://www.2345.com/tg35035.htm">http://www.2345.com/tg35035.htm</a><br>预装系统导致（来源系统之家），系统急救箱-再卫士主页修改下</p>
+<p><a href="http://www.114la.cn/qudaolij2.html">http://www.114la.cn/qudaolij2.html</a> 跳转到<a href="http://www.2345.com/?33557-0001">www.2345.com/?33557-0001</a><br>预装系统导致（来源雨林木风），系统急救箱-再重装</p>
+]]></content>
+      <categories>
+        <category>wall</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>美国校友@alumni.unc.edu邮箱注册申请</title>
+    <url>/posts/1814.html</url>
+    <content><![CDATA[<!--markdown-->北卡罗来纳大学教堂山分校为校友提供[免费edu邮箱](https://zwen.net/tag/edu邮箱)，申请者只需提供准确的校友信息即可，相关的信息我们可以通过wiki百科来查询。
+
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>邮箱后缀：<code>@alumni.unc.edu</code></p>
+<p>在线申请地址：<a href="https://zwen.net/go/?url=https://alumni.unc.edu/resources/online-services/request-alumni-email-account/">https://alumni.unc.edu/resources/online-services/request-alumni-email-account/</a></p>
+<h2 id="申请步骤"><a href="#申请步骤" class="headerlink" title="申请步骤"></a>申请步骤</h2><p>1.点击申请地址，填写现在正使用的邮箱地址和要申请的校友邮箱前缀。<br><img src="http://jling.tk/usr/uploads/2020/08/2651210932.png" alt="37272-b7djwvowvdj.png"></p>
+<p>2.查询 <strong><a href="https://zwen.net/go/?url=https://en.wikipedia.org/wiki/List_of_University_of_North_Carolina_at_Chapel_Hill_alumni">北卡罗来纳大学教堂山分校校友名单</a></strong> ，并填入校友的相关信息。</p>
+<p>3.在3个工作日内，您将收到一封电子邮件，其中包含有关如何激活@ alumni.unc.edu帐户的说明。<br><img src="http://jling.tk/usr/uploads/2020/08/2974624850.png" alt="29074-3cva3dj3gd2.png"></p>
+<h2 id="部分校友列表"><a href="#部分校友列表" class="headerlink" title="部分校友列表"></a>部分校友列表</h2><h3 id="Business"><a href="#Business" class="headerlink" title="Business"></a>Business</h3><table>
+<thead>
+<tr>
+<th align="center">Name</th>
+<th align="center">Class</th>
+<th align="center">Major</th>
+<th align="center">Notability</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/John_A._Allison_IV">John Allison</a></td>
+<td align="center">1971</td>
+<td align="center">Business administration</td>
+<td align="center">Former CEO and president of <a href="https://en.wikipedia.org/wiki/Cato_Institute">Cato Institute</a>; former chairman of <a href="https://en.wikipedia.org/wiki/BB%26T">BB&amp;T Corporation&#x2F;Branch Banking &amp; Trust Co</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Robert_J._Bach">Robert J. Bach</a></td>
+<td align="center">1984</td>
+<td align="center">Economics</td>
+<td align="center">American Business Executive; former President of the Entertainment &amp; Devices Division at <a href="https://en.wikipedia.org/wiki/Microsoft">Microsoft</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Eduardo_Belmont_Anderson">Eduardo Belmont Anderson</a></td>
+<td align="center"></td>
+<td align="center">Business administration</td>
+<td align="center">Peruvian billionaire, owner of <a href="https://en.wikipedia.org/w/index.php?title=Belcorp&action=edit&redlink=1">Belcorp</a>[<a href="https://en.wikipedia.org/wiki/List_of_University_of_North_Carolina_at_Chapel_Hill_alumni#cite_note-6">6]</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Michele_Buck">Michele Buck</a></td>
+<td align="center">1987</td>
+<td align="center">Business administration</td>
+<td align="center">President and CEO of <a href="https://en.wikipedia.org/wiki/The_Hershey_Company">The Hershey Company</a>[<a href="https://en.wikipedia.org/wiki/List_of_University_of_North_Carolina_at_Chapel_Hill_alumni#cite_note-7">7]</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Julian_Carr_(industrialist)">Julian Carr</a></td>
+<td align="center">1860s</td>
+<td align="center"></td>
+<td align="center">Industrialist; <a href="https://en.wikipedia.org/wiki/Carrboro,_North_Carolina">Carrboro, North Carolina</a> named for him</td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Max_C._Chapman">Max C. Chapman</a></td>
+<td align="center">1966</td>
+<td align="center">Economics</td>
+<td align="center">Former president and CEO of <a href="https://en.wikipedia.org/wiki/Kidder,_Peabody_%26_Co">Kidder, Peabody &amp; Co</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Warren_Grice_Elliott">Warren Grice Elliott</a></td>
+<td align="center">1867</td>
+<td align="center"></td>
+<td align="center">President of <a href="https://en.wikipedia.org/wiki/Atlantic_Coast_Line_Railroad">Atlantic Coast Line Railroad</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/David_Gardner_(The_Motley_Fool)">David Gardner</a></td>
+<td align="center">1988</td>
+<td align="center">English</td>
+<td align="center">Co-founder of <a href="https://en.wikipedia.org/wiki/The_Motley_Fool">The Motley Fool</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Peaches_Golding">Peaches Golding</a></td>
+<td align="center">1976</td>
+<td align="center">Biology</td>
+<td align="center"><a href="https://en.wikipedia.org/wiki/High_Sheriff_of_Bristol">High Sheriff of Bristol</a>, England, 2010–11[<a href="https://en.wikipedia.org/wiki/List_of_University_of_North_Carolina_at_Chapel_Hill_alumni#cite_note-8">8]</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Peter_Grauer">Peter Grauer</a></td>
+<td align="center">1968</td>
+<td align="center">English</td>
+<td align="center">Chairman of <a href="https://en.wikipedia.org/wiki/Bloomberg_L.P.">Bloomberg L.P.</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Bowman_Gray,_Sr.">Bowman Gray, Sr.</a></td>
+<td align="center">1890</td>
+<td align="center">Did not graduate</td>
+<td align="center">Former president and chairman of <a href="https://en.wikipedia.org/wiki/R.J._Reynolds">R.J. Reynolds</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/J._Frank_Harrison_III">J. Frank Harrison III</a></td>
+<td align="center">1977</td>
+<td align="center">Business administration</td>
+<td align="center">CEO of <a href="https://en.wikipedia.org/wiki/Coca-Cola_Bottling_Co._Consolidated">Coca-Cola Bottling Co. Consolidated</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/William_B._Harrison,_Jr.">William B. Harrison, Jr.</a></td>
+<td align="center">1966</td>
+<td align="center">Economics</td>
+<td align="center">Former CEO and chairman of <a href="https://en.wikipedia.org/wiki/JPMorgan_Chase">JPMorgan Chase</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/George_Watts_Hill">George Watts Hill</a></td>
+<td align="center">1922 &#x2F; Grad.</td>
+<td align="center">Commerce &#x2F; law</td>
+<td align="center">Banker and philanthropist</td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/John_Sprunt_Hill">John Sprunt Hill</a></td>
+<td align="center">1889</td>
+<td align="center">Philosophy</td>
+<td align="center">Banker and philanthropist</td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Walter_E._Hussman,_Jr.">Walter E. Hussman, Jr.</a></td>
+<td align="center">1969</td>
+<td align="center">Journalism</td>
+<td align="center">Publisher of the <em><a href="https://en.wikipedia.org/wiki/Arkansas_Democrat-Gazette">Arkansas Democrat-Gazette</a></em></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Richard_Jenrette">Richard “Dick” Jenrette</a></td>
+<td align="center">1951</td>
+<td align="center"></td>
+<td align="center">Founder of the <a href="https://en.wikipedia.org/wiki/Wall_Street">Wall Street</a> firm <a href="https://en.wikipedia.org/wiki/Donaldson,_Lufkin_%26_Jenrette">Donaldson, Lufkin &amp; Jenrette</a> and former chairman and CEO of <a href="https://en.wikipedia.org/wiki/AXA_Equitable_Life_Insurance_Company">The Equitable</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/William_D._Johnson_(CEO)">William Johnson</a></td>
+<td align="center">Grad.</td>
+<td align="center">Law</td>
+<td align="center">President and CEO of <a href="https://en.wikipedia.org/wiki/Tennessee_Valley_Authority">Tennessee Valley Authority</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Jason_Kilar">Jason Kilar</a></td>
+<td align="center">1993</td>
+<td align="center">Journalism &#x2F; business administration</td>
+<td align="center">Incoming CEO of <a href="https://en.wikipedia.org/wiki/WarnerMedia">WarnerMedia</a>; former CEO of <a href="https://en.wikipedia.org/wiki/Hulu">Hulu</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Paul_Kolton">Paul Kolton</a></td>
+<td align="center">1944</td>
+<td align="center">Journalism</td>
+<td align="center">Former chairman of the <a href="https://en.wikipedia.org/wiki/American_Stock_Exchange">American Stock Exchange</a>[<a href="https://en.wikipedia.org/wiki/List_of_University_of_North_Carolina_at_Chapel_Hill_alumni#cite_note-9">9]</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Sallie_Krawcheck">Sallie Krawcheck</a></td>
+<td align="center">1987</td>
+<td align="center">Journalism</td>
+<td align="center">CEO and co-founder, Ellevest; former Chairman and CEO of Citigroup Global Wealth Management; former CFO of <a href="https://en.wikipedia.org/wiki/Citigroup_Inc.">Citigroup Inc.</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Howard_R._Levine">Howard R. Levine</a></td>
+<td align="center">1981</td>
+<td align="center">Business administration</td>
+<td align="center">former Chairman of the board and CEO of <a href="https://en.wikipedia.org/wiki/Family_Dollar">Family Dollar</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Scott_Livengood">Scott Livengood</a></td>
+<td align="center">1974</td>
+<td align="center">Industrial relations</td>
+<td align="center">Owner and CEO of Dewey’s Bakers; former CEO of <a href="https://en.wikipedia.org/wiki/Krispy_Kreme">Krispy Kreme</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Hugh_McColl">Hugh McColl</a></td>
+<td align="center">1957</td>
+<td align="center">Business administration</td>
+<td align="center">Former CEO of <a href="https://en.wikipedia.org/wiki/Bank_of_America">Bank of America</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/John_Medlin">John Medlin</a></td>
+<td align="center">1956</td>
+<td align="center">Business administration</td>
+<td align="center">Former CEO of <a href="https://en.wikipedia.org/wiki/Wachovia">Wachovia</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Allen_B._Morgan,_Jr.">Allen B. Morgan, Jr.</a></td>
+<td align="center">1965</td>
+<td align="center">History</td>
+<td align="center">Founder and former CEO of <a href="https://en.wikipedia.org/wiki/Morgan_Keegan_%26_Company">Morgan Keegan &amp; Company</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Gary_Parr">Gary Parr</a></td>
+<td align="center">1979</td>
+<td align="center">Business administration</td>
+<td align="center">Vice chairman of <a href="https://en.wikipedia.org/wiki/Lazard">Lazard</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Mercer_Reynolds">Mercer “Merce” Reynolds III</a></td>
+<td align="center">1967</td>
+<td align="center">Business administration</td>
+<td align="center">Finance chair of U.S. President <a href="https://en.wikipedia.org/wiki/George_W._Bush">George W. Bush’s</a> 2004 re-election campaign and a U.S. ambassador to Switzerland and <a href="https://en.wikipedia.org/wiki/Liechtenstein">Liechtenstein</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Chuck_Robbins">Chuck Robbins</a></td>
+<td align="center">1987</td>
+<td align="center">Mathematical sciences</td>
+<td align="center">CEO of <a href="https://en.wikipedia.org/wiki/Cisco_Systems">Cisco Systems</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Julian_Robertson">Julian Robertson</a></td>
+<td align="center">1955</td>
+<td align="center">Business administration</td>
+<td align="center">Founded the investment firm <a href="https://en.wikipedia.org/wiki/Tiger_Management_Corp.">Tiger Management Corp.</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/William_H._Rogers,_Jr.">William H. Rogers, Jr.</a></td>
+<td align="center"></td>
+<td align="center">Business administration</td>
+<td align="center">Chairman and CEO of <a href="https://en.wikipedia.org/wiki/SunTrust_Banks">SunTrust Banks</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Bill_Ruger">Bill Ruger</a></td>
+<td align="center">1940</td>
+<td align="center">Did not graduate</td>
+<td align="center">Founded firearms manufacturer <a href="https://en.wikipedia.org/wiki/Sturm,_Ruger">Sturm, Ruger</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Pete_Rummell">Pete Rummell</a></td>
+<td align="center">1967</td>
+<td align="center">Chemistry &#x2F; English literature</td>
+<td align="center">Former Chairman and CEO of <a href="https://en.wikipedia.org/wiki/Walt_Disney_Imagineering">Walt Disney Imagineering</a> and <a href="https://en.wikipedia.org/wiki/St._Joe_Company">St. Joe Company</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/John_Skipper">John Skipper</a></td>
+<td align="center">1978</td>
+<td align="center">English literature</td>
+<td align="center">Executive chairman of Perform Group and former president of <a href="https://en.wikipedia.org/wiki/ESPN">ESPN</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Marcus_G._Smith">Marcus G. Smith</a></td>
+<td align="center">Did not graduate</td>
+<td align="center">Journalism</td>
+<td align="center">CEO of <a href="https://en.wikipedia.org/wiki/Speedway_Motorsports,_Inc.">Speedway Motorsports, Inc.</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Mitchell_S._Steir">Mitchell S. Steir</a></td>
+<td align="center">1977</td>
+<td align="center">Economics</td>
+<td align="center">Chairman and CEO of <a href="https://en.wikipedia.org/wiki/Studley,_Inc.">Studley, Inc.</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/G._Kennedy_Thompson">Ken Thompson</a></td>
+<td align="center">1973</td>
+<td align="center">American studies</td>
+<td align="center">Former chairman and CEO of <a href="https://en.wikipedia.org/wiki/Wachovia">Wachovia</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Hubertus_van_der_Vaart">Hubertus van der Vaart</a></td>
+<td align="center">1977</td>
+<td align="center">Politics &#x2F; economics</td>
+<td align="center">Co-founder and chairman of <a href="https://en.wikipedia.org/wiki/Small_Enterprise_Assistance_Funds">SEAF</a> (Small Enterprise Assistance Funds)</td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/Thomas_H._Weidemeyer">Thomas H. Weidemeyer</a></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">Senior vice president and COO of the <a href="https://en.wikipedia.org/wiki/United_Parcel_Service">United Parcel Service</a>; director of the <a href="https://en.wikipedia.org/wiki/Goodyear_Tire_and_Rubber_Company">Goodyear Tire and Rubber Company</a></td>
+</tr>
+<tr>
+<td align="center"><a href="https://en.wikipedia.org/wiki/James_M._Wells_III">James M. Wells III</a></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">CEO of <a href="https://en.wikipedia.org/wiki/SunTrust_Banks">SunTrust Banks</a> from 2007 to 2011[<a href="https://en.wikipedia.org/wiki/List_of_University_of_North_Carolina_at_Chapel_Hill_alumni#cite_note-bloombergbio-10">10]</a></td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>wall</category>
+      </categories>
+      <tags>
+        <tag>edu</tag>
+        <tag>邮箱</tag>
+        <tag>申请</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>背景图片</title>
+    <url>/posts/7350.html</url>
+    <content><![CDATA[<!--markdown-->![](http://i.imgur.com/bAS5g0D.png)
+<p><img src="http://i.imgur.com/Bdsd06L.jpg"><br><img src="http://i.imgur.com/Gz877aW.png"><br><img src="http://i.imgur.com/vFoeROA.png"><br><img src="http://i.imgur.com/RLU5xo9.png"><br><img src="http://i.imgur.com/rlSENdZ.png"><br><img src="http://i.imgur.com/BFv7RYs.png"><br><img src="http://i.imgur.com/jxd7hCK.png"><br><img src="http://i.imgur.com/n0mOWQh.png"><br><img src="http://farm6.static.flickr.com/5189/5568713071_1cebc7cfbf_o.jpg"><br><img src="http://i.imgur.com/zcKbXCs.png"><br><img src="http://i.imgur.com/Rb2UAR1.jpg"><br><img src="http://i.imgur.com/sAxCyHx.png"><br><img src="http://i.imgur.com/am2vjWY.png"><br><img src="http://i.imgur.com/ZUIQdPE.png"><br><img src="http://i.imgur.com/kFhc1LQ.jpg"><br><img src="http://i.imgur.com/4sR7J7G.png"><br><img src="http://i.imgur.com/vNqdxFs.png"><br><img src="http://i.imgur.com/jFIcCLR.png"><br><img src="http://i.imgur.com/8NnHszI.png"><br><img src="http://i.imgur.com/5tMNlyw.jpg"><br><img src="http://i.imgur.com/jjkDENh.jpg"><br><img src="http://i.imgur.com/f7T9NCt.jpg"><br><img src="http://i.imgur.com/0She8NA.jpg"><br><img src="http://i.imgur.com/Se68q5E.png"><br><img src="http://i.imgur.com/y1dZhux.png"><br><img src="http://i.imgur.com/y7HG3my.png"><br><img src="http://i.imgur.com/klvTUtv.png"><br><img src="http://i.imgur.com/QSTAPVw.png"><br><img src="http://i.imgur.com/JBri1UY.png"><br><img src="http://i.imgur.com/uOVsGll.png"><br><img src="http://i.imgur.com/xKJvL2h.png"><br><img src="http://i.imgur.com/rlWhO5C.png"><br><img src="http://i.imgur.com/qx7GIdM.png"><br><img src="http://i.imgur.com/FuC8aX8.png"><br><img src="http://i.imgur.com/rxyUKsy.png"><br><img src="http://i.imgur.com/95NsPWN.png"><br><img src="http://i.imgur.com/CuTMEuj.png"><br><img src="http://farm8.static.flickr.com/7165/6430432855_0ef6a52f8e_b.jpg"><br><img src="http://i.imgur.com/kmbMZHy.png"><br><img src="http://i.imgur.com/cDHfhGp.png"><br><img src="http://i.imgur.com/VUTJAyQ.jpg"><br><img src="http://i.imgur.com/d5YJuaL.jpg"><br><img src="http://i.imgur.com/8TVdou5.jpg"><br><img src="http://i.imgur.com/uVt9aoB.png"><br><img src="http://i.imgur.com/X8Ty0ZK.png"><br><img src="http://farm8.static.flickr.com/7011/6430445371_5c60b7f6ee_b.jpg"><br><img src="http://farm8.static.flickr.com/7152/6430434625_cfd30eecc4_b.jpg"><br><img src="http://farm8.static.flickr.com/7141/6430438109_b41ab531be_b.jpg"><br><img src="http://farm8.static.flickr.com/7024/6430439439_31bca46c64_b.jpg"><br><img src="http://farm6.static.flickr.com/5106/5565625506_6d5a398d8c_o.jpg"><br><img src="http://farm7.static.flickr.com/6101/6430435697_6c96223cde_b.jpg"><br><img src="http://i.imgur.com/tWQKOpM.jpg"><br><img src="http://i.imgur.com/3kNlnCZ.jpg"><br><img src="http://i.imgur.com/04J81Bc.jpg"><br><img src="http://i.imgur.com/Tl4hNba.jpg"><br><img src="http://i.imgur.com/EbycKq4.jpg"><br><img src="http://i.imgur.com/lJecBP3.jpg"><br><img src="http://i.imgur.com/F0nZ3iM.jpg"><br><img src="http://i.imgur.com/WO2iAOk.jpg"><br><img src="http://i.imgur.com/4zDwXJc.jpg"><br><img src="http://i.imgur.com/r2i8Sbz.jpg"><br><img src="http://i.imgur.com/AV0WuHp.jpg"><br><img src="http://i.imgur.com/ztyDb8J.jpg"><br><img src="http://i.imgur.com/9NskJaf.jpg"><br><img src="http://i.imgur.com/9GYFgwk.jpg"><br><img src="http://i.imgur.com/q9pZZJo.jpg"><br><img src="http://i.imgur.com/f0XZ9CH.jpg"><br><img src="http://i.imgur.com/15eeACv.jpg"><br><img src="http://i.imgur.com/gBHJGgV.jpg"><br><img src="http://i.imgur.com/b0OAmMr.jpg"><br><img src="http://i.imgur.com/LdAPWDM.jpg"><br><img src="http://i.imgur.com/KHLk14I.jpg"><br><img src="http://i.imgur.com/9e9M12e.jpg"><br><img src="http://i.imgur.com/zOiFvS2.jpg"><br><img src="http://i.imgur.com/2Bf833l.png"><br><img src="http://i.imgur.com/TVB7kRU.png"><br><img src="http://i.imgur.com/W32eCrE.png"><br><img src="http://i.imgur.com/eF4SIYu.png"><br><img src="http://i.imgur.com/MyNq9ef.png"><br><img src="http://i.imgur.com/ij2PSwG.png"><br><img src="http://i.imgur.com/DD3F8ff.png"><br><img src="http://i.imgur.com/PnIDVDw.png"><br><img src="http://i.imgur.com/IACn4wz.png"><br><img src="http://i.imgur.com/g08W572.png"><br><img src="http://i.imgur.com/pGwOe4F.png"><br><img src="http://i.imgur.com/Rdoq8mp.png"><br><img src="http://i.imgur.com/Zsv2STv.png"><br><img src="http://i.imgur.com/WYniCoq.png"><br><img src="http://i.imgur.com/3CfNNlM.png"><br><img src="http://i.imgur.com/uy1jPu8.png"><br><img src="http://i.imgur.com/MdUHorN.png"><br><img src="http://i.imgur.com/6NA69Tu.png"><br><img src="http://i.imgur.com/fK4Ahxs.png"><br><img src="http://i.imgur.com/d9aNZFs.png"><br><img src="http://i.imgur.com/ofRZBSo.png"><br><img src="http://i.imgur.com/5eHEbjR.png"><br><img src="http://i.imgur.com/ugLAL86.png"><br><img src="http://i.imgur.com/EDWWfPa.png"><br><img src="http://i.imgur.com/jQSpqyw.png"><br><img src="http://i.imgur.com/x7iDQJE.png"><br><img src="http://i.imgur.com/GipyFx2.png"><br><img src="http://i.imgur.com/qgcObPz.png"><br><img src="http://i.imgur.com/ptcLGqF.png"><br><img src="http://i.imgur.com/XB4h5b2.png"><br><img src="http://i.imgur.com/SCHHzuv.png"><br><img src="http://i.imgur.com/RTN3NWa.png"><br><img src="http://i.imgur.com/bFR7eXp.png"><br><img src="http://i.imgur.com/O27uKhe.png"><br><img src="http://farm8.static.flickr.com/7157/6430432775_45e53d864f_b.jpg"><br><img src="http://farm7.static.flickr.com/6230/6430433001_11c1c5219d_b.jpg"><br><img src="http://farm8.static.flickr.com/7151/6430433259_434ee9b232_b.jpg"><br><img src="http://farm8.static.flickr.com/7006/6430433325_efc69a92c6_b.jpg"><br><img src="http://farm7.static.flickr.com/6033/6430433513_1aa8a93aa3_b.jpg"><br><img src="http://farm8.static.flickr.com/7152/6430433661_660bf4bda4_b.jpg"><br><img src="http://farm7.static.flickr.com/6221/6430433703_1c8b08f65e_b.jpg"><br><img src="http://farm8.static.flickr.com/7156/6430433775_0e64bc8ebe_b.jpg"><br><img src="http://farm7.static.flickr.com/6058/6430433995_14d53ef568_b.jpg"><br><img src="http://farm7.static.flickr.com/6094/6430434403_145e123a63_b.jpg"><br><img src="http://farm8.static.flickr.com/7150/6430434585_a57ee59aac_b.jpg"><br><img src="http://farm8.static.flickr.com/7167/6430434713_70d73ceebf_b.jpg"><br><img src="http://farm8.static.flickr.com/7147/6430434755_809ed76464_b.jpg"><br><img src="http://farm8.static.flickr.com/7034/6430434817_c048bc17b7_b.jpg"><br><img src="http://farm8.static.flickr.com/7013/6430435097_7c2b6d87e4_b.jpg"><br><img src="http://farm8.static.flickr.com/7022/6430435511_89de9f221c_b.jpg"><br><img src="http://farm8.static.flickr.com/7147/6430435777_a04138d916_b.jpg"><br><img src="http://farm8.static.flickr.com/7154/6430435829_5c62dc4c8c_b.jpg"><br><img src="http://farm8.static.flickr.com/7158/6430435899_df2f9b3bb7_b.jpg"><br><img src="http://farm8.static.flickr.com/7024/6430436027_3e5ec59b91_b.jpg"><br><img src="http://farm7.static.flickr.com/6031/6430436283_1c2faec3dd_b.jpg"><br><img src="http://farm8.static.flickr.com/7004/6430436537_30fb3398b6_b.jpg"><br><img src="http://farm8.static.flickr.com/7172/6430436703_1e470b18ca_b.jpg"><br><img src="http://farm8.static.flickr.com/7024/6430436879_3b859d1ebd_b.jpg"><br><img src="http://farm8.static.flickr.com/7150/6430437201_15d3d5b34e_b.jpg"><br><img src="http://farm8.static.flickr.com/7170/6430437409_d305d8d520_b.jpg"><br><img src="http://farm8.static.flickr.com/7028/6430437477_25afea585d_b.jpg"><br><img src="http://farm8.static.flickr.com/7151/6430437645_f2d1231fa9_b.jpg"><br><img src="http://farm8.static.flickr.com/7013/6430437897_0ebfe83736_b.jpg"><br><img src="http://farm8.static.flickr.com/7164/6430438153_5e73b6381e_b.jpg"><br><img src="http://farm7.static.flickr.com/6055/6430438283_7f412e9045_b.jpg"><br><img src="http://farm8.static.flickr.com/7017/6430438361_ac3377a48f_b.jpg"><br><img src="http://farm8.static.flickr.com/7001/6430438523_7ef78641d7_b.jpg"><br><img src="http://farm8.static.flickr.com/7015/6430438577_5502f2f4d9_b.jpg"><br><img src="http://farm8.static.flickr.com/7025/6430438649_3c185b8010_b.jpg"><br><img src="http://farm8.static.flickr.com/7175/6430438857_5a4262c3cc_b.jpg"><br><img src="http://farm8.static.flickr.com/7161/6430439029_5c8cbaf8f1_b.jpg"><br><img src="http://farm8.static.flickr.com/7020/6430439291_68cbc4ab49_b.jpg"><br><img src="http://farm7.static.flickr.com/6043/6430439339_9ae66d72d6_b.jpg"><br><img src="http://farm8.static.flickr.com/7027/6430439705_e691057a51_b.jpg"><br><img src="http://farm8.static.flickr.com/7143/6430439825_beecd5efe2_b.jpg"><br><img src="http://farm8.static.flickr.com/7011/6430439859_cbf4cd3643_b.jpg"><br><img src="http://farm7.static.flickr.com/6058/6430440053_0083658254_b.jpg"><br><img src="http://farm8.static.flickr.com/7149/6430441203_8518057a11_b.jpg"><br><img src="http://farm8.static.flickr.com/7174/6430441473_e3d92a5095_b.jpg"><br><img src="http://farm8.static.flickr.com/7160/6430441673_e0b2674190_b.jpg"><br><img src="http://farm7.static.flickr.com/6044/6430442053_ea8e655d6b_b.jpg"><br><img src="http://farm8.static.flickr.com/7008/6430442221_08d9f05e44_b.jpg"><br><img src="http://farm8.static.flickr.com/7169/6430442301_c8eeb537af_b.jpg"><br><img src="http://farm8.static.flickr.com/7002/6430442401_e914e0585a_b.jpg"><br><img src="http://farm8.static.flickr.com/7175/6430442631_a84b7c8385_b.jpg"><br><img src="http://farm7.static.flickr.com/6114/6430442765_0fcd38b9de_b.jpg"><br><img src="http://farm8.static.flickr.com/7161/6430443135_6f3d3b48f6_b.jpg"><br><img src="http://farm8.static.flickr.com/7009/6430443349_ca153c5380_b.jpg"><br><img src="http://farm8.static.flickr.com/7165/6430443407_1b7b7bf5c5_b.jpg"><br><img src="http://farm8.static.flickr.com/7161/6430443633_b254952080_b.jpg"><br><img src="http://farm7.static.flickr.com/6240/6430444103_2edf88c734_b.jpg"><br><img src="http://farm8.static.flickr.com/7024/6430444581_1e00f3067a_b.jpg"><br><img src="http://farm8.static.flickr.com/7155/6430445203_c86da93674_b.jpg"><br><img src="http://farm8.static.flickr.com/7004/6430445449_0751a6dcb2_b.jpg"><br><img src="http://farm8.static.flickr.com/7172/6430445757_f4f410eab6_b.jpg"><br><img src="http://farm8.static.flickr.com/7022/6430445941_51eee2362c_b.jpg"><br><img src="http://farm8.static.flickr.com/7010/6430445995_8153401329_b.jpg"><br><img src="http://farm8.static.flickr.com/7154/6430446071_fe3c5cbb85_b.jpg"><br><img src="http://farm8.static.flickr.com/7005/6430446157_09dda9d044_b.jpg"><br><img src="http://farm8.static.flickr.com/7016/6430447535_9f9114450c_b.jpg"><br><img src="http://farm7.static.flickr.com/6234/6430446307_4e01cdc27f_b.jpg"><br><img src="http://farm7.static.flickr.com/6233/6430446383_336b9a6e78_b.jpg"><br><img src="http://farm8.static.flickr.com/7154/6430446455_29fbc69ce6_b.jpg"><br><img src="http://farm8.static.flickr.com/7029/6430446515_c865b8f7ee_b.jpg"><br><img src="http://farm8.static.flickr.com/7144/6430446849_64dd003d4e_b.jpg"><br><img src="http://farm7.static.flickr.com/6226/6430446941_851b97d726_b.jpg"><br><img src="http://farm8.static.flickr.com/7151/6430446979_9138c58f40_b.jpg"><br><img src="http://farm8.static.flickr.com/7164/6430447071_905f69575b_b.jpg"><br><img src="http://farm7.static.flickr.com/6236/6430439581_82fcb19c8b_b.jpg"><br><img src="http://i.imgur.com/GlM33F9.png"><br><img src="http://i.imgur.com/lpSdBw5.png"><br><img src="http://i.imgur.com/sMmLA1i.png"><br><img src="http://i.imgur.com/SVHobBn.png"><br><img src="http://i.imgur.com/ycVdZPr.png"><br><img src="http://i.imgur.com/qKev92w.png"><br><img src="http://farm8.static.flickr.com/7008/6430447095_e43c3d77b2_b.jpg"><br><img src="http://farm8.static.flickr.com/7162/6430447207_54aece209c_b.jpg"><br><img src="http://farm8.static.flickr.com/7157/6430447373_612f33b2d9_b.jpg"><br><img src="http://farm7.static.flickr.com/6231/6430446667_7e6d83910a_b.jpg"><br><img src="http://farm7.static.flickr.com/6035/6430433123_69de1514b6_b.jpg"><br><img src="http://farm8.static.flickr.com/7004/6430433219_25593c3c21_b.jpg"><br><img src="http://farm7.static.flickr.com/6036/6430434145_4179fbc973_b.jpg"><br><img src="http://farm8.static.flickr.com/7022/6430434851_a3916036ec_b.jpg"><br><img src="http://farm7.static.flickr.com/6034/6430434909_12685d155b_b.jpg"><br><img src="http://farm8.static.flickr.com/7025/6430435145_b5b330328e_b.jpg"><br><img src="http://farm7.static.flickr.com/6095/6430435359_200e7df71a_b.jpg"><br><img src="http://farm8.static.flickr.com/7025/6430435955_513af70347_b.jpg"><br><img src="http://farm8.static.flickr.com/7006/6430436069_26a7fc24fb_b.jpg"><br><img src="http://farm7.static.flickr.com/6226/6430436367_883e22a4ff_b.jpg"><br><img src="http://farm8.static.flickr.com/7003/6430437035_3a136d9ca8_b.jpg"><br><img src="http://farm8.static.flickr.com/7008/6430437355_f618e5a96e_b.jpg"><br><img src="http://farm8.static.flickr.com/7147/6430438229_5f46192b60_b.jpg"><br><img src="http://farm8.static.flickr.com/7024/6430439247_50402ca34c_b.jpg"><br><img src="http://farm8.static.flickr.com/7024/6430439487_5f69b64222_b.jpg"><br><img src="http://farm7.static.flickr.com/6044/6430439531_7115db9edb_b.jpg"><br><img src="http://farm8.static.flickr.com/7152/6430439655_ffd7f5266d_b.jpg"><br><img src="http://farm7.static.flickr.com/6038/6430439783_d96f28f6e1_b.jpg"><br><img src="http://farm8.static.flickr.com/7141/6430439917_d02a485b88_b.jpg"><br><img src="http://farm8.static.flickr.com/7160/6430440343_c065e30f93_b.jpg"><br><img src="http://farm8.static.flickr.com/7012/6430440555_4861dfa5f8_b.jpg"><br><img src="http://farm7.static.flickr.com/6233/6430440721_de3a8f10c7_b.jpg"><br><img src="http://farm8.static.flickr.com/7163/6430441017_84ed341c8c_b.jpg"><br><img src="http://farm7.static.flickr.com/6054/6430442991_e393c8b17d_b.jpg"><br><img src="http://farm8.static.flickr.com/7171/6430443481_11c69b8a5a_b.jpg"><br><img src="http://farm7.static.flickr.com/6034/6430441889_310f286f1d_b.jpg"><br><img src="http://farm7.static.flickr.com/6227/6430443845_2318a7866e_b.jpg"><br><img src="http://farm7.static.flickr.com/6059/6430443915_830d6fe386_b.jpg"><br><img src="http://farm8.static.flickr.com/7171/6430443955_faf786b335_b.jpg"><br><img src="http://farm8.static.flickr.com/7032/6430444185_38a5cf03ed_b.jpg"><br><img src="http://farm8.static.flickr.com/7168/6430444371_d757e07d2f_b.jpg"><br><img src="http://farm8.static.flickr.com/7165/6430444537_593f40fe3a_b.jpg"><br><img src="http://farm8.static.flickr.com/7009/6430445043_3810458125_b.jpg"><br><img src="http://farm8.static.flickr.com/7157/6430445593_ccbb23e7c9_b.jpg"><br><img src="http://farm7.static.flickr.com/6035/6430446109_63004c7b88_b.jpg"><br><img src="http://farm8.static.flickr.com/7008/6430444875_591630e4b6_b.jpg"><br><img src="http://farm8.static.flickr.com/7153/6430435331_8f0cc2d756_b.jpg"></p>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+  </entry>
+  <entry>
     <title>action自动部署hexo的方法2</title>
     <url>/posts/2786860441.html</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>早就听闻 GitHub+Actions 真相，于是今天便试了下，作为小康博客的第二个平台。至于为什么要自动部署，我在<a href="https://www.antmoe.com/posts/51b0fa77/index.html">另一篇文章</a>介绍过了。</p>
@@ -54,7 +1829,7 @@
 <p>然后在 <code>/source</code> 的目录中创建一个文件，命名为 <code>CNAME</code>，里边的内容写你的域名。只写域名即可。例如 <code>www.antmoe.com</code>，不需要添加 <code>http(s)://</code></p>
 <h3 id="其他问题"><a href="#其他问题" class="headerlink" title=" 其他问题"></a><a href="https://www.antmoe.com/posts/6081157f/#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98"></a> 其他问题</h3>]]></content>
       <categories>
-        <category>other</category>
+        <category>hexo</category>
       </categories>
       <tags>
         <tag>HEXO</tag>
@@ -140,7 +1915,7 @@
 <h2 id="类似工具"><a href="#类似工具" class="headerlink" title="类似工具"></a>类似工具</h2><p>除了 GitHub Actions，我们还可以使用 <strong>Travis CI</strong> 来实现 Hexo 自动部署，效果是一样的，任君选择。</p>
 ]]></content>
       <categories>
-        <category>other</category>
+        <category>hexo</category>
       </categories>
       <tags>
         <tag>HEXO</tag>
@@ -185,7 +1960,7 @@
 </ul>
 ]]></content>
       <categories>
-        <category>other</category>
+        <category>hexo</category>
       </categories>
       <tags>
         <tag>HEXO</tag>
@@ -220,7 +1995,7 @@
 </ol>
 ]]></content>
       <categories>
-        <category>other</category>
+        <category>hexo</category>
       </categories>
       <tags>
         <tag>HEXO</tag>
@@ -370,7 +2145,7 @@
 </blockquote>
 ]]></content>
       <categories>
-        <category>other</category>
+        <category>hexo</category>
       </categories>
       <tags>
         <tag>hexo</tag>
@@ -470,7 +2245,7 @@
 <p>至此，我们就已经完成了个人博客网站的部署，在浏览器中输入你的地址 ：<code>&lt;username&gt;.github.io</code> ，就能看到我们的个人网站啦！</p>
 ]]></content>
       <categories>
-        <category>other</category>
+        <category>hexo</category>
       </categories>
       <tags>
         <tag>HEXO</tag>
@@ -546,7 +2321,7 @@
 <p>作者写的另外一篇教程： <a href="https://juejin.cn/post/6943895271751286821" title="https://juejin.cn/post/6943895271751286821">如何使用 GitHub Actions 自动部署 Hexo 博客</a></p>
 ]]></content>
       <categories>
-        <category>other</category>
+        <category>hexo</category>
       </categories>
       <tags>
         <tag>HEXO</tag>
