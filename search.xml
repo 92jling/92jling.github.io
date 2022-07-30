@@ -1127,40 +1127,6 @@
       </tags>
   </entry>
   <entry>
-    <title>国内加速访问Github的方法</title>
-    <url>/posts/20241.html</url>
-    <content><![CDATA[<!--markdown-->#导语
-<blockquote>
-<p>自从GitHub私有库免费后，又涌入了一大批开发爱好者。但国内访问GitHub的速度实在是慢得一匹，在clone仓库时甚至只有10k以下的速度，大大影响了程序员的交友效率。<br>GitHub在国内访问速度慢的问题原因有很多，但最直接和最主要的原因是GitHub的分发加速网络的域名遭到dns污染。<br>今天我们就介绍通过修改系统hosts文件的办法，绕过国内dns解析，直接访问GitHub的CDN节点，从而达到加速的目的。<br>不需要科学上网，也不需要开代理加速器。不需要科学上网，也不需要开代理加速器。</p>
-</blockquote>
-<p>#方法<br>##一、查找Github正确IP地址<br>打开<a href="http://ipaddress.com/" title="IPAddress.com">IPAddress.com</a>网站，查询下面3个网址对应的IP地址：</p>
-<blockquote>
-<ul>
-<li>github.com</li>
-</ul>
-</blockquote>
-<ul>
-<li>assets-cdn.github.com</li>
-<li>github.global.ssl.fastly.net</li>
-</ul>
-<p>##二、修改hosts文件<br>hosts文件路径：<br><code>C:\Windows\System32\drivers\etc</code><br>直接在最后加入以下代码（此时可能需要管理员权限,可以将hosts复制到桌面，修改好了再复制回去覆盖原先的）：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">192.30.253.112 github.com</span><br><span class="line">151.101.184.133 assets-cdn.github.com</span><br><span class="line">151.101.185.194 github.global.ssl.fastly.net</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.loli.net/2019/11/24/beA1qIVD6i47M95.png"></p>
-<p>其中192.30.253.112修改为你查询到的github.com的最新IP地址，下面的同理。<br>修改完成，保存文件。<br>##三、刷新系统dns缓存</p>
-<p>用WIN+R快捷键打开运行窗口，输入命令：<code>cmd</code>并回车进入命令行窗口。</p>
-<p>接着输入命令：<code>ipconfig /flushdns</code> 回车后执行刷新本地dns缓存数据即可。<br>有时候刷新dns并不能够马上生效，重启电脑即可。</p>
-<p>**这样你就可以告诉访问Github了，下载速度也是美美哒。</p>
-]]></content>
-      <categories>
-        <category>wall</category>
-      </categories>
-      <tags>
-        <tag>github</tag>
-        <tag>dns</tag>
-        <tag>hosts</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>宝塔面板+OCI自动开通Oracle甲骨文ARM VPS</title>
     <url>/posts/33977.html</url>
     <content><![CDATA[<!--markdown-->
@@ -1205,6 +1171,40 @@
         <tag>ARM</tag>
         <tag>VPS</tag>
         <tag>OCI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>国内加速访问Github的方法</title>
+    <url>/posts/20241.html</url>
+    <content><![CDATA[<!--markdown-->#导语
+<blockquote>
+<p>自从GitHub私有库免费后，又涌入了一大批开发爱好者。但国内访问GitHub的速度实在是慢得一匹，在clone仓库时甚至只有10k以下的速度，大大影响了程序员的交友效率。<br>GitHub在国内访问速度慢的问题原因有很多，但最直接和最主要的原因是GitHub的分发加速网络的域名遭到dns污染。<br>今天我们就介绍通过修改系统hosts文件的办法，绕过国内dns解析，直接访问GitHub的CDN节点，从而达到加速的目的。<br>不需要科学上网，也不需要开代理加速器。不需要科学上网，也不需要开代理加速器。</p>
+</blockquote>
+<p>#方法<br>##一、查找Github正确IP地址<br>打开<a href="http://ipaddress.com/" title="IPAddress.com">IPAddress.com</a>网站，查询下面3个网址对应的IP地址：</p>
+<blockquote>
+<ul>
+<li>github.com</li>
+</ul>
+</blockquote>
+<ul>
+<li>assets-cdn.github.com</li>
+<li>github.global.ssl.fastly.net</li>
+</ul>
+<p>##二、修改hosts文件<br>hosts文件路径：<br><code>C:\Windows\System32\drivers\etc</code><br>直接在最后加入以下代码（此时可能需要管理员权限,可以将hosts复制到桌面，修改好了再复制回去覆盖原先的）：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">192.30.253.112 github.com</span><br><span class="line">151.101.184.133 assets-cdn.github.com</span><br><span class="line">151.101.185.194 github.global.ssl.fastly.net</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2019/11/24/beA1qIVD6i47M95.png"></p>
+<p>其中192.30.253.112修改为你查询到的github.com的最新IP地址，下面的同理。<br>修改完成，保存文件。<br>##三、刷新系统dns缓存</p>
+<p>用WIN+R快捷键打开运行窗口，输入命令：<code>cmd</code>并回车进入命令行窗口。</p>
+<p>接着输入命令：<code>ipconfig /flushdns</code> 回车后执行刷新本地dns缓存数据即可。<br>有时候刷新dns并不能够马上生效，重启电脑即可。</p>
+<p>**这样你就可以告诉访问Github了，下载速度也是美美哒。</p>
+]]></content>
+      <categories>
+        <category>wall</category>
+      </categories>
+      <tags>
+        <tag>github</tag>
+        <tag>dns</tag>
+        <tag>hosts</tag>
       </tags>
   </entry>
   <entry>
