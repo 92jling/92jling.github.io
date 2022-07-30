@@ -2,6 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jling.tk/gallery/iiiuse/index.html</loc>
+    
+    <lastmod>2022-07-30</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jling.tk/gallery/2d/index.html</loc>
+    
+    <lastmod>2022-07-30</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jling.tk/gallery/wallpaper/index.html</loc>
+    
+    <lastmod>2022-07-30</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jling.tk/gallery/girl/index.html</loc>
+    
+    <lastmod>2022-07-30</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jling.tk/gallery/index.html</loc>
+    
+    <lastmod>2022-07-30</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jling.tk/posts/756393619.html</loc>
     
     <lastmod>2022-07-30</lastmod>
@@ -290,51 +335,6 @@
   </url>
   
   <url>
-    <loc>https://jling.tk/gallery/index.html</loc>
-    
-    <lastmod>2022-03-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jling.tk/gallery/wallpaper/index.html</loc>
-    
-    <lastmod>2022-03-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jling.tk/gallery/iiiuse/index.html</loc>
-    
-    <lastmod>2022-03-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jling.tk/gallery/2d/index.html</loc>
-    
-    <lastmod>2022-03-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jling.tk/gallery/girl/index.html</loc>
-    
-    <lastmod>2022-03-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jling.tk/link/index.html</loc>
     
     <lastmod>2022-03-22</lastmod>
@@ -525,20 +525,6 @@
   </url>
   
   <url>
-    <loc>https://jling.tk/tags/VPS/</loc>
-    <lastmod>2022-07-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jling.tk/tags/OCI/</loc>
-    <lastmod>2022-07-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://jling.tk/tags/github/</loc>
     <lastmod>2022-07-30</lastmod>
     <changefreq>weekly</changefreq>
@@ -554,6 +540,20 @@
   
   <url>
     <loc>https://jling.tk/tags/hosts/</loc>
+    <lastmod>2022-07-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jling.tk/tags/VPS/</loc>
+    <lastmod>2022-07-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jling.tk/tags/OCI/</loc>
     <lastmod>2022-07-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
