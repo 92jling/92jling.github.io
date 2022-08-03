@@ -3545,7 +3545,7 @@ h1.page-title + .tag-cloud-list {
   transform: rotate(360deg);
 }
 #waline-wrap textarea {
-  background: url("https://cdn.jsdelivr.net/gh/love2wind/cloudimg//img/6878f2fce5e82c12f91eef87bde8bd2c.png") 100% 100% no-repeat;
+  background: url("https://gcore.jsdelivr.net/gh/love2wind/cloudimg//img/6878f2fce5e82c12f91eef87bde8bd2c.png") 100% 100% no-repeat;
 }
 #waline-wrap textarea:focus {
   background-image: none;
